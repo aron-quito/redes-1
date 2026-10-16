@@ -111,7 +111,11 @@ graph TD
    * En el interior de cada consultorio y oficina administrativa se utiliza canaleta plástica autoextinguible de **40 mm × 25 mm** fijada a la pared a **+0.40 m** sobre el nivel de piso terminado (o a +1.10 m sobre mesadas de laboratorio).
    * **Separación de Circuitos:** Cuenta con un **tabique divisor interno continuo** que aísla físicamente los cables de red UTP de los cables de fuerza eléctrica de 220 VAC estabilizada, mitigando la inducción de ruido electromagnético de 60 Hz.
 3. **Puntos de Techo para Access Points (WLAN):**
-   * Cuatro enlaces finalizan directamente en cajas de pase octogonales en el cielo raso a 2.60 m, terminando en jacks hembra y latiguillos de 1.0 m conectados a los APs PoE+ montados en el techo.
+   * Cuatro enlaces finalizan directamente en cajas de pase octogonales en el cielo raso a 2.60 m, terminando en jacks hembra y latiguillos de 1.0 m conectados a los APs PoE+ montados en el techo:
+     * **AP-01:** Sala de Espera General (red pública/turnero).
+     * **AP-02:** Pasillo Central Oeste (cobertura médica consultorios 1 al 4 y triaje).
+     * **AP-03:** Pasillo Central Este (cobertura médica consultorios 5 al 8 y laboratorio).
+     * **AP-04:** Administración General - extremo este (cobertura administrativa, contable y salas anexas).
 
 ---
 
@@ -248,18 +252,18 @@ A continuación se detalla la matriz completa de los **56 puertos proyectados** 
 | **PP02-10** | `R1-PP2-P10 / ADM-D4` | Dirección Médica | Puesto Dirección 04 | UTP Cat 6 LSZH |
 | **PP02-11** | `R1-PP2-P11 / ADM-PRN` | Administración General | Impresora Multifuncional de Red | UTP Cat 6 LSZH |
 | **PP02-12** | `R1-PP2-P12 / ADM-VOIP`| Administración General | Teléfono IP de Jefatura | UTP Cat 6 LSZH |
-| **PP02-13** | `R1-PP2-P13 / EST-D1` | Estar Médico | Estación de Consulta Médica | UTP Cat 6 LSZH |
-| **PP02-14** | `R1-PP2-P14 / AP-02` | Estar Médico | Access Point Wi-Fi 6 PoE+ | UTP Cat 6 LSZH |
-| **PP02-15** | `R1-PP2-P15 / AP-03` | Pasillo Central Norte | Access Point Wi-Fi 6 PoE+ | UTP Cat 6 LSZH |
-| **PP02-16** | `R1-PP2-P16 / AP-04` | Pasillo Central Sur | Access Point Wi-Fi 6 PoE+ | UTP Cat 6 LSZH |
-| **PP02-17** | `R1-PP2-P17 / RES-C01` | Consultorio 01 | Toma de Reserva / Expansión | UTP Cat 6 LSZH |
-| **PP02-18** | `R1-PP2-P18 / RES-C02` | Consultorio 02 | Toma de Reserva / Expansión | UTP Cat 6 LSZH |
-| **PP02-19** | `R1-PP2-P19 / RES-C03` | Consultorio 03 | Toma de Reserva / Expansión | UTP Cat 6 LSZH |
-| **PP02-20** | `R1-PP2-P20 / RES-C04` | Consultorio 04 | Toma de Reserva / Expansión | UTP Cat 6 LSZH |
-| **PP02-21** | `R1-PP2-P21 / RES-C05` | Consultorio 05 | Toma de Reserva / Expansión | UTP Cat 6 LSZH |
-| **PP02-22** | `R1-PP2-P22 / RES-ADM` | Administración | Toma de Reserva / Expansión | UTP Cat 6 LSZH |
-| **PP02-23** | `R1-PP2-P23 / RES-REC` | Recepción | Toma de Reserva / Expansión | UTP Cat 6 LSZH |
-| **PP02-24** | `R1-PP2-P24 / RES-FAR` | Farmacia | Toma de Reserva / Expansión | UTP Cat 6 LSZH |
+| **PP02-13** | `R1-PP2-P13 / ADM-AP04`| Administración General | Access Point Wi-Fi 6 PoE+ (AP-04) | UTP Cat 6 LSZH |
+| **PP02-14** | `R1-PP2-P14 / PAS-AP02`| Pasillo Central Oeste | Access Point Wi-Fi 6 PoE+ (AP-02) | UTP Cat 6 LSZH |
+| **PP02-15** | `R1-PP2-P15 / PAS-AP03`| Pasillo Central Este | Access Point Wi-Fi 6 PoE+ (AP-03) | UTP Cat 6 LSZH |
+| **PP02-16** | `R1-PP2-P16 / RES-C01` | Consultorio 01 | Toma de Reserva / Expansión | UTP Cat 6 LSZH |
+| **PP02-17** | `R1-PP2-P17 / RES-C02` | Consultorio 02 | Toma de Reserva / Expansión | UTP Cat 6 LSZH |
+| **PP02-18** | `R1-PP2-P18 / RES-C03` | Consultorio 03 | Toma de Reserva / Expansión | UTP Cat 6 LSZH |
+| **PP02-19** | `R1-PP2-P19 / RES-C04` | Consultorio 04 | Toma de Reserva / Expansión | UTP Cat 6 LSZH |
+| **PP02-20** | `R1-PP2-P20 / RES-C05` | Consultorio 05 | Toma de Reserva / Expansión | UTP Cat 6 LSZH |
+| **PP02-21** | `R1-PP2-P21 / RES-ADM` | Administración | Toma de Reserva / Expansión | UTP Cat 6 LSZH |
+| **PP02-22** | `R1-PP2-P22 / RES-REC` | Recepción | Toma de Reserva / Expansión | UTP Cat 6 LSZH |
+| **PP02-23** | `R1-PP2-P23 / RES-FAR` | Farmacia | Toma de Reserva / Expansión | UTP Cat 6 LSZH |
+| **PP02-24** | `R1-PP2-P24 / RES-GEN` | Rack MDF | Reserva Técnica Libre de Panel | UTP Cat 6 LSZH |
 
 #### Patch Panel 03: 24 Puertos Cat 6A F/UTP Apantallado (U31) — Rayos X, Laboratorio y Servidores
 | Puerto Patch | Código Etiqueta TIA-606 | Ambiente Destino | Tipo de Dispositivo Conectado | Medio Físico |
@@ -291,7 +295,8 @@ $$\text{Longitud por Enlace} = \left(\text{Distancia Horizontal por Bandeja/Cana
   * En el MDF: bajada desde la bandeja superior hasta la base de parcheo del rack $= 2.00\text{ metros}$.
   * Total fijo por enlace $= 4.20\text{ metros}$.
 
-#### A. Cálculo de Cable UTP Categoría 6 (50 Puntos: 42 activos + 8 reservas)
+#### A. Cálculo de Cable UTP Categoría 6 (50 Puntos proyectados: 39 activos horizontales + 8 reservas + 3 puntos de margen técnico)
+* **Puntos a cablear:** 39 tomas horizontales activas en áreas de trabajo y pasillos (6 Admisión + 2 Espera + 3 Triaje + 3 Farmacia + 10 Consultorios 1-5 + 6 Consultorios 6-8 + 7 Administración + 2 APs Pasillo) + 8 reservas técnicas + 3 enlaces de contingencia/holgura = 50 puntos de tendido horizontal. *(Nota: los 3 servidores del MDF se conectan internamente en el rack con patch cords directos, y las 6 tomas de Rayos X y Laboratorio utilizan cable F/UTP Cat 6A).*
 * **Distancia horizontal promedio:** Calculada a partir de los recorridos en el plano arquitectónico $= 16.50\text{ metros}$.
 * **Longitud promedio bruta por punto:** $16.50\text{ m} + 4.20\text{ m (bajadas)} = 20.70\text{ metros}$.
 * **Longitud con factor de curvatura (10%):** $20.70\text{ m} \times 1.10 = 22.77\text{ metros por punto}$.
