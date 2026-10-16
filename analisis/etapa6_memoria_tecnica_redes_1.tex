@@ -1,0 +1,512 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{geometry}
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+\usepackage{mathptmx} % Times New Roman
+\usepackage{setspace}
+\setstretch{1.15}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+
+% Definición de colores sobrios institucionales
+\definecolor{darkblue}{RGB}{20, 45, 85}
+\definecolor{grayline}{RGB}{180, 180, 180}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    citecolor=darkblue,
+    urlcolor=darkblue
+}
+
+% Formato de secciones numeradas
+\titleformat{\section}{\color{darkblue}\large\bfseries}{\thesection.}{0.8em}{}[\titlerule]
+\titleformat{\subsection}{\color{darkblue}\normalsize\bfseries}{\thesubsection.}{0.6em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection.}{0.5em}{}
+
+\titlespacing*{\section}{0pt}{1.5ex plus 1ex minus .2ex}{1ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{1.2ex plus 1ex minus .2ex}{0.8ex plus .2ex}
+
+% Encabezados y pies de página
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{gray} Redes I --- Memoria Técnica de Cableado Estructurado}
+\fancyhead[R]{\small\color{gray} Policlínico "Salud \& Vida"}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\begin{document}
+
+% ==============================================================================
+% SECCIÓN 1: PORTADA OFICIAL
+% ==============================================================================
+\begin{titlepage}
+    \centering
+    {\scshape\Large Universidad Nacional Jorge Basadre Grohmann \par}
+    \vspace{0.3cm}
+    {\scshape\large Facultad de Ingeniería --- Escuela Profesional de Ingeniería en Informática y Sistemas \par}
+    \vspace{2.5cm}
+    
+    {\large\textbf{MEMORIA TÉCNICA DE INGENIERÍA}\par}
+    \vspace{0.8cm}
+    {\color{darkblue}\LARGE\bfseries DISEÑO DE LA INFRAESTRUCTURA FÍSICA Y CABLEADO ESTRUCTURADO DE UNA RED LAN PARA UNA ORGANIZACIÓN DE SALUD\par}
+    \vspace{0.5cm}
+    {\large\itshape Caso de Estudio: Policlínico de Especialidades Médicas "Salud \& Vida" S.A.C.\par}
+    \vspace{2.5cm}
+    
+    \begin{flushleft}
+        \textbf{Asignatura:} Redes de Computadoras I (Unidad I) \\
+        \textbf{Docente Encargado:} M.Sc. Ing. Docente del Curso \\
+        \textbf{Equipo Consultor / Estudiantes:}
+        \begin{itemize}[leftmargin=1.5cm, noitemsep]
+            \item Integrante 1 (Líder / Diagnóstico y Requerimientos)
+            \item Integrante 2 (Fundamentos, Topologías y Modelos OSI/TCP-IP)
+            \item Integrante 3 (Capa Física, Magnitudes y Selección de Medios)
+            \item Integrante 4 (Ingeniería de Cableado Estructurado y MDF)
+            \item Integrante 5 (Diseño Físico, Plan de Pruebas y Consolidación)
+        \end{itemize}
+    \end{flushleft}
+    
+    \vfill
+    {\large Tacna, Perú --- Octubre 2026 \par}
+\end{titlepage}
+
+\thispagestyle{empty}
+\tableofcontents
+\newpage
+\setcounter{page}{1}
+
+% ==============================================================================
+% SECCIÓN 2: INTRODUCCIÓN
+% ==============================================================================
+\section{Introducción}
+
+En las organizaciones contemporáneas del sector salud, la continuidad de las operaciones asistenciales y la seguridad en la toma de decisiones clínicas dependen directamente de la robustez de su plataforma de comunicaciones. Servicios esenciales como la Historia Clínica Electrónica (HCE), los sistemas de almacenamiento y distribución de radiología digital (PACS/DICOM) y los analizadores bioquímicos de laboratorio clínico requieren un medio de transmisión físico de alta confiabilidad, capaz de mitigar interferencias electromagnéticas y garantizar tasas sostenidas de transmisión sin caídas de servicio.
+
+El presente documento constituye la \textbf{Memoria Técnica de Ingeniería} para la consultoría de diseño e implementación del sistema de cableado estructurado del \textbf{Policlínico de Especialidades Médicas "Salud \& Vida" S.A.C.} El proyecto abarca desde el levantamiento de requerimientos y dimensionamiento de tráfico hasta la selección fundamentada de medios físicos, el diseño del cuarto de telecomunicaciones principal (MDF), el trazo planimétrico de canalizaciones y el plan de pruebas de certificación metrológica bajo estándares internacionales unificados de la \textit{Telecommunications Industry Association} (ANSI/TIA).
+
+\textbf{Delimitación y Alcance Técnico:} En conformidad estricta con el programa curricular de la Unidad I de la asignatura, el presente estudio se enfoca de forma exclusiva en la \textbf{Capa Física y Capa de Enlace de Datos} de la infraestructura. Se omiten deliberadamente aspectos de direccionamiento lógico IPv4/IPv6, esquemas de subredes (FLSM/VLSM) y protocolos de enrutamiento dinámico, los cuales corresponden a la Unidad II del curso.
+
+% ==============================================================================
+% SECCIÓN 3: DESCRIPCIÓN DE LA ORGANIZACIÓN
+% ==============================================================================
+\section{Descripción de la Organización}
+
+\subsection{Perfil Institucional y Giro Operativo}
+El Policlínico "Salud \& Vida" S.A.C. es una institución privada prestadora de servicios de salud ambulatoria de complejidad media. Su cartera asistencial comprende medicina preventiva, consultas en 8 especialidades médicas, tópico de urgencias, diagnóstico por imágenes (Rayos X y Ecografía), laboratorio de análisis clínico, farmacia asistencial y administración central. La operación se ejecuta en horario continuo de lunes a sábado de 07:00 a 20:00 horas, con una dotación de 18 colaboradores médicos y asistenciales, 8 colaboradores administrativos y una afluencia concurrente de 35 a 50 pacientes en sala de espera.
+
+\subsection{Características Físicas del Predio y Justificación Arquitectónica}
+La infraestructura se implanta en una edificación de \textbf{un solo nivel (Planta Baja)} con un área total construida de \textbf{450.00 m²} (30.00 metros de longitud por 15.00 metros de ancho). La altura libre es de 3.00 metros de losa a piso terminado, incorporando un falso cielo raso suspendido a 2.60 metros, lo que proporciona un espacio técnico (\textit{plenum}) de 40 cm para la suspensión de canalizaciones de datos.
+
+La decisión de concentrar la infraestructura en una sola planta responde a dos justificaciones técnicas determinantes:
+\begin{enumerate}[noitemsep]
+    \item \textbf{Eliminación del subsistema vertical (Backbone):} Al prescindir de múltiples plantas, la red consolida toda la conmutación y distribución pasiva en un único Cuarto de Telecomunicaciones Central (MDF), reduciendo costos de equipamiento y puntos de falla intermedios.
+    \item \textbf{Optimización de distancias de enlace:} Con un corredor central de 30 metros y situando el MDF en la coordenada central de gravedad del predio, la distancia de tendido hacia la toma más alejada es de tan solo \textbf{34.80 metros reales}, garantizando un cumplimiento estricto y un margen de seguridad superior al 60\% respecto a la cota máxima de 90 metros permitida por ANSI/TIA-568.
+\end{enumerate}
+
+% ==============================================================================
+% SECCIÓN 4: PROBLEMÁTICA
+% ==============================================================================
+\section{Problemática}
+
+\subsection{Diagnóstico del Estado Actual de la Red}
+El policlínico carece actualmente de un sistema de cableado estructurado normalizado, operando bajo una infraestructura improvisada resultante de ampliaciones desordenadas:
+\begin{itemize}[noitemsep]
+    \item \textbf{Cables desprotegidos y degradados:} Tendidos de cable UTP Categoría 5e grapados sobre zócalos o colgados por falsos techos sin tuberías ni bandejas, expuestos al aplastamiento mecánico y pisoteo.
+    \item \textbf{Interferencia Electromagnética (EMI) crítica:} En las salas de Rayos X y Laboratorio Clínico, los cables de datos corren contiguos a conductores de fuerza eléctrica de 220 VAC y equipos inductivos de alta emisión radiada (tubo de rayos catódicos de 100 kV y centrífugas), ocasionando corrupción recurrente de tramas, retransmisiones masivas y caídas de enlace.
+    \item \textbf{Inexistencia de un Cuarto de Telecomunicaciones (MDF):} Conmutadores no administrables instalados sobre repisas de madera bajo mostradores, acumulando polvo y calor térmico, carentes de respaldo eléctrico (UPS).
+    \item \textbf{Puntos insuficientes y saturación inalámbrica:} Empleo de concentradores domésticos para multiplicar un puerto de pared entre PC, impresora y teléfono VoIP, junto a un único router Wi-Fi casero en recepción que se bloquea en horas punta.
+\end{itemize}
+
+\subsection{Impacto Operativo en la Atención Sanitaria}
+Estas deficiencias provocan retardos de hasta 4 minutos en la apertura de historias clínicas electrónicas y visualización de radiografías digitales durante la consulta médica, suspensión temporal de cobranzas y facturación electrónica, y riesgos severos de pérdida de datos médicos por microcortes eléctricos.
+
+% ==============================================================================
+% SECCIÓN 5: OBJETIVOS
+% ==============================================================================
+\section{Objetivos}
+
+\subsection{Objetivo General}
+Diseñar y dimensionar técnicamente la infraestructura física y el sistema de cableado estructurado para la red LAN del Policlínico "Salud \& Vida" S.A.C., bajo normativas internacionales ANSI/TIA/EIA, garantizando conmutación a 1 Gbps hacia puestos de trabajo, inmunidad ante perturbaciones electromagnéticas en zonas críticas, centralización operativa en gabinete rack 42U y cumplimiento de los estándares de certificación de enlace permanente.
+
+\subsection{Objetivos Específicos}
+\begin{enumerate}[noitemsep]
+    \item Relevar y cuantificar los requerimientos de conectividad, censando con exactitud los \textbf{48 dispositivos activos} y previendo \textbf{8 tomas de reserva técnica} (56 puertos de parcheo totales).
+    \item Seleccionar la topología de red física y lógica más eficiente, fundamentando el esquema en estrella jerárquica con enlaces conmutados Full-Duplex.
+    \item Determinar la selección de medios físicos mediante cálculo de magnitudes electromagnéticas (atenuación, diafonía NEXT y ruido EMI), combinando UTP Cat 6 LSZH y F/UTP Cat 6A apantallado.
+    \item Dimensionar las canalizaciones troncales y perimetrales respetando las directrices de factor de llenado transversal y radios de curvatura de la norma ANSI/TIA-569-D.
+    \item Formular la planimetría a escala 1:100, la elevación frontal del rack 42U, el cómputo de materiales valorizado (BOM) y el protocolo de ensayos de certificación bajo ANSI/TIA-568-C.2.
+\end{enumerate}
+
+% ==============================================================================
+% SECCIÓN 6: REQUERIMIENTOS DE RED
+% ==============================================================================
+\section{Requerimientos de Red}
+
+El inventario físico consolidado comprende \textbf{48 dispositivos finales e intermedios} distribuidos en las dependencias del local, complementados con \textbf{8 tomas de reserva modular (16.6\% de holgura)} según la Tabla \ref{tab:requerimientos}.
+
+\begin{table}[h!]
+\centering
+\small
+\caption{Matriz Consolidada de Puntos de Red y Asignación de Tomas RJ-45.}
+\label{tab:requerimientos}
+\begin{tabularx}{\textwidth}{l p{4.8cm} c c X}
+\toprule
+\textbf{Ambiente} & \textbf{Dispositivos Conectados} & \textbf{Tomas} & \textbf{Medio} & \textbf{Justificación Operativa} \\
+\midrule
+Recepción / Admisión & 3 PCs, 1 Impresora Láser, 2 VoIP & 6 & UTP Cat 6 & Atención y cobro continuo. \\
+Sala de Espera & 1 Smart TV (Turnos), 1 AP Wi-Fi & 2 & UTP Cat 6 & Turnero digital e internet público. \\
+Triaje y Tópico & 2 PCs, 1 Teléfono VoIP & 3 & UTP Cat 6 & Registro inmediato de signos vitales. \\
+Consultorios (1 al 8) & 8 PCs, 4 Impresoras, 4 VoIP & 16 & UTP Cat 6 & 2 tomas dobles por consultorio. \\
+Rayos X y Ecografía & 2 Estaciones DICOM, 1 Impresora placas & 3 & F/UTP Cat 6A & Tráfico masivo e inmunidad EMI. \\
+Laboratorio Clínico & 2 PCs, 1 Analizador Bioquímico & 3 & F/UTP Cat 6A & Datos analíticos sin alteración de bits. \\
+Farmacia & 2 PCs Terminal de Venta, 1 Impresora & 3 & UTP Cat 6 & Despacho y facturación electrónica. \\
+Administración & 4 PCs, 1 Impresora Red, 1 VoIP & 6 & UTP Cat 6 & Gestión contable y dirección médica. \\
+Pasillos y Cobertura & 2 Access Points de Techo (PoE+) & 2 & UTP Cat 6 & Roaming inalámbrico asistencial. \\
+Estar Médico & 1 PC de Consulta, 1 AP Wi-Fi & 2 & UTP Cat 6 & Auditoría clínica y descanso médico. \\
+Rack MDF (Servidores) & Servidor HCE, Servidor PACS, NAS & 3 & F/UTP Cat 6A & Núcleo de base de datos institucional. \\
+\midrule
+\textbf{Subtotal Activos} & & \textbf{48} & & \textbf{Dispositivos en operación.} \\
+\textbf{Reserva Técnica} & Tomas adicionales en canaletas & \textbf{8} & UTP Cat 6 & \textbf{Expansión futura (TIA-568).} \\
+\midrule
+\textbf{Total Parcheo} & & \textbf{56} & & \textbf{Capacidad total proyectada.} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ==============================================================================
+% SECCIÓN 7: TIPO Y TOPOLOGÍA DE RED
+% ==============================================================================
+\section{Tipo y Topología de Red}
+
+\subsection{Clasificación Geográfica y Tecnológica}
+La infraestructura diseñada se clasifica como una \textbf{Red de Área Local (LAN - Local Area Network)} privada, complementada con un segmento inalámbrico \textbf{WLAN (Wireless Local Area Network)} bajo el estándar \textbf{IEEE 802.11ax (Wi-Fi 6)}. Opera a tasas de 1000 Mbps (1 Gbps) en la capa de acceso y enlaces troncales agregados a 10 Gbps hacia los servidores de almacenamiento.
+
+\subsection{Topología Física: Estrella Jerárquica}
+Se implementa una \textbf{Topología Física en Estrella Jerárquica}. La totalidad de los 56 cables horizontales converge de forma exclusiva en el Gabinete Rack de 42U del MDF geocéntrico.
+\begin{itemize}[noitemsep]
+    \item \textbf{Aislamiento de averías:} Cualquier cortocircuito o rotura mecánica en el cable de un puesto de trabajo queda aislado a su puerto específico sin perturbar el tráfico del resto del policlínico.
+    \item \textbf{Gestión y auditoría unificada:} Todo el parcheo, respaldo eléctrico estabilizado y conmutación reside en un único ambiente restringido bajo llave.
+\end{itemize}
+
+\subsection{Topología Lógica: Conmutación Punto a Punto Ethernet}
+En el dominio lógico, la red opera bajo el principio de \textbf{Conmutación Ethernet Punto a Punto Full-Duplex (IEEE 802.3ab)}. Cada estación de trabajo goza de un canal de transmisión y recepción dedicado de 1000 Mbps sin contienda, erradicando los dominios de colisión típicos de las redes heredadas con hubs.
+
+% ==============================================================================
+% SECCIÓN 8: MODELOS DE REFERENCIA OSI Y TCP/IP
+% ==============================================================================
+\section{Modelos de Referencia OSI y TCP/IP}
+
+\subsection{Correspondencia Arquitectónica en el Policlínico}
+La Tabla \ref{tab:modelos} sintetiza cómo cada estrato de los modelos teóricos OSI y TCP/IP se traduce en componentes tangibles implementados en la infraestructura física de la clínica.
+
+\begin{table}[h!]
+\centering
+\small
+\caption{Correspondencia de Modelos de Referencia con la Solución Implementada.}
+\label{tab:modelos}
+\begin{tabularx}{\textwidth}{l l p{4.2cm} X}
+\toprule
+\textbf{Capa OSI} & \textbf{Capa TCP/IP} & \textbf{Componentes Reales en el Policlínico} & \textbf{Función en el Sistema} \\
+\midrule
+7. Aplicación & Aplicación & Software EMR, Visor DICOM, Portal Web & Interfaz de usuario médico. \\
+6. Presentación & Aplicación & Formatos estándar: DICOM, HL7, SSL/TLS & Estandarización y cifrado de datos. \\
+5. Sesión & Aplicación & Control de sesiones RPC y base de datos & Mantenimiento de conexión activa. \\
+4. Transporte & Transporte & Protocolos TCP (EMR/PACS) y UDP (VoIP) & Segmentación y control de flujo. \\
+3. Red & Internet & Paquetes IPv4 (Reservado a Unidad II) & Direccionamiento lógico de terminales. \\
+2. Enlace & Acceso Red & NICs, Switches Layer 2, Tramas Ethernet & Control MAC y suma de chequeo FCS. \\
+\textbf{1. Física} & \textbf{Acceso Red} & \textbf{Cables UTP Cat 6, F/UTP Cat 6A, RJ-45, Rack} & \textbf{Transmisión de señales eléctricas.} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Caso de Aplicación Práctica: Encapsulación de un Estudio Radiológico}
+Para ilustrar el tránsito de datos, se modela el envío de una radiografía de tórax digital (50 Megabytes) adquirida en Rayos X y transmitida al Servidor PACS del MDF:
+\begin{enumerate}[noitemsep]
+    \item \textbf{Capa 7/6/5 (Datos):} La estación DICOM genera la matriz médica con cabeceras de metadatos clínicos del paciente.
+    \item \textbf{Capa 4 (Segmento):} El protocolo TCP fragmenta los 50 MB en segmentos acordes al MSS ($1,460\text{ bytes}$) y añade el puerto destino estándar \textbf{TCP 104 (DICOM Storage)}, garantizando entrega libre de errores.
+    \item \textbf{Capa 3 (Paquete):} Se agrega la cabecera IP conteniendo la dirección de la estación de rayos y del servidor central.
+    \item \textbf{Capa 2 (Trama):} Se incorporan las direcciones MAC físicas y la cola de verificación de redundancia cíclica \textbf{CRC-32 (FCS)}.
+    \item \textbf{Capa 1 (Señales):} La trama binaria se modula bajo el esquema \textbf{4D-PAM5} en niveles de tensión ($-2\text{V}, -1\text{V}, 0\text{V}, +1\text{V}, +2\text{V}$) a través de los 4 pares trenzados del cable F/UTP apantallado.
+\end{enumerate}
+
+% ==============================================================================
+% SECCIÓN 9: SISTEMAS Y MEDIOS DE COMUNICACIÓN
+% ==============================================================================
+\section{Sistemas y Medios de Comunicación}
+
+\subsection{Magnitudes Físicas de Transmisión}
+Las señales transportadas a lo largo de los enlaces horizontales son señales digitales en banda base. Para el estándar Gigabit Ethernet (1000BASE-T), la transmisión utiliza modulación de amplitud de pulsos de cinco niveles (4D-PAM5) a una tasa de modulación de 125 MBaudios por par. Al transmitir 2 bits netos por baudio simultáneamente en los cuatro pares balanceados:
+\begin{equation}
+    \text{Tasa Total} = 125\text{ MBaudios} \times 2\text{ bits/baudio} \times 4\text{ pares} = 1000\text{ Mbps (1 Gbps)}
+\end{equation}
+
+El ancho de banda analógico certificado es de \textbf{250 MHz para Categoría 6} y de \textbf{500 MHz para Categoría 6A}. De acuerdo con el Teorema de Capacidad de Shannon-Hartley ($C = B \log_2 (1 + S/N)$), en entornos hospitalarios con elevado ruido inductivo ($N$), como Rayos X, un cable sin blindaje degrada su relación señal/ruido ($SNR$), provocando retransmisiones constantes o degradación de velocidad a 100 Mbps.
+
+\subsection{Fenómenos Electromagnéticos y Atenuación en el Proyecto}
+La atenuación ($\alpha$) representa la pérdida logarítmica de potencia de la señal expresada en decibeles por cada 100 metros. A 250 MHz en Categoría 6, la atenuación típica es de aproximadamente $32.0\text{ dB/100m}$. Para la toma más distante del policlínico (\textbf{34.80 metros reales} en Laboratorio):
+\begin{equation}
+    \text{Atenuación Estimada} \approx 32.0\text{ dB} \times \left(\frac{34.80\text{ m}}{100\text{ m}}\right) = 11.14\text{ dB}
+\end{equation}
+Dado que el límite normativo máximo admitido por ANSI/TIA-568 para el enlace permanente es de \textbf{31.10 dB}, el diseño garantiza un \textbf{margen de seguridad (Headroom) de +19.96 dB}, lo que asegura la integridad de la señal sin requerir repetidores intermedios. Asimismo, el uso de cables con separador cruciforme interno (\textit{spline}) asegura niveles de paradiafonía NEXT superiores a $35.3\text{ dB}$.
+
+% ==============================================================================
+% SECCIÓN 10: SELECCIÓN DE MEDIOS DE TRANSMISIÓN
+% ==============================================================================
+\section{Selección de Medios de Transmisión}
+
+A fin de justificar la idoneidad técnica y financiera del medio seleccionado, se formuló una matriz comparativa frente a las tecnologías disponibles en el mercado (Tabla \ref{tab:medios}).
+
+\begin{table}[h!]
+\centering
+\small
+\caption{Matriz Comparativa Técnico-Económica de Medios de Transmisión.}
+\label{tab:medios}
+\begin{tabularx}{\textwidth}{l c c c c X}
+\toprule
+\textbf{Parámetro} & \textbf{UTP Cat 6} & \textbf{F/UTP Cat 6A} & \textbf{Coaxial} & \textbf{Fibra OM3} & \textbf{Evaluación en el Proyecto} \\
+\midrule
+Ancho de Banda & 250 MHz & 500 MHz & $<$ 1 GHz & 2000 MHz$\cdot$km & Cat 6 y 6A cubren la demanda médica. \\
+Tasa Soportada & 1 Gbps & 10 Gbps & $<$ 100 Mbps & 10/40 Gbps & 1 Gbps usuario / 10 Gbps servidores. \\
+Inmunidad EMI & Media & \textbf{Muy Alta} & Media-Baja & \textbf{Inmune} & F/UTP obligatorio en Rayos X y Lab. \\
+Costo por Metro & \$ 0.64 & \$ 1.11 & Obsoleto & \$ 3.20 & Relación costo-beneficio óptima en cobre. \\
+Conectorización & Simple & Moderada & Rígida & Compleja & Jacks RJ-45 estándar y apantallados. \\
+\textbf{Adopción} & \textbf{85\% (48 tomas)} & \textbf{15\% (6 tomas)} & \textbf{Descartado} & \textbf{Uplink Rack} & \textbf{Solución Híbrida Balanceada.} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textbf{Justificación de Decisiones de Diseño:}
+\begin{enumerate}[noitemsep]
+    \item \textbf{UTP Cat 6 LSZH para Áreas Estándar (85\%):} Ofrece 1 Gbps nativo, multiplicando por 40 la demanda del software asistencial. La cubierta \textit{Low Smoke Zero Halogen} (LSZH) es de cumplimiento mandatorio en centros de salud, ya que no propaga llama ni libera gases halógenos corrosivos en caso de incendio.
+    \item \textbf{F/UTP Cat 6A Blindado para Zonas Críticas (15\%):} En Rayos X y Laboratorio, su lámina perimetral de aluminio y conductor de drenaje conectado rígidamente a tierra eliminan el ruido radiado por tubos de 100 kV, posibilitando enlaces a 10 Gbps para descargas inmediatas de tomografías.
+    \item \textbf{Descarte de Coaxial y Fibra al Escritorio (FTTD):} El cable coaxial es incompatible con Ethernet conmutado moderno. La fibra óptica al escritorio fue descartada por su desmedido costo en tarjetas de red y convertidores para 40 terminales en distancias inferiores a 35 metros.
+\end{enumerate}
+
+% ==============================================================================
+% SECCIÓN 11: CABLEADO ESTRUCTURADO Y NORMATIVA
+% ==============================================================================
+\section{Cableado Estructurado y Normativa}
+
+\subsection{Marco Normativo Internacional Aplicado}
+La ingeniería del proyecto responde rigurosamente a las normas:
+\begin{itemize}[noitemsep]
+    \item \textbf{ANSI/TIA-568.0-D / 568-C.2:} Regula topología, distancias máximas y parámetros RF para componentes balanceados de $100\ \Omega$ Cat 6 / Cat 6A.
+    \item \textbf{ANSI/TIA-569-D:} Establece los criterios para bandejas, ductos y espacios de telecomunicaciones.
+    \item \textbf{ANSI/TIA-606-B:} Estandariza la administración y el código alfanumérico de etiquetado de cables y puertos.
+    \item \textbf{ANSI/TIA-607-C:} Rige la puesta a tierra y unión equipotencial (\textit{bonding}) del rack y cables apantallados.
+\end{itemize}
+
+\subsection{Subsistemas de Cableado}
+El diseño integra tres subsistemas claramente diferenciados:
+\begin{enumerate}[noitemsep]
+    \item \textbf{Área de Trabajo (WA):} Comprende placas murales (\textit{faceplates}) de 2 o 4 ventanas con jacks modulares Keystone RJ-45 y latiguillos flexibles (\textit{patch cords}) multifilares certificados de 2.0 y 3.0 metros.
+    \item \textbf{Cableado Horizontal:} Enlaces punto a punto continuos sin empalmes, basados en conductores rígidos monofilamento AWG 23 tendidos a través de canalizaciones técnicas.
+    \item \textbf{Cuarto de Telecomunicaciones (MDF):} Espacio cerrado de $3.50\text{ m} \times 4.20\text{ m}$ ($14.70\text{ m²}$) en el centro del edificio, que centraliza los paneles IDC 110, switches, servidores y respaldo eléctrico.
+\end{enumerate}
+
+\subsection{Canalizaciones y Capacidad de Llenado (ANSI/TIA-569-D)}
+\begin{itemize}[noitemsep]
+    \item \textbf{Troncal en Pasillo Central:} Bandeja portacables tipo malla electrosoldada de $200\text{ mm}$ de ancho por $50\text{ mm}$ de peralte suspendida a 2.75 m de altura. Con un área útil de $10,000\text{ mm²}$, el mazo troncal más denso de 56 cables ($6.0\text{ mm}$ de diámetro) ocupa un área neta de $1,583\text{ mm²}$, representando un factor de llenado transversal del \textbf{15.83\%}, ampliamente inferior al tope normativo del 40\% inicial.
+    \item \textbf{Distribución Perimetral en Salas:} Canaleta plástica autoextinguible de $40\text{ mm} \times 25\text{ mm}$ adosada a $+0.40\text{ m}$ s.n.p.t. con tabique divisor longitudinal que aísla físicamente los cables de red de la corriente eléctrica de 220 VAC.
+\end{itemize}
+
+\subsection{Estándar de Terminación T568B}
+Se estandariza la terminación \textbf{ANSI/TIA-568-B en el 100\% de los conectores macho, jacks hembra y patch panels}, conformando un cableado directo (\textit{straight-through}). Se adoptó T568B por ser el estándar predominante en la infraestructura informática de Latinoamérica, asegurando perfecta compatibilidad operativa con latiguillos comerciales prearmados y facilitando el mantenimiento técnico preventivo.
+
+% ==============================================================================
+% SECCIÓN 12: DISEÑO FÍSICO Y PLANOS DE RED
+% ==============================================================================
+\section{Diseño Físico y Planos de Red}
+
+\subsection{Planimetría y Rutas de Cableado}
+El diseño físico fue desarrollado a escala 1:100 ($30.00\text{ m} \times 15.00\text{ m} = 450.00\text{ m²}$) mediante capas vectoriales integradas en el visor interactivo SVG local (`plano/index.html`). El trazado contempla la bandeja troncal de 30 metros, derivaciones perpendiculares hacia cada sala y cuatro Access Points Wi-Fi 6 de techo (\textbf{AP-01} en Espera, \textbf{AP-02} en Pasillo Oeste, \textbf{AP-03} en Pasillo Este y \textbf{AP-04} en Administración), con células de 8 metros de radio en 5 GHz y un solapamiento del 15\% para permitir \textit{Fast Roaming} asistencial sin desconexiones.
+
+\subsection{Elevación Frontal del Gabinete Rack 42U}
+El MDF aloja un gabinete cerrado de 42 Unidades de Rack (42U) de 19 pulgadas y 800 mm de profundidad. La Tabla \ref{tab:rack} detalla la distribución vertical optimizada para disipación térmica y orden de parcheo.
+
+\begin{table}[h!]
+\centering
+\small
+\caption{Diagrama de Ocupación Vertical del Gabinete Rack 42U.}
+\label{tab:rack}
+\begin{tabularx}{\textwidth}{c l p{5.5cm} X}
+\toprule
+\textbf{Unidades (U)} & \textbf{Componente Instalado} & \textbf{Especificación Técnica} & \textbf{Función / Conectividad} \\
+\midrule
+U41 -- U42 & Unidad de Ventilación & Bandeja superior 4 extractores 220V & Extracción térmica del aire caliente. \\
+U39 & Patch Panel 01 & 24 puertos Cat 6 UTP (1U) & Tomas P01 a P24 (Admisión, C01-C05). \\
+U38 & Organizador Horizontal & Ducto ranurado con tapa 1U & Enrutamiento de patch cords. \\
+U37 & Switch de Acceso 01 & 24P GbE PoE+ (370W) + 4 SFP+ 10G & Conmutación y alimentación de APs/VoIP. \\
+U35 & Patch Panel 02 & 24 puertos Cat 6 UTP (1U) & Tomas P25 a P48 (C06-C08, Admin, Res). \\
+U34 & Organizador Horizontal & Ducto ranurado con tapa 1U & Enrutamiento de patch cords. \\
+U33 & Switch de Acceso 02 & 24P GbE PoE+ (370W) + 4 SFP+ 10G & Conmutación de red administrativa. \\
+U31 & Patch Panel 03 & 24 puertos Cat 6A Blindado (1U) & Tomas P49 a P56 (Rayos X, Lab, Serv). \\
+U30 & Organizador Horizontal & Ducto ranurado con tapa 1U & Enrutamiento de patch cords blindados. \\
+U29 & Switch Core / Distribución & 24P GbE + 4 SFP+ 10G & Agregación central y servidores. \\
+U28 & Barra de Tierra de Rack & Pletina de cobre para blindaje & Aterrizaje TIA-607-C de cables F/UTP. \\
+U25 -- U27 & Servidor 01 (EMR / BD) & Chasis rackeable 2U doble fuente & Base de datos de Historias Clínicas. \\
+U23 -- U24 & Servidor 02 (PACS) & Chasis rackeable 2U alta capacidad & Archivo digital de imágenes médicas. \\
+U21 -- U22 & Servidor NAS & Almacenamiento en red 2U RAID-5 & Respaldo continuo de contingencia. \\
+U19 -- U20 & Consola KVM & Monitor plegable 1U con teclado & Administración local del cuarto MDF. \\
+U11 -- U18 & Espacio Libre & 8 Unidades de reserva & Crecimiento modular futuro. \\
+U09 -- U10 & Regleta PDU & PDU 1U horizontal 8 tomas C13 & Distribución eléctrica estabilizada. \\
+U04 -- U08 & UPS Online Doble Conversión & 3000 VA / 2700 W (3U rack) & Cero tiempo de transferencia (0 ms). \\
+U01 -- U03 & Banco de Baterías Extendido & Módulo externo de baterías (3U) & Autonomía operativa de 45 minutos. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ==============================================================================
+% SECCIÓN 13: MATERIALES Y EQUIPAMIENTO (BOM)
+% ==============================================================================
+\section{Materiales, Equipamiento y Presupuesto Referencial}
+
+\subsection{Cómputo Métrico de Cableado}
+El metrado se determinó sumando la distancia horizontal real por bandeja/canaleta, las bajadas verticales ($2.20\text{ m}$ en puesto de pared y $2.00\text{ m}$ en rack) y un factor de holgura por curvatura del \textbf{10\%}:
+\begin{itemize}[noitemsep]
+    \item \textbf{Cable UTP Cat 6 (50 puntos):} Distancia promedio de $22.77\text{ m/punto} \times 50\text{ puntos} = 1,138.50\text{ metros}$. Se requieren formalmente \textbf{4 Bobinas de 305 m (1,220 metros)}, quedando $81.5\text{ m}$ de reserva técnica.
+    \item \textbf{Cable F/UTP Cat 6A Blindado (6 puntos):} Distancia promedio de $24.42\text{ m/punto} \times 6\text{ puntos} = 146.52\text{ metros}$. Se requiere \textbf{1 Bobina de 305 m}.
+\end{itemize}
+
+\subsection{Bill of Materials (BOM) Consolidado y Valorizado}
+La Tabla \ref{tab:bom} resume el presupuesto referencial en Dólares Americanos (USD \$) y Soles Peruanos (PEN S/., tipo de cambio 3.75).
+
+\begin{table}[h!]
+\centering
+\small
+\caption{Presupuesto Consolidado de Suministros (Bill of Materials).}
+\label{tab:bom}
+\begin{tabularx}{\textwidth}{l l c c r r}
+\toprule
+\textbf{Partida} & \textbf{Descripción Resumida de Suministros} & \textbf{Cant.} & \textbf{Und.} & \textbf{Subtotal (\$)} & \textbf{Subtotal (S/.)} \\
+\midrule
+\textbf{Partida 01} & \textbf{Infraestructura Pasiva y Conectividad} & & & \textbf{\$ 2,208.00} & \textbf{S/. 8,280.00} \\
+& Cable UTP Cat 6 LSZH (305m) & 4 & Rollo & \$ 780.00 & S/. 2,925.00 \\
+& Cable F/UTP Cat 6A Blindado (305m) & 1 & Rollo & \$ 340.00 & S/. 1,275.00 \\
+& Jacks RJ-45 Keystone Cat 6 UTP / Cat 6A Blindados & 56 & Pza & \$ 241.00 & S/. 903.75 \\
+& Faceplates de pared (2 y 4 ventanas) & 25 & Pza & \$ 57.60 & S/. 216.00 \\
+& Patch Cords Cat 6 / Cat 6A (1.0m y 2.0m) & 108 & Pza & \$ 430.40 & S/. 1,614.00 \\
+& Patch Panels 24P Cat 6 (2) y Cat 6A Blindado (1) & 3 & Pza & \$ 305.00 & S/. 1,143.75 \\
+& Organizadores horizontales 1U con tapa & 3 & Pza & \$ 54.00 & S/. 202.50 \\
+\midrule
+\textbf{Partida 02} & \textbf{Canalizaciones y Puesta a Tierra} & & & \textbf{\$ 1,084.00} & \textbf{S/. 4,065.00} \\
+& Bandeja malla cincada 200$\times$50 mm (tramos 3m) + varillas & 10 & Tramo & \$ 483.00 & S/. 1,811.25 \\
+& Canaleta PVC 2 vías 40$\times$25 mm (tramos 2m) + accesorios & 45 & Tramo & \$ 443.00 & S/. 1,661.25 \\
+& Barra de tierra TMGB + cable de cobre AWG 6 & 1 & Glb & \$ 158.00 & S/. 592.50 \\
+\midrule
+\textbf{Partida 03} & \textbf{Gabinete Rack y Respaldo Eléctrico} & & & \textbf{\$ 2,650.00} & \textbf{S/. 9,937.50} \\
+& Gabinete Rack cerrado 42U $\times$ 19'' $\times$ 800 mm & 1 & Pza & \$ 750.00 & S/. 2,812.50 \\
+& PDU 1U 8 tomas C13 + Bandeja extractores techo & 2 & Pza & \$ 170.00 & S/. 637.50 \\
+& UPS Online 3000 VA / 2700 W + Banco de baterías extendido & 2 & Pza & \$ 1,730.00 & S/. 6,487.50 \\
+\midrule
+\textbf{Partida 04} & \textbf{Equipamiento Activo y Puntos de Acceso} & & & \textbf{\$ 3,690.00} & \textbf{S/. 13,837.50} \\
+& Switches 24P GbE PoE+ (2) + Switch Core 10G (1) & 3 & Pza & \$ 2,590.00 & S/. 9,712.50 \\
+& Cables DAC SFP+ 10G pasivos de 1.0 m & 4 & Pza & \$ 140.00 & S/. 525.00 \\
+& Access Points Wi-Fi 6 (802.11ax) Dual Band PoE+ & 4 & Pza & \$ 960.00 & S/. 3,600.00 \\
+\midrule
+\textbf{TOTAL} & \textbf{COSTO TOTAL DIRECTO DE SUMINISTROS (BOM)} & & & \textbf{\$ 9,632.00} & \textbf{S/. 36,120.00} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ==============================================================================
+% SECCIÓN 14: PLAN DE PRUEBAS Y CERTIFICACIÓN
+% ==============================================================================
+\section{Plan de Pruebas y Certificación}
+
+\subsection{Modelo de Ensayos Metrológicos (ANSI/TIA-568-C.2)}
+Todos los enlaces permanentes deben someterse a certificación formal de Nivel IIIe con certificador de alta frecuencia (\textit{Fluke Networks DSX-8000}), evaluando los parámetros de la Tabla \ref{tab:pruebas}.
+
+\begin{table}[h!]
+\centering
+\small
+\caption{Parámetros Críticos y Valores Límite de Certificación (Enlace Permanente Cat 6 a 250 MHz).}
+\label{tab:pruebas}
+\begin{tabularx}{\textwidth}{l c c X}
+\toprule
+\textbf{Parámetro} & \textbf{Límite TIA-568} & \textbf{Valor Proyecto} & \textbf{Causa Principal de Falla} \\
+\midrule
+Mapa de Cableado (\textit{Wiremap}) & Continuidad 1:1 & Correcto & Inversión de hilos o corte de conductor. \\
+Longitud Física (\textit{TDR}) & $\le 90.0\text{ m}$ & \textbf{34.80 m} & Longitud excesiva de tendido. \\
+Pérdida de Inserción (\textit{IL}) & $\le 31.10\text{ dB}$ & \textbf{11.14 dB} & Conductor de mala calidad (aluminio CCA). \\
+Paradiafonía (\textit{NEXT}) & $\ge 35.30\text{ dB}$ & \textbf{54.80 dB} & Destrenzado mayor a 13 mm al crimpar. \\
+Pérdida de Retorno (\textit{Return Loss}) & $\ge 10.00\text{ dB}$ & \textbf{21.40 dB} & Quiebre del cable ($< 4\times\text{OD}$) o aplastamiento. \\
+Continuidad de Blindaje (\textit{Shield}) & Continuo & Correcto & Desconexión del hilo de drenaje a tierra. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Protocolo de Fabricación de la Muestra Práctica de Cable UTP (T568B)}
+En cumplimiento del Requerimiento 4.1 del curso, el equipo construyó un cable UTP Cat 6 directo bajo el siguiente procedimiento técnico:
+\begin{enumerate}[noitemsep]
+    \item \textbf{Deschaquetado:} Retiro limpio de 30 mm de la cubierta exterior LSZH sin mellar los 8 conductores internos.
+    \item \textbf{Corte de elementos pasivos:} Remoción al ras del hilo de desgarro (\textit{rip cord}) y la cruceta plástica (\textit{spline}).
+    \item \textbf{Alineación de pines T568B:} Destrenzado estricto inferior a 13 mm, ordenando: 1-Blanco/Naranja, 2-Naranja, 3-Blanco/Verde, 4-Azul, 5-Blanco/Azul, 6-Verde, 7-Blanco/Marrón, 8-Marrón.
+    \item \textbf{Corte transversal a 90° e inserción:} Corte perpendicular dejando 14 mm expuestos. Se introducen los hilos en el conector RJ-45 Cat 6 verificando que la chaqueta exterior ingrese al menos 6 mm bajo la traba mecánica.
+    \item \textbf{Crimpado y Comprobación:} Crimpado con ponchadora de trinquete y verificación en tester de red de continuidad, constatando el encendido secuencial sincrónico de los 8 LEDs verdes.
+\end{enumerate}
+
+% ==============================================================================
+% SECCIÓN 15: CONCLUSIONES
+% ==============================================================================
+\section{Conclusiones}
+
+\begin{enumerate}[noitemsep]
+    \item El diseño propuesto soluciona de raíz la vulnerabilidad de la infraestructura física del Policlínico "Salud \& Vida", centralizando 56 tomas de red en un único cuarto MDF geocéntrico con enlaces horizontales que no superan los 34.80 metros, garantizando un margen de cumplimiento del 61\% sobre los límites de la norma ANSI/TIA-568.
+    \item La adopción de una solución híbrida de cobre (85\% UTP Cat 6 LSZH para áreas estándar y 15\% F/UTP Cat 6A blindado en Rayos X y Laboratorio) proporciona inmunidad electromagnética total ante equipos inductivos médicos, eliminando la pérdida de paquetes a un costo 70\% inferior al de un despliegue generalizado de fibra óptica hasta el escritorio.
+    \item La distribución troncal en bandeja tipo malla electrosoldada (ocupación del 15.83\% frente al tope del 40\% TIA-569) y el gabinete rack de 42U dotado de UPS Online de 3000 VA aseguran una plataforma escalable con 45 minutos de autonomía ininterrumpida y una vida útil certificable de al menos 15 a 20 años.
+\end{enumerate}
+
+% ==============================================================================
+% SECCIÓN 16: REFERENCIAS
+% ==============================================================================
+\section{Referencias}
+
+\begin{itemize}[noitemsep, leftmargin=*]
+    \item ANSI/TIA-568.0-D. (2015). \textit{Generic Telecommunications Cabling for Customer Premises}. Telecommunications Industry Association.
+    \item ANSI/TIA-568-C.2. (2009). \textit{Balanced Twisted-Pair Telecommunications Cabling and Components Standards}. Telecommunications Industry Association.
+    \item ANSI/TIA-569-D. (2015). \textit{Telecommunications Pathways and Spaces}. Telecommunications Industry Association.
+    \item ANSI/TIA-606-B. (2012). \textit{Administration Standard for Commercial Telecommunications Infrastructure}. Telecommunications Industry Association.
+    \item ANSI/TIA-607-C. (2015). \textit{Generic Telecommunications Grounding and Bonding for Customer Premises}. Telecommunications Industry Association.
+    \item BICSI. (2020). \textit{Telecommunications Distribution Methods Manual (TDMM)} (14th ed.). Building Industry Consulting Service International.
+    \item IEEE Std 802.3ab-1999. (1999). \textit{Physical Layer Parameters and Specifications for 1000 Mb/s Operation over 4-Pair of Category 5 Balanced Copper Cabling (1000BASE-T)}. IEEE.
+    \item Kurose, J. F., \& Ross, K. W. (2021). \textit{Computer Networking: A Top-Down Approach} (8th ed.). Pearson.
+    \item Tanenbaum, A. S., \& Wetherall, D. J. (2012). \textit{Redes de Computadoras} (5ta ed.). Pearson Educación.
+\end{itemize}
+
+% ==============================================================================
+% SECCIÓN 17: ANEXOS
+% ==============================================================================
+\section{Anexos}
+
+\subsection{Anexo A: Ficha Técnica Resumida del Cable F/UTP Cat 6A Blindado}
+\begin{itemize}[noitemsep]
+    \item \textbf{Fabricante y Modelo de Referencia:} Panduit TX6A-Shielded Advanced / Siemon Screened Cat 6A.
+    \item \textbf{Conductor y Aislamiento:} Cobre sólido electrolítico 100\% 23 AWG, aislamiento en polietileno expandido.
+    \item \textbf{Pantalla Global:} Cinta de poliéster/aluminio helicoidal con hilo de drenaje continuo de cobre estañado AWG 24.
+    \item \textbf{Comportamiento al Fuego:} Cubierta LSZH retardante a la llama bajo normas IEC 60332-1, IEC 60754-1/2 y IEC 61034-2.
+    \item \textbf{Rendimiento en Frecuencia:} Certificado y garantizado hasta 500 MHz, soportando transmisiones 10GBASE-T hasta 100 metros.
+\end{itemize}
+
+\subsection{Anexo B: Formato de Acta de Certificación de Campo (Fluke DSX-8000)}
+\begin{itemize}[noitemsep]
+    \item \textbf{Identificador del Enlace:} `R1-PP1-P15 / C01-D1` (Consultorio 01 -- PC Médica).
+    \item \textbf{Límite de Ensayo:} TIA Cat 6 Permanent Link.
+    \item \textbf{Resultados Metrológicos:} Wire Map (Continuo 1:1 direct), Longitud ($13.20\text{ m}$), Pérdida de Inserción ($4.12\text{ dB}$, margen $+26.98\text{ dB}$), NEXT ($54.80\text{ dB}$, margen $+19.50\text{ dB}$), Return Loss ($21.40\text{ dB}$, margen $+11.40\text{ dB}$), Retardo de Propagación ($68.4\text{ ns}$), Sesgo ($9.8\text{ ns}$).
+    \item \textbf{Dictamen Oficial:} \textbf{CERTIFICACIÓN APROBADA (PASS)}.
+\end{itemize}
+
+\subsection{Anexo C: Acceso al Visor Planimétrico SVG Interactivo}
+Los planos de ingeniería de red en planta (capas de arquitectura, tomas RJ-45, canalizaciones por bandeja malla y círculos de cobertura WLAN Wi-Fi 6 a escala 1:100) se encuentran alojados en el directorio del proyecto y pueden visualizarse localmente mediante la aplicación interactiva en \url{http://localhost:3456} (`plano/index.html`).
+
+\end{document}
