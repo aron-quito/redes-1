@@ -1,0 +1,570 @@
+/* ==========================================================================
+   ESTILOS GENERALES - PRESENTACIÓN DE ALTO NIVEL (MANIM / 3BLUE1BROWN AESTHETICS)
+   ========================================================================== */
+
+:root {
+  --bg-deep: #07090e;
+  --bg-card: rgba(15, 23, 42, 0.75);
+  --bg-card-border: rgba(56, 189, 248, 0.15);
+  --grid-line: rgba(148, 163, 184, 0.05);
+
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  --accent-cyan: #38bdf8;
+  --accent-cyan-glow: rgba(56, 189, 248, 0.25);
+  --accent-emerald: #10b981;
+  --accent-emerald-glow: rgba(16, 185, 129, 0.25);
+  --accent-purple: #c084fc;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+  
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', "Fira Code", monospace;
+  --font-display: 'Outfit', 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Retícula matemática sutil de fondo */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Viñeta radial central */
+body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(3, 7, 18, 0.75) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   CONTENEDOR DE LA PRESENTACIÓN (16:9 RATIO WIDESCREEN)
+   ========================================================================== */
+
+#presentation-viewport {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+.slide-stage {
+  position: relative;
+  width: min(96vw, 170.6vh);
+  height: min(54vw, 96vh);
+  aspect-ratio: 16 / 9;
+  background: radial-gradient(circle at 50% 15%, rgba(30, 41, 59, 0.45) 0%, rgba(10, 15, 29, 0.85) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 25px 70px -15px rgba(0, 0, 0, 0.8), 0 0 50px -10px var(--accent-cyan-glow);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   SISTEMA DE SLIDES
+   ========================================================================== */
+
+.slide {
+  position: absolute;
+  inset: 0;
+  padding: 4% 5%;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.97) translateY(12px);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.45s;
+  pointer-events: none;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+
+/* Cabecera común de slide */
+.slide-header {
+  margin-bottom: 2.2%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 1.2%;
+}
+
+.slide-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 3px 10px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+}
+
+.slide-title {
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text-main);
+  line-height: 1.15;
+}
+
+.slide-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-top: 3px;
+}
+
+/* Contenido principal del slide */
+.slide-body {
+  flex: 1;
+  display: flex;
+  gap: 3.5%;
+  align-items: stretch;
+  position: relative;
+  min-height: 0; /* Para flexbox interno */
+}
+
+/* Layouts estándar */
+.layout-split {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3.5%;
+  width: 100%;
+  height: 100%;
+}
+
+.layout-equal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5%;
+  width: 100%;
+  height: 100%;
+}
+
+.layout-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.layout-three-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2.5%;
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================================================
+   COMPONENTES GRÁFICOS Y TARJETAS
+   ========================================================================== */
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-card-border);
+  border-radius: 12px;
+  padding: 3% 4%;
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+  opacity: 0.6;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 3.5%;
+}
+
+.card-title svg {
+  color: var(--accent-cyan);
+}
+
+.card-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: var(--accent-cyan);
+}
+
+/* Tarjetas de métrica / KPI grande */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 15px;
+  width: 100%;
+  margin-top: auto;
+}
+
+.kpi-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 12px 14px;
+  text-align: left;
+}
+
+.kpi-value {
+  font-family: var(--font-mono);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--accent-cyan);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.kpi-value.emerald { color: var(--accent-emerald); }
+.kpi-value.purple { color: var(--accent-purple); }
+.kpi-value.amber { color: var(--accent-amber); }
+.kpi-value.rose { color: var(--accent-rose); }
+
+.kpi-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Puntos clave / Callouts */
+.bullet-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: auto 0;
+}
+
+.bullet-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 1.05rem;
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+
+.bullet-dot {
+  margin-top: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 10px var(--accent-cyan);
+  flex-shrink: 0;
+}
+
+.bullet-item strong {
+  color: #fff;
+}
+
+/* ==========================================================================
+   TABLAS ESTILIZADAS
+   ========================================================================== */
+
+.tech-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.92rem;
+  margin: auto 0;
+}
+
+.tech-table th {
+  background: rgba(30, 41, 59, 0.6);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: left;
+}
+
+.tech-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+}
+
+.tech-table tr:last-child td {
+  border-bottom: none;
+}
+
+.tech-table tr:hover td {
+  background: rgba(56, 189, 248, 0.04);
+}
+
+.pill {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.pill-cyan { background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid rgba(56, 189, 248, 0.3); }
+.pill-emerald { background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); border: 1px solid rgba(16, 185, 129, 0.3); }
+.pill-amber { background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); border: 1px solid rgba(245, 158, 11, 0.3); }
+.pill-rose { background: rgba(244, 63, 94, 0.15); color: var(--accent-rose); border: 1px solid rgba(244, 63, 94, 0.3); }
+
+/* ==========================================================================
+   DIAGRAMAS VECTORIALES (ESTILO MANIM)
+   ========================================================================== */
+
+.diagram-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(10, 15, 29, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.diagram-container svg {
+  width: 92%;
+  height: 92%;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Fórmulas matemáticas resaltadas */
+.math-formula {
+  font-family: var(--font-mono);
+  font-size: 1.7rem;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--accent-cyan);
+  padding: 16px 28px;
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
+  margin: 18px 0;
+  display: inline-block;
+}
+
+.math-formula .var { color: var(--accent-cyan); font-weight: 700; }
+.math-formula .num { color: var(--accent-emerald); }
+.math-formula .op { color: var(--accent-purple); }
+
+/* Marcos para imágenes y planos */
+.blueprint-frame {
+  width: 100%;
+  height: 100%;
+  background: #020617;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blueprint-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+/* ==========================================================================
+   BARRA DE PROGRESO Y CONTROLES DISCRETOS
+   ========================================================================== */
+
+#progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+  width: 0%;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+  box-shadow: 0 0 10px var(--accent-cyan);
+}
+
+#nav-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 25px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.nav-counter {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 14px;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+}
+
+.nav-counter span {
+  color: var(--accent-cyan);
+}
+
+.nav-btn {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+}
+
+.nav-btn:hover {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: var(--accent-cyan);
+  color: #fff;
+  transform: scale(1.08);
+}
+
+/* Helper discreto en esquina izquierda */
+#fullscreen-hint {
+  position: absolute;
+  bottom: 24px;
+  left: 28px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* ==========================================================================
+   ESTILOS DE IMPRESIÓN (EXPORTAR A PDF 16:9 LIMPIO)
+   ========================================================================== */
+
+@media print {
+  @page {
+    size: 297mm 167mm; /* 16:9 A4 proporcional */
+    margin: 0;
+  }
+  
+  html, body {
+    width: 297mm;
+    height: 167mm;
+    overflow: visible;
+    background: #0b0f19 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  #progress-bar, #nav-controls, #fullscreen-hint, body::before, body::after {
+    display: none !important;
+  }
+  
+  #presentation-viewport {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
+  .slide-stage {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: auto !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+  
+  .slide {
+    position: relative !important;
+    width: 297mm !important;
+    height: 167mm !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    page-break-after: always;
+    break-after: page;
+    display: flex !important;
+  }
+}
