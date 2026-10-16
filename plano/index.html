@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plano Arquitectónico y Diseño de Red LAN - Policlínico Salud & Vida</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0e17;
+      --bg-secondary: #121826;
+      --bg-card: rgba(18, 24, 38, 0.85);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(56, 189, 248, 0.3);
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent-cyan: #38bdf8;
+      --accent-blue: #3b82f6;
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-purple: #a855f7;
+      --accent-red: #ef4444;
+      --wall-color: #334155;
+      --wall-heavy: #64748b;
+      --corridor-color: rgba(30, 41, 59, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Top Navigation Header */
+    header {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .header-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .badge-status {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent-green);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Layout Container */
+    .app-container {
+      display: flex;
+      flex: 1;
+      height: calc(100vh - 65px);
+      position: relative;
+    }
+
+    /* Toolbar / Layer Controls */
+    .sidebar {
+      width: 320px;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      z-index: 50;
+    }
+
+    .panel-section {
+      padding: 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .panel-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Layer Toggle Switches */
+    .layer-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      margin-bottom: 6px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .layer-item:hover {
+      background: rgba(56, 189, 248, 0.06);
+      border-color: var(--border-accent);
+    }
+
+    .layer-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .layer-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    /* Checkbox switch styling */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 36px;
+      height: 20px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #334155;
+      transition: .3s;
+      border-radius: 20px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 14px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--accent-cyan);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(16px);
+    }
+
+    /* Metrics & Stats */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .metric-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .metric-box .val {
+      font-size: 1.25rem;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent-cyan);
+    }
+
+    .metric-box .lbl {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Detail Inspector */
+    .inspector-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 0.85rem;
+    }
+
+    .inspector-card h4 {
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .inspector-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+    }
+
+    .inspector-row span.k {
+      color: var(--text-muted);
+    }
+
+    .inspector-row span.v {
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-main);
+    }
+
+    /* Main Viewport for Blueprint */
+    .viewport {
+      flex: 1;
+      position: relative;
+      background: radial-gradient(circle at center, #0f172a 0%, #070a12 100%);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Blueprint Canvas Area */
+    .blueprint-canvas {
+      width: 100%;
+      height: 100%;
+      cursor: grab;
+    }
+
+    .blueprint-canvas:active {
+      cursor: grabbing;
+    }
+
+    /* Floating Canvas Controls */
+    .zoom-controls {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      gap: 8px;
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      padding: 6px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    .ctrl-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.15s;
+    }
+
+    .ctrl-btn:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+    }
+
+    /* SVG Elements Styling */
+    .grid-line {
+      stroke: rgba(255, 255, 255, 0.04);
+      stroke-width: 1;
+    }
+
+    .grid-axis {
+      stroke: rgba(56, 189, 248, 0.2);
+      stroke-width: 1.5;
+    }
+
+    .room-poly {
+      transition: fill 0.2s, stroke 0.2s;
+      cursor: pointer;
+    }
+
+    .room-poly:hover {
+      fill: rgba(56, 189, 248, 0.15) !important;
+      stroke: var(--accent-cyan) !important;
+      stroke-width: 3 !important;
+    }
+
+    .room-selected {
+      fill: rgba(56, 189, 248, 0.25) !important;
+      stroke: var(--accent-cyan) !important;
+      stroke-width: 3.5 !important;
+    }
+
+    .wall-outer {
+      stroke: #64748b;
+      stroke-width: 6;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .wall-inner {
+      stroke: #475569;
+      stroke-width: 3.5;
+      stroke-linecap: round;
+    }
+
+    .door-arc {
+      stroke: #94a3b8;
+      stroke-width: 1.5;
+      stroke-dasharray: 4, 3;
+      fill: none;
+    }
+
+    .door-leaf {
+      stroke: #cbd5e1;
+      stroke-width: 2.5;
+    }
+
+    .dimension-line {
+      stroke: #64748b;
+      stroke-width: 1;
+    }
+
+    .dimension-text {
+      fill: #94a3b8;
+      font-size: 24px;
+      font-family: 'JetBrains Mono', monospace;
+      text-anchor: middle;
+    }
+
+    .room-title {
+      font-weight: 700;
+      font-size: 26px;
+      fill: #f8fafc;
+      text-anchor: middle;
+      pointer-events: none;
+    }
+
+    .room-meta {
+      font-size: 19px;
+      fill: #94a3b8;
+      text-anchor: middle;
+      font-family: 'JetBrains Mono', monospace;
+      pointer-events: none;
+    }
+
+    /* Cable tray (Bandeja portacables) */
+    .cable-tray {
+      stroke: #f59e0b;
+      stroke-width: 14;
+      stroke-dasharray: 10, 6;
+      stroke-linecap: butt;
+      fill: none;
+      opacity: 0.85;
+    }
+
+    .cable-run {
+      stroke-width: 2;
+      fill: none;
+      opacity: 0.6;
+      transition: opacity 0.2s, stroke-width 0.2s;
+    }
+
+    .cable-run:hover {
+      opacity: 1;
+      stroke-width: 4;
+    }
+
+    /* Network jacks (Tomas RJ45) */
+    .jack-node {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .jack-node:hover {
+      transform: scale(1.4);
+    }
+
+    /* Tooltip */
+    #tooltip {
+      position: absolute;
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--accent-cyan);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.8rem;
+      pointer-events: none;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      z-index: 1000;
+      display: none;
+      color: #fff;
+      max-width: 280px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-title">
+      <div>
+        <h1>Plano Arquitectónico y Distribución Física de Red LAN</h1>
+        <p class="subtitle">Policlínico de Especialidades Médicas "Salud & Vida" • Dimensiones: 30.00 m × 15.00 m (450 m²)</p>
+      </div>
+      <span class="badge-status">Norma ANSI/TIA-568</span>
+    </div>
+    <div style="display: flex; gap: 10px;">
+      <button class="ctrl-btn" style="width: auto; padding: 0 14px; font-size: 0.8rem; font-weight: 600;" onclick="resetView()">Centrar Vista</button>
+      <button class="ctrl-btn" style="width: auto; padding: 0 14px; font-size: 0.8rem; font-weight: 600; background: var(--accent-cyan); color: #0a0e17;" onclick="exportSVG()">Descargar SVG</button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="app-container">
+
+    <!-- Sidebar Controls -->
+    <aside class="sidebar">
+
+      <!-- Capas de Visualización -->
+      <div class="panel-section">
+        <div class="panel-title">Capas del Proyecto</div>
+
+        <div class="layer-item" onclick="toggleLayer('layer-arch')">
+          <div class="layer-label">
+            <span class="layer-dot" style="background: #94a3b8;"></span>
+            <span>Muros y Arquitectura</span>
+          </div>
+          <label class="switch" onclick="event.stopPropagation()">
+            <input type="checkbox" id="chk-arch" checked onchange="toggleLayer('layer-arch', this.checked)">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="layer-item" onclick="toggleLayer('layer-corridor')">
+          <div class="layer-label">
+            <span class="layer-dot" style="background: #3b82f6;"></span>
+            <span>Circulación (Pasillos)</span>
+          </div>
+          <label class="switch" onclick="event.stopPropagation()">
+            <input type="checkbox" id="chk-corridor" checked onchange="toggleLayer('layer-corridor', this.checked)">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="layer-item" onclick="toggleLayer('layer-trays')">
+          <div class="layer-label">
+            <span class="layer-dot" style="background: #f59e0b;"></span>
+            <span>Bandeja Portacables (Troncal)</span>
+          </div>
+          <label class="switch" onclick="event.stopPropagation()">
+            <input type="checkbox" id="chk-trays" checked onchange="toggleLayer('layer-trays', this.checked)">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="layer-item" onclick="toggleLayer('layer-jacks')">
+          <div class="layer-label">
+            <span class="layer-dot" style="background: #10b981;"></span>
+            <span>Tomas RJ-45 (Puntos de Red)</span>
+          </div>
+          <label class="switch" onclick="event.stopPropagation()">
+            <input type="checkbox" id="chk-jacks" checked onchange="toggleLayer('layer-jacks', this.checked)">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="layer-item" onclick="toggleLayer('layer-wifi')">
+          <div class="layer-label">
+            <span class="layer-dot" style="background: #a855f7;"></span>
+            <span>Cobertura Wi-Fi (APs PoE)</span>
+          </div>
+          <label class="switch" onclick="event.stopPropagation()">
+            <input type="checkbox" id="chk-wifi" checked onchange="toggleLayer('layer-wifi', this.checked)">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="layer-item" onclick="toggleLayer('layer-cables')">
+          <div class="layer-label">
+            <span class="layer-dot" style="background: #38bdf8;"></span>
+            <span>Tendido de Cables hacia Rack</span>
+          </div>
+          <label class="switch" onclick="event.stopPropagation()">
+            <input type="checkbox" id="chk-cables" onchange="toggleLayer('layer-cables', this.checked)">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Resumen Cuantitativo del Diseño -->
+      <div class="panel-section">
+        <div class="panel-title">Métricas de Ingeniería</div>
+        <div class="metric-grid">
+          <div class="metric-box">
+            <div class="val">450 m²</div>
+            <div class="lbl">Área Construida (1 Piso)</div>
+          </div>
+          <div class="metric-box">
+            <div class="val" id="stat-points">49</div>
+            <div class="lbl">Tomas RJ-45 Activas</div>
+          </div>
+          <div class="metric-box">
+            <div class="val">34.8 m</div>
+            <div class="lbl">Distancia Máx. a Rack</div>
+          </div>
+          <div class="metric-box">
+            <div class="val">&lt; 90 m</div>
+            <div class="lbl">Límite ANSI/TIA-568</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inspector de Ambiente Seleccionado -->
+      <div class="panel-section" style="flex: 1;">
+        <div class="panel-title">Inspector del Ambiente</div>
+        <div id="inspector-content" class="inspector-card">
+          <p style="color: var(--text-muted); font-size: 0.8rem;">Haz clic sobre cualquier ambiente del plano para inspeccionar sus dimensiones, puntos de red asignados y tipo de medio requerido.</p>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- Blueprint Canvas Viewport -->
+    <main class="viewport" id="viewport">
+      <svg id="blueprintSvg" class="blueprint-canvas" viewBox="0 0 3200 1700" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Grid Pattern -->
+          <pattern id="gridPattern" width="100" height="100" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="0" x2="100" y2="0" class="grid-line" />
+            <line x1="0" y1="0" x2="0" y2="100" class="grid-line" />
+          </pattern>
+          <!-- Subgrid (1m = 100 unidades) -->
+          <pattern id="gridSmall" width="20" height="20" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="0" x2="20" y2="0" stroke="rgba(255,255,255,0.015)" stroke-width="0.5" />
+            <line x1="0" y1="0" x2="0" y2="20" stroke="rgba(255,255,255,0.015)" stroke-width="0.5" />
+          </pattern>
+
+          <!-- Marker for Cables -->
+          <marker id="dot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4">
+            <circle cx="5" cy="5" r="4" fill="#38bdf8" />
+          </marker>
+        </defs>
+
+        <!-- Dynamic Transform Container for Pan & Zoom -->
+        <g id="sceneTransform">
+
+          <!-- Background Grid (100 units = 1 meter) -->
+          <rect x="-100" y="-100" width="3400" height="1900" fill="url(#gridSmall)" />
+          <rect x="-100" y="-100" width="3400" height="1900" fill="url(#gridPattern)" />
+
+          <!-- Dimension Annotations (Métricas Exteriores) -->
+          <g id="layer-dimensions">
+            <!-- Longitud 30.00 m (Horizontal Superior) -->
+            <line x1="100" y1="50" x2="3100" y2="50" class="dimension-line" marker-start="url(#dot)" marker-end="url(#dot)" />
+            <line x1="100" y1="35" x2="100" y2="70" class="dimension-line" />
+            <line x1="3100" y1="35" x2="3100" y2="70" class="dimension-line" />
+            <text x="1600" y="40" class="dimension-text">LONGITUD TOTAL DEL INMUEBLE: 30.00 METROS</text>
+
+            <!-- Ancho 15.00 m (Vertical Izquierdo) -->
+            <line x1="50" y1="100" x2="50" y2="1600" class="dimension-line" marker-start="url(#dot)" marker-end="url(#dot)" />
+            <line x1="35" y1="100" x2="70" y2="100" class="dimension-line" />
+            <line x1="35" y1="1600" x2="70" y2="1600" class="dimension-line" />
+            <text x="35" y="850" class="dimension-text" transform="rotate(-90, 35, 850)">ANCHO TOTAL: 15.00 METROS</text>
+          </g>
+
+          <!-- Perímetro Exterior del Edificio (30m x 15m -> X: 100 a 3100, Y: 100 a 1600) -->
+          <rect x="100" y="100" width="3000" height="1500" fill="rgba(15, 23, 42, 0.7)" class="wall-outer" />
+
+          <!-- ========================================== -->
+          <!-- CAPA DE AMBIENTES Y CIRCULACIÓN             -->
+          <!-- ========================================== -->
+
+          <!-- Pasillo Central Longitudinal (Y: 650 a 890 -> 2.40m de ancho, X: 100 a 3100) -->
+          <g id="layer-corridor">
+            <!-- Pasillo Central Principal -->
+            <rect x="100" y="660" width="3000" height="240" fill="var(--corridor-color)" stroke="#334155" stroke-width="1.5" stroke-dasharray="8,6" />
+            <!-- Pasillo Vertical de Entrada (desde acceso principal hacia pasillo central) -->
+            <rect x="100" y="660" width="120" height="240" fill="rgba(56, 189, 248, 0.08)" />
+            <text x="1600" y="790" fill="rgba(148, 163, 184, 0.5)" font-size="28" font-weight="700" letter-spacing="12" text-anchor="middle" font-family="'JetBrains Mono', monospace">CORREDOR DE CIRCULACIÓN PRINCIPAL (ANCHO: 2.40 m)</text>
+          </g>
+
+          <!-- AMBIENTES - ALA NORTE (Y: 100 a 660 -> Profundidad 5.60 m) -->
+          <g id="layer-rooms">
+
+            <!-- 1. Recepción, Admisión y Caja (X: 100 a 650, Ancho: 5.50m) -->
+            <g class="room-group" onclick="selectRoom('admision')">
+              <rect id="room-admision" x="100" y="100" width="550" height="560" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="3" class="room-poly" />
+              <text x="375" y="340" class="room-title">RECEPCIÓN Y CAJA</text>
+              <text x="375" y="380" class="room-meta">5.50m × 5.60m • 30.8 m²</text>
+              <text x="375" y="415" class="room-meta" fill="#38bdf8">6 Puntos RJ-45</text>
+              <!-- Puerta de acceso -->
+              <path d="M 320 660 L 320 590 A 70 70 0 0 1 390 660" class="door-arc" />
+              <line x1="320" y1="660" x2="320" y2="590" class="door-leaf" />
+            </g>
+
+            <!-- 2. Farmacia Asistencial (X: 650 a 1100, Ancho: 4.50m) -->
+            <g class="room-group" onclick="selectRoom('farmacia')">
+              <rect id="room-farmacia" x="650" y="100" width="450" height="560" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="3" class="room-poly" />
+              <text x="875" y="340" class="room-title">FARMACIA</text>
+              <text x="875" y="380" class="room-meta">4.50m × 5.60m • 25.2 m²</text>
+              <text x="875" y="415" class="room-meta" fill="#38bdf8">3 Puntos RJ-45</text>
+              <!-- Puerta -->
+              <path d="M 820 660 L 820 590 A 70 70 0 0 1 890 660" class="door-arc" />
+              <line x1="820" y1="660" x2="820" y2="590" class="door-leaf" />
+            </g>
+
+            <!-- 3. Consultorio 1: Medicina General (X: 1100 a 1500, Ancho: 4.00m) -->
+            <g class="room-group" onclick="selectRoom('c1')">
+              <rect id="room-c1" x="1100" y="100" width="400" height="560" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="3" class="room-poly" />
+              <text x="1300" y="340" class="room-title">CONSULTORIO 1</text>
+              <text x="1300" y="375" class="room-meta" fill="#94a3b8">Medicina General</text>
+              <text x="1300" y="410" class="room-meta">4.00m × 5.60m • 22.4 m²</text>
+              <text x="1300" y="445" class="room-meta" fill="#38bdf8">2 Puntos RJ-45</text>
+              <path d="M 1240 660 L 1240 590 A 70 70 0 0 1 1310 660" class="door-arc" />
+              <line x1="1240" y1="660" x2="1240" y2="590" class="door-leaf" />
+            </g>
+
+            <!-- 4. Consultorio 2: Pediatría (X: 1500 a 1900, Ancho: 4.00m) -->
+            <g class="room-group" onclick="selectRoom('c2')">
+              <rect id="room-c2" x="1500" y="100" width="400" height="560" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="3" class="room-poly" />
+              <text x="1700" y="340" class="room-title">CONSULTORIO 2</text>
+              <text x="1700" y="375" class="room-meta" fill="#94a3b8">Pediatría</text>
+              <text x="1700" y="410" class="room-meta">4.00m × 5.60m • 22.4 m²</text>
+              <text x="1700" y="445" class="room-meta" fill="#38bdf8">2 Puntos RJ-45</text>
+              <path d="M 1640 660 L 1640 590 A 70 70 0 0 1 1710 660" class="door-arc" />
+              <line x1="1640" y1="660" x2="1640" y2="590" class="door-leaf" />
+            </g>
+
+            <!-- 5. Consultorio 3: Ginecología (X: 1900 a 2300, Ancho: 4.00m) -->
+            <g class="room-group" onclick="selectRoom('c3')">
+              <rect id="room-c3" x="1900" y="100" width="400" height="560" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="3" class="room-poly" />
+              <text x="2100" y="340" class="room-title">CONSULTORIO 3</text>
+              <text x="2100" y="375" class="room-meta" fill="#94a3b8">Ginecología / Obstetricia</text>
+              <text x="2100" y="410" class="room-meta">4.00m × 5.60m • 22.4 m²</text>
+              <text x="2100" y="445" class="room-meta" fill="#38bdf8">2 Puntos RJ-45</text>
+              <path d="M 2040 660 L 2040 590 A 70 70 0 0 1 2110 660" class="door-arc" />
+              <line x1="2040" y1="660" x2="2040" y2="590" class="door-leaf" />
+            </g>
+
+            <!-- 6. Consultorio 4: Cardiología (X: 2300 a 2700, Ancho: 4.00m) -->
+            <g class="room-group" onclick="selectRoom('c4')">
+              <rect id="room-c4" x="2300" y="100" width="400" height="560" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="3" class="room-poly" />
+              <text x="2500" y="340" class="room-title">CONSULTORIO 4</text>
+              <text x="2500" y="375" class="room-meta" fill="#94a3b8">Cardiología</text>
+              <text x="2500" y="410" class="room-meta">4.00m × 5.60m • 22.4 m²</text>
+              <text x="2500" y="445" class="room-meta" fill="#38bdf8">2 Puntos RJ-45</text>
+              <path d="M 2440 660 L 2440 590 A 70 70 0 0 1 2510 660" class="door-arc" />
+              <line x1="2440" y1="660" x2="2440" y2="590" class="door-leaf" />
+            </g>
+
+            <!-- 7. Consultorio 5: Traumatología (X: 2700 a 3100, Ancho: 4.00m) -->
+            <g class="room-group" onclick="selectRoom('c5')">
+              <rect id="room-c5" x="2700" y="100" width="400" height="560" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="3" class="room-poly" />
+              <text x="2900" y="340" class="room-title">CONSULTORIO 5</text>
+              <text x="2900" y="375" class="room-meta" fill="#94a3b8">Traumatología</text>
+              <text x="2900" y="410" class="room-meta">4.00m × 5.60m • 22.4 m²</text>
+              <text x="2900" y="445" class="room-meta" fill="#38bdf8">2 Puntos RJ-45</text>
+              <path d="M 2840 660 L 2840 590 A 70 70 0 0 1 2910 660" class="door-arc" />
+              <line x1="2840" y1="660" x2="2840" y2="590" class="door-leaf" />
+            </g>
+
+            <!-- AMBIENTES - ALA SUR (Y: 900 a 1600 -> Profundidad 7.00 m) -->
+
+            <!-- 8. Sala de Espera General y SS.HH. Públicos (X: 100 a 800, Ancho: 7.00m) -->
+            <g class="room-group" onclick="selectRoom('espera')">
+              <rect id="room-espera" x="100" y="900" width="700" height="700" fill="rgba(30, 41, 59, 0.55)" stroke="#475569" stroke-width="3" class="room-poly" />
+              <text x="450" y="1180" class="room-title">SALA DE ESPERA GENERAL</text>
+              <text x="450" y="1225" class="room-meta">Área Abierta de Pacientes • 49.0 m²</text>
+              <text x="450" y="1265" class="room-meta" fill="#10b981">1 TV Turnero + 1 AP Wi-Fi PoE</text>
+              <!-- Batería de Baños Públicos dentro del área de espera -->
+              <rect x="100" y="1360" width="300" height="240" fill="rgba(15, 23, 42, 0.85)" stroke="#334155" stroke-width="2" />
+              <text x="250" y="1490" fill="#64748b" font-size="18" text-anchor="middle" font-weight="600">SS.HH. PÚBLICOS</text>
+            </g>
+
+            <!-- 9. Triaje y Tópico de Urgencias (X: 800 a 1250, Ancho: 4.50m) -->
+            <g class="room-group" onclick="selectRoom('triaje')">
+              <rect id="room-triaje" x="800" y="900" width="450" height="700" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="3" class="room-poly" />
+              <text x="1025" y="1210" class="room-title">TRIAJE Y TÓPICO</text>
+              <text x="1025" y="1255" class="room-meta">4.50m × 7.00m • 31.5 m²</text>
+              <text x="1025" y="1295" class="room-meta" fill="#38bdf8">3 Puntos RJ-45</text>
+              <path d="M 960 900 L 960 970 A 70 70 0 0 1 1030 900" class="door-arc" />
+              <line x1="960" y1="900" x2="960" y2="970" class="door-leaf" />
+            </g>
+
+            <!-- 10. CUARTO DE COMUNICACIONES / MDF (RACK CENTRAL) (X: 1250 a 1600, Ancho: 3.50m, Prof: 4.00m) -->
+            <g class="room-group" onclick="selectRoom('mdf')">
+              <!-- Cuarto MDF destacado en cian -->
+              <rect id="room-mdf" x="1250" y="900" width="350" height="420" fill="rgba(56, 189, 248, 0.12)" stroke="#38bdf8" stroke-width="4" class="room-poly" />
+              <text x="1425" y="1050" class="room-title" fill="#38bdf8" font-size="24">CUARTO DE TELECOM.</text>
+              <text x="1425" y="1085" class="room-title" fill="#38bdf8" font-size="20">(MDF / RACK CENTRAL)</text>
+              <text x="1425" y="1130" class="room-meta">3.50m × 4.20m • 14.7 m²</text>
+              <text x="1425" y="1170" class="room-meta" fill="#f59e0b" font-weight="700">RACK 42U + 2 SERVIDORES + UPS</text>
+              <!-- Rack físico centrado -->
+              <rect x="1375" y="1210" width="100" height="80" fill="#0284c7" stroke="#38bdf8" stroke-width="3" rx="4" />
+              <text x="1425" y="1255" fill="#fff" font-size="16" font-weight="800" text-anchor="middle">RACK 42U</text>
+              <!-- Puerta reforzada con cerradura electrónica -->
+              <path d="M 1390 900 L 1390 970 A 70 70 0 0 1 1460 900" class="door-arc" stroke="#38bdf8" />
+              <line x1="1390" y1="900" x2="1390" y2="970" class="door-leaf" stroke="#38bdf8" />
+              <!-- SS.HH. y Vestidor del Personal (debajo del MDF) -->
+              <rect x="1250" y="1320" width="350" height="280" fill="rgba(15, 23, 42, 0.85)" stroke="#334155" stroke-width="2" />
+              <text x="1425" y="1470" fill="#64748b" font-size="18" text-anchor="middle" font-weight="600">SS.HH. PERSONAL</text>
+            </g>
+
+            <!-- 11. Consultorio 6: Oftalmología (X: 1600 a 1950, Ancho: 3.50m) -->
+            <g class="room-group" onclick="selectRoom('c6')">
+              <rect id="room-c6" x="1600" y="900" width="350" height="700" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="3" class="room-poly" />
+              <text x="1775" y="1210" class="room-title">CONSULTORIO 6</text>
+              <text x="1775" y="1255" class="room-meta" fill="#94a3b8">Oftalmología</text>
+              <text x="1775" y="1295" class="room-meta">3.50m × 7.00m • 24.5 m²</text>
+              <text x="1775" y="1335" class="room-meta" fill="#38bdf8">2 Puntos RJ-45</text>
+              <path d="M 1720 900 L 1720 970 A 70 70 0 0 1 1790 900" class="door-arc" />
+              <line x1="1720" y1="900" x2="1720" y2="970" class="door-leaf" />
+            </g>
+
+            <!-- 12. Consultorios 7 y 8 (X: 1950 a 2300, Ancho: 3.50m) -->
+            <g class="room-group" onclick="selectRoom('c78')">
+              <rect id="room-c78" x="1950" y="900" width="350" height="700" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="3" class="room-poly" />
+              <text x="2125" y="1120" class="room-title">CONSULTORIO 7</text>
+              <text x="2125" y="1155" class="room-meta" fill="#94a3b8">Odontología (2 tomas)</text>
+              <line x1="1950" y1="1250" x2="2300" y2="1250" stroke="#334155" stroke-width="2" stroke-dasharray="6,4" />
+              <text x="2125" y="1380" class="room-title">CONSULTORIO 8</text>
+              <text x="2125" y="1415" class="room-meta" fill="#94a3b8">Psicología / Nutrición (2 tomas)</text>
+              <path d="M 2070 900 L 2070 970 A 70 70 0 0 1 2140 900" class="door-arc" />
+              <line x1="2070" y1="900" x2="2070" y2="970" class="door-leaf" />
+            </g>
+
+            <!-- 13. Administración y Jefatura Médica (X: 2300 a 2650, Ancho: 3.50m) -->
+            <g class="room-group" onclick="selectRoom('admin')">
+              <rect id="room-admin" x="2300" y="900" width="350" height="700" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="3" class="room-poly" />
+              <text x="2475" y="1210" class="room-title">ADMINISTRACIÓN</text>
+              <text x="2475" y="1255" class="room-meta">Dirección y Contabilidad</text>
+              <text x="2475" y="1295" class="room-meta">3.50m × 7.00m • 24.5 m²</text>
+              <text x="2475" y="1335" class="room-meta" fill="#38bdf8">6 Puntos RJ-45</text>
+              <path d="M 2420 900 L 2420 970 A 70 70 0 0 1 2490 900" class="door-arc" />
+              <line x1="2420" y1="900" x2="2420" y2="970" class="door-leaf" />
+            </g>
+
+            <!-- 14. Laboratorio Clínico y Rayos X (Zona Crítica con Blindaje EMI) (X: 2650 a 3100, Ancho: 4.50m) -->
+            <g class="room-group" onclick="selectRoom('diagnostico')">
+              <!-- Laboratorio (Arriba) -->
+              <rect id="room-lab" x="2650" y="900" width="450" height="340" fill="rgba(245, 158, 11, 0.08)" stroke="#f59e0b" stroke-width="3" class="room-poly" />
+              <text x="2875" y="1030" class="room-title" fill="#f59e0b">LABORATORIO CLÍNICO</text>
+              <text x="2875" y="1070" class="room-meta">Bioquímica y Análisis • 15.3 m²</text>
+              <text x="2875" y="1110" class="room-meta" fill="#f59e0b">3 Puntos F/UTP Blindados</text>
+
+              <!-- Rayos X y Ecografía (Abajo, Sala Plomada) -->
+              <rect id="room-rayosx" x="2650" y="1240" width="450" height="360" fill="rgba(239, 68, 68, 0.08)" stroke="#ef4444" stroke-width="3" class="room-poly" />
+              <text x="2875" y="1380" class="room-title" fill="#ef4444">RAYOS X Y ECOGRAFÍA</text>
+              <text x="2875" y="1420" class="room-meta">Muros Plomados • 16.2 m²</text>
+              <text x="2875" y="1460" class="room-meta" fill="#ef4444">3 Puntos F/UTP Blindados (EMI)</text>
+
+              <path d="M 2770 900 L 2770 970 A 70 70 0 0 1 2840 900" class="door-arc" />
+              <line x1="2770" y1="900" x2="2770" y2="970" class="door-leaf" />
+            </g>
+
+          </g>
+
+          <!-- ========================================== -->
+          <!-- CAPA DE BANDEJA PORTACABLES (CABLE TRAY)   -->
+          <!-- ========================================== -->
+          <g id="layer-trays">
+            <!-- Troncal Principal a lo largo del pasillo (Y = 780, suspendido a 2.60m en cielo raso) -->
+            <path d="M 200 780 L 2950 780" class="cable-tray" />
+            <!-- Derivación hacia Cuarto de Telecomunicaciones (MDF) -->
+            <path d="M 1425 780 L 1425 920" class="cable-tray" />
+            <!-- Derivaciones secundarias hacia salas laterales -->
+            <line x1="375" y1="780" x2="375" y2="660" stroke="#f59e0b" stroke-width="6" stroke-dasharray="6,4" />
+            <line x1="875" y1="780" x2="875" y2="660" stroke="#f59e0b" stroke-width="6" stroke-dasharray="6,4" />
+            <line x1="1300" y1="780" x2="1300" y2="660" stroke="#f59e0b" stroke-width="6" stroke-dasharray="6,4" />
+            <line x1="1700" y1="780" x2="1700" y2="660" stroke="#f59e0b" stroke-width="6" stroke-dasharray="6,4" />
+            <line x1="2100" y1="780" x2="2100" y2="660" stroke="#f59e0b" stroke-width="6" stroke-dasharray="6,4" />
+            <line x1="2500" y1="780" x2="2500" y2="660" stroke="#f59e0b" stroke-width="6" stroke-dasharray="6,4" />
+            <line x1="2900" y1="780" x2="2900" y2="660" stroke="#f59e0b" stroke-width="6" stroke-dasharray="6,4" />
+
+            <line x1="450" y1="780" x2="450" y2="900" stroke="#f59e0b" stroke-width="6" stroke-dasharray="6,4" />
+            <line x1="1025" y1="780" x2="1025" y2="900" stroke="#f59e0b" stroke-width="6" stroke-dasharray="6,4" />
+            <line x1="1775" y1="780" x2="1775" y2="900" stroke="#f59e0b" stroke-width="6" stroke-dasharray="6,4" />
+            <line x1="2125" y1="780" x2="2125" y2="900" stroke="#f59e0b" stroke-width="6" stroke-dasharray="6,4" />
+            <line x1="2475" y1="780" x2="2475" y2="900" stroke="#f59e0b" stroke-width="6" stroke-dasharray="6,4" />
+            <line x1="2875" y1="780" x2="2875" y2="900" stroke="#f59e0b" stroke-width="6" stroke-dasharray="6,4" />
+
+            <!-- Etiqueta de la bandeja -->
+            <rect x="500" y="755" width="460" height="50" rx="6" fill="rgba(18, 24, 38, 0.9)" stroke="#f59e0b" stroke-width="2" />
+            <text x="730" y="787" fill="#f59e0b" font-size="18" font-weight="700" font-family="'JetBrains Mono', monospace" text-anchor="middle">BANDEJA PORTACABLES TIPO MALLA 200×50 mm</text>
+          </g>
+
+          <!-- ========================================== -->
+          <!-- CAPA DE CABLEADO HACIA RACK (CABLE RUNS)   -->
+          <!-- ========================================== -->
+          <g id="layer-cables" style="display: none;">
+            <!-- Simulación de recorridos físicos hacia el MDF -->
+            <!-- Admision -> MDF -->
+            <path d="M 250 200 L 250 780 L 1425 780 L 1425 1210" class="cable-run" stroke="#38bdf8" />
+            <!-- Farmacia -> MDF -->
+            <path d="M 800 200 L 800 780 L 1425 780 L 1425 1210" class="cable-run" stroke="#38bdf8" />
+            <!-- Consultorio 1 -> MDF -->
+            <path d="M 1250 200 L 1250 780 L 1425 780 L 1425 1210" class="cable-run" stroke="#38bdf8" />
+            <!-- Consultorio 4 -> MDF -->
+            <path d="M 2450 200 L 2450 780 L 1425 780 L 1425 1210" class="cable-run" stroke="#38bdf8" />
+            <!-- Consultorio 5 -> MDF -->
+            <path d="M 2850 200 L 2850 780 L 1425 780 L 1425 1210" class="cable-run" stroke="#38bdf8" />
+            <!-- Sala de Espera -> MDF -->
+            <path d="M 450 1000 L 450 780 L 1425 780 L 1425 1210" class="cable-run" stroke="#10b981" />
+            <!-- Triaje -> MDF -->
+            <path d="M 950 1100 L 950 780 L 1425 780 L 1425 1210" class="cable-run" stroke="#38bdf8" />
+            <!-- Lab -> MDF (F/UTP blindado) -->
+            <path d="M 2800 1000 L 2800 780 L 1425 780 L 1425 1210" class="cable-run" stroke="#f59e0b" stroke-dasharray="6,3" />
+            <!-- Rayos X -> MDF (F/UTP blindado) -->
+            <path d="M 2800 1400 L 2800 780 L 1425 780 L 1425 1210" class="cable-run" stroke="#ef4444" stroke-dasharray="6,3" />
+          </g>
+
+          <!-- ========================================== -->
+          <!-- CAPA DE COBERTURA WI-FI (APS POE)          -->
+          <!-- ========================================== -->
+          <g id="layer-wifi">
+            <!-- AP 1: Sala de Espera (Cobertura 12m) -->
+            <circle cx="450" cy="1150" r="320" fill="rgba(168, 85, 247, 0.12)" stroke="#a855f7" stroke-width="2" stroke-dasharray="8,6" />
+            <circle cx="450" cy="1150" r="16" fill="#a855f7" />
+            <text x="450" y="1120" fill="#a855f7" font-size="18" font-weight="700" text-anchor="middle">AP-01 (Público / Pacientes)</text>
+
+            <!-- AP 2: Pasillo Central Oeste (Consultorios 1 a 4) -->
+            <circle cx="1200" cy="780" r="320" fill="rgba(168, 85, 247, 0.12)" stroke="#a855f7" stroke-width="2" stroke-dasharray="8,6" />
+            <circle cx="1200" cy="780" r="16" fill="#a855f7" />
+            <text x="1200" y="750" fill="#a855f7" font-size="18" font-weight="700" text-anchor="middle">AP-02 (Médico - Sector 1)</text>
+
+            <!-- AP 3: Pasillo Central Este (Consultorios 5 a 8 + Lab) -->
+            <circle cx="2300" cy="780" r="320" fill="rgba(168, 85, 247, 0.12)" stroke="#a855f7" stroke-width="2" stroke-dasharray="8,6" />
+            <circle cx="2300" cy="780" r="16" fill="#a855f7" />
+            <text x="2300" y="750" fill="#a855f7" font-size="18" font-weight="700" text-anchor="middle">AP-03 (Médico - Sector 2)</text>
+
+            <!-- AP 4: Administración y Estar Médico -->
+            <circle cx="2800" cy="1150" r="280" fill="rgba(168, 85, 247, 0.12)" stroke="#a855f7" stroke-width="2" stroke-dasharray="8,6" />
+            <circle cx="2800" cy="1150" r="16" fill="#a855f7" />
+            <text x="2800" y="1120" fill="#a855f7" font-size="18" font-weight="700" text-anchor="middle">AP-04 (Administrativo)</text>
+          </g>
+
+          <!-- ========================================== -->
+          <!-- CAPA DE PUNTOS DE RED (TOMAS RJ-45)        -->
+          <!-- ========================================== -->
+          <g id="layer-jacks">
+            <!-- Admisión y Caja (6 tomas) -->
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Doble D01/V01 (Recepción 1)')" onmouseout="hideTip()"><rect x="200" y="130" width="22" height="22" fill="#10b981" rx="4" /><text x="211" y="146" fill="#000" font-size="12" font-weight="900" text-anchor="middle">2</text></g>
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Doble D02/V02 (Recepción 2)')" onmouseout="hideTip()"><rect x="350" y="130" width="22" height="22" fill="#10b981" rx="4" /><text x="361" y="146" fill="#000" font-size="12" font-weight="900" text-anchor="middle">2</text></g>
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Doble D03/Impresora (Caja)')" onmouseout="hideTip()"><rect x="500" y="130" width="22" height="22" fill="#10b981" rx="4" /><text x="511" y="146" fill="#000" font-size="12" font-weight="900" text-anchor="middle">2</text></g>
+
+            <!-- Farmacia (3 tomas) -->
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Doble D04/V03 (Ventas Farmacia)')" onmouseout="hideTip()"><rect x="750" y="130" width="22" height="22" fill="#10b981" rx="4" /><text x="761" y="146" fill="#000" font-size="12" font-weight="900" text-anchor="middle">2</text></g>
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Simple D05 (Impresora Tickets)')" onmouseout="hideTip()"><rect x="950" y="130" width="22" height="22" fill="#10b981" rx="4" /><text x="961" y="146" fill="#000" font-size="12" font-weight="900" text-anchor="middle">1</text></g>
+
+            <!-- Consultorios 1 a 5 (Ala Norte) -->
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Doble C1 (PC + Tel VoIP)')" onmouseout="hideTip()"><rect x="1350" y="130" width="22" height="22" fill="#10b981" rx="4" /><text x="1361" y="146" fill="#000" font-size="12" font-weight="900" text-anchor="middle">2</text></g>
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Doble C2 (PC + Tel VoIP)')" onmouseout="hideTip()"><rect x="1750" y="130" width="22" height="22" fill="#10b981" rx="4" /><text x="1761" y="146" fill="#000" font-size="12" font-weight="900" text-anchor="middle">2</text></g>
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Doble C3 (PC + Tel VoIP)')" onmouseout="hideTip()"><rect x="2150" y="130" width="22" height="22" fill="#10b981" rx="4" /><text x="2161" y="146" fill="#000" font-size="12" font-weight="900" text-anchor="middle">2</text></g>
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Doble C4 (PC + Tel VoIP)')" onmouseout="hideTip()"><rect x="2550" y="130" width="22" height="22" fill="#10b981" rx="4" /><text x="2561" y="146" fill="#000" font-size="12" font-weight="900" text-anchor="middle">2</text></g>
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Doble C5 (PC + Tel VoIP)')" onmouseout="hideTip()"><rect x="2950" y="130" width="22" height="22" fill="#10b981" rx="4" /><text x="2961" y="146" fill="#000" font-size="12" font-weight="900" text-anchor="middle">2</text></g>
+
+            <!-- Sala de Espera (Smart TV de Turnos) -->
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma TV01 (Smart TV Pantalla de Turnos)')" onmouseout="hideTip()"><rect x="750" y="1000" width="22" height="22" fill="#38bdf8" rx="4" /><text x="761" y="146" fill="#000" font-size="12" font-weight="900" text-anchor="middle">TV</text></g>
+
+            <!-- Triaje (3 tomas) -->
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Doble Triaje (PC 1 + VoIP)')" onmouseout="hideTip()"><rect x="1100" y="1540" width="22" height="22" fill="#10b981" rx="4" /><text x="1111" y="1556" fill="#000" font-size="12" font-weight="900" text-anchor="middle">2</text></g>
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Simple Triaje (PC 2)')" onmouseout="hideTip()"><rect x="1180" y="1540" width="22" height="22" fill="#10b981" rx="4" /><text x="1191" y="1556" fill="#000" font-size="12" font-weight="900" text-anchor="middle">1</text></g>
+
+            <!-- Consultorio 6 (2 tomas) -->
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Doble C6 (PC + VoIP)')" onmouseout="hideTip()"><rect x="1850" y="1540" width="22" height="22" fill="#10b981" rx="4" /><text x="1861" y="1556" fill="#000" font-size="12" font-weight="900" text-anchor="middle">2</text></g>
+
+            <!-- Consultorios 7 y 8 (4 tomas) -->
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Doble C7 (Odontología)')" onmouseout="hideTip()"><rect x="2200" y="1000" width="22" height="22" fill="#10b981" rx="4" /><text x="2211" y="1016" fill="#000" font-size="12" font-weight="900" text-anchor="middle">2</text></g>
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Doble C8 (Psicología)')" onmouseout="hideTip()"><rect x="2200" y="1540" width="22" height="22" fill="#10b981" rx="4" /><text x="2211" y="1556" fill="#000" font-size="12" font-weight="900" text-anchor="middle">2</text></g>
+
+            <!-- Administración (6 tomas) -->
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Cuádruple Admin (PCs 1-4)')" onmouseout="hideTip()"><rect x="2500" y="1540" width="26" height="22" fill="#10b981" rx="4" /><text x="2513" y="1556" fill="#000" font-size="12" font-weight="900" text-anchor="middle">4</text></g>
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Doble Admin (Multifuncional + VoIP)')" onmouseout="hideTip()"><rect x="2580" y="1540" width="22" height="22" fill="#10b981" rx="4" /><text x="2591" y="1556" fill="#000" font-size="12" font-weight="900" text-anchor="middle">2</text></g>
+
+            <!-- Laboratorio Clínico (3 tomas blindadas) -->
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Doble Blindada F/UTP (PCs Lab)')" onmouseout="hideTip()"><rect x="3000" y="980" width="24" height="22" fill="#f59e0b" rx="4" /><text x="3012" y="996" fill="#000" font-size="12" font-weight="900" text-anchor="middle">2S</text></g>
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Simple Blindada (Analizador Bioquímico IP)')" onmouseout="hideTip()"><rect x="3000" y="1120" width="24" height="22" fill="#f59e0b" rx="4" /><text x="3012" y="1136" fill="#000" font-size="12" font-weight="900" text-anchor="middle">1S</text></g>
+
+            <!-- Rayos X y Ecografía (3 tomas blindadas) -->
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Doble Blindada F/UTP (Estaciones DICOM)')" onmouseout="hideTip()"><rect x="3000" y="1350" width="24" height="22" fill="#ef4444" rx="4" /><text x="3012" y="1366" fill="#000" font-size="12" font-weight="900" text-anchor="middle">2S</text></g>
+            <g class="jack-node" onmouseover="showTip(evt, 'Toma Simple Blindada (Impresora Médica)')" onmouseout="hideTip()"><rect x="3000" y="1480" width="24" height="22" fill="#ef4444" rx="4" /><text x="3012" y="1496" fill="#000" font-size="12" font-weight="900" text-anchor="middle">1S</text></g>
+          </g>
+
+        </g>
+      </svg>
+
+      <!-- Floating Zoom & Pan Controls -->
+      <div class="zoom-controls">
+        <button class="ctrl-btn" onclick="zoomIn()" title="Acercar">+</button>
+        <button class="ctrl-btn" onclick="zoomOut()" title="Alejar">−</button>
+        <button class="ctrl-btn" onclick="resetView()" title="Restablecer">⟲</button>
+      </div>
+
+      <!-- Floating Tooltip -->
+      <div id="tooltip"></div>
+    </main>
+
+  </div>
+
+  <script>
+    // Room Data Store
+    const roomDetails = {
+      admision: {
+        title: "Recepción, Admisión y Caja",
+        area: "30.8 m² (5.50m × 5.60m)",
+        jacks: "6 Tomas RJ-45 Cat 6",
+        devices: "3 PCs de atención, 1 Impresora de red, 2 Teléfonos IP (VoIP)",
+        cableType: "UTP Cat 6 LSZH (Cero halógenos)",
+        distanceRack: "19.5 metros reales por canaleta",
+        notes: "Zona de alta concurrencia. Canaleta perimetral de dos vías para separar datos de alimentación eléctrica."
+      },
+      farmacia: {
+        title: "Farmacia Asistencial",
+        area: "25.2 m² (4.50m × 5.60m)",
+        jacks: "3 Tomas RJ-45 Cat 6",
+        devices: "2 PCs terminales de venta, 1 Impresora térmica de tickets",
+        cableType: "UTP Cat 6 LSZH",
+        distanceRack: "14.2 metros reales",
+        notes: "Mostrador con ventanilla hacia la sala de espera y almacén interior de medicamentos."
+      },
+      c1: {
+        title: "Consultorio 1 - Medicina General",
+        area: "22.4 m² (4.00m × 5.60m)",
+        jacks: "2 Tomas RJ-45 Cat 6",
+        devices: "1 PC médica (Historias Clínicas EMR), 1 Teléfono VoIP",
+        cableType: "UTP Cat 6 LSZH",
+        distanceRack: "9.8 metros reales",
+        notes: "Módulo médico típico. Toma doble en pared junto al escritorio de consulta."
+      },
+      c2: {
+        title: "Consultorio 2 - Pediatría",
+        area: "22.4 m² (4.00m × 5.60m)",
+        jacks: "2 Tomas RJ-45 Cat 6",
+        devices: "1 PC médica, 1 Teléfono VoIP",
+        cableType: "UTP Cat 6 LSZH",
+        distanceRack: "6.5 metros reales",
+        notes: "Módulo estándar idéntico para optimizar mantenimiento y rotulación ANSI/TIA-606."
+      },
+      c3: {
+        title: "Consultorio 3 - Ginecología y Obstetricia",
+        area: "22.4 m² (4.00m × 5.60m)",
+        jacks: "2 Tomas RJ-45 Cat 6",
+        devices: "1 PC médica, 1 Teléfono VoIP",
+        cableType: "UTP Cat 6 LSZH",
+        distanceRack: "7.8 metros reales",
+        notes: "Frente al Cuarto de Telecomunicaciones. Enlace muy corto y baja latencia."
+      },
+      c4: {
+        title: "Consultorio 4 - Cardiología",
+        area: "22.4 m² (4.00m × 5.60m)",
+        jacks: "2 Tomas RJ-45 Cat 6",
+        devices: "1 PC médica, 1 Teléfono VoIP / Electrocardiógrafo con puerto IP",
+        cableType: "UTP Cat 6 LSZH",
+        distanceRack: "11.6 metros reales",
+        notes: "Toma de datos preparada para descarga de trazados de ECG digital al servidor EMR."
+      },
+      c5: {
+        title: "Consultorio 5 - Traumatología",
+        area: "22.4 m² (4.00m × 5.60m)",
+        jacks: "2 Tomas RJ-45 Cat 6",
+        devices: "1 PC médica de alta resolución para visualización de placas radiológicas",
+        cableType: "UTP Cat 6 LSZH",
+        distanceRack: "15.4 metros reales",
+        notes: "Monitores duales para diagnóstico visual de imágenes médicas."
+      },
+      espera: {
+        title: "Sala de Espera General",
+        area: "49.0 m² (7.00m × 7.00m)",
+        jacks: "2 Tomas (1 Smart TV + 1 AP PoE)",
+        devices: "1 Pantalla Smart TV informativa (Turnero digital), 1 Access Point Wi-Fi",
+        cableType: "UTP Cat 6 PoE (IEEE 802.3at)",
+        distanceRack: "18.0 metros reales",
+        notes: "Espacio amplio con bancas para 35 personas. Batería de SS.HH. públicos adyacente."
+      },
+      triaje: {
+        title: "Triaje y Tópico de Urgencias",
+        area: "31.5 m² (4.50m × 7.00m)",
+        jacks: "3 Tomas RJ-45 Cat 6",
+        devices: "2 PCs de enfermería, 1 Teléfono IP",
+        cableType: "UTP Cat 6 LSZH",
+        distanceRack: "8.5 metros reales",
+        notes: "Registro ágil de signos vitales. Contiguo a la Sala de Espera para flujo inmediato de pacientes."
+      },
+      mdf: {
+        title: "Cuarto de Telecomunicaciones (MDF Central)",
+        area: "14.7 m² (3.50m × 4.20m)",
+        jacks: "Concentrador de 56 Puertos de Parcheo",
+        devices: "Gabinete Rack 42U, 2 Patch Panels de 24 puertos Cat 6 + 1 Patch Panel blindado Cat 6A, 2 Switches administrables PoE+ de 24p, 1 Servidor EMR, 1 Servidor PACS DICOM, 1 Sistema UPS Online 3kVA con banco de baterías",
+        cableType: "Núcleo de distribución y aterrizamiento TIA-607",
+        distanceRack: "0.0 m (Centro de gravedad de cableado)",
+        notes: "Ubicación geo-céntrica óptima. Puerta de seguridad metálica con cerradura biométrica y aire acondicionado de precisión de 18,000 BTU a 21°C."
+      },
+      c6: {
+        title: "Consultorio 6 - Oftalmología",
+        area: "24.5 m² (3.50m × 7.00m)",
+        jacks: "2 Tomas RJ-45 Cat 6",
+        devices: "1 PC médica, 1 Teléfono VoIP",
+        cableType: "UTP Cat 6 LSZH",
+        distanceRack: "6.2 metros reales",
+        notes: "Contiguo al MDF. Conexión de muy baja pérdida."
+      },
+      c78: {
+        title: "Consultorios 7 y 8 - Odontología y Psicología",
+        area: "24.5 m² (3.50m × 7.00m)",
+        jacks: "4 Tomas RJ-45 Cat 6 (2 por consultorio)",
+        devices: "2 PCs médicas, 2 Teléfonos VoIP",
+        cableType: "UTP Cat 6 LSZH",
+        distanceRack: "9.5 metros reales",
+        notes: "Módulo compartido con división acústica."
+      },
+      admin: {
+        title: "Administración, Jefatura y Contabilidad",
+        area: "24.5 m² (3.50m × 7.00m)",
+        jacks: "6 Tomas RJ-45 Cat 6",
+        devices: "4 PCs administrativas, 1 Impresora multifuncional departamental, 1 Teléfono IP",
+        cableType: "UTP Cat 6 LSZH",
+        distanceRack: "13.0 metros reales",
+        notes: "Oficina administrativa central para gestión financiera, auditoría y facturación electrónica."
+      },
+      diagnostico: {
+        title: "Zona de Diagnóstico (Laboratorio Clínico y Rayos X)",
+        area: "31.5 m² (Laboratorio: 15.3 m² • Rayos X: 16.2 m²)",
+        jacks: "6 Tomas Blindadas (3 Lab + 3 Rayos X)",
+        devices: "2 PCs Analistas + 1 Analizador Bioquímico IP (Lab); 2 Estaciones DICOM + 1 Impresora de Placas (Rayos X)",
+        cableType: "F/UTP Cat 6A Blindado (Apantallado con lámina de aluminio contra Ruido EMI)",
+        distanceRack: "17.8 metros reales",
+        notes: "ZONA CRÍTICA: La sala de Rayos X cuenta con blindaje de plomo en muros y equipos generadores de alta tensión. El uso de cable blindado F/UTP con jacks blindados y aterrizamiento TIA-607 evita la degradación de señales y pérdida de paquetes."
+      }
+    };
+
+    function selectRoom(roomId) {
+      // Remover selección previa
+      document.querySelectorAll('.room-poly').forEach(el => el.classList.remove('room-selected'));
+      
+      const poly = document.getElementById(`room-${roomId}`);
+      if (poly) poly.classList.add('room-selected');
+
+      const data = roomDetails[roomId];
+      if (!data) return;
+
+      const inspector = document.getElementById('inspector-content');
+      inspector.innerHTML = `
+        <h4 style="color: var(--accent-cyan); font-weight: 700; font-size: 1rem; margin-bottom: 8px;">${data.title}</h4>
+        <div class="inspector-row"><span class="k">Superficie:</span><span class="v">${data.area}</span></div>
+        <div class="inspector-row"><span class="k">Tomas Asignadas:</span><span class="v" style="color: #10b981;">${data.jacks}</span></div>
+        <div class="inspector-row"><span class="k">Distancia a Rack:</span><span class="v" style="color: #38bdf8;">${data.distanceRack}</span></div>
+        <div class="inspector-row"><span class="k">Medio Recomendado:</span><span class="v">${data.cableType}</span></div>
+        <div style="margin-top: 10px;">
+          <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Dispositivos:</div>
+          <div style="font-size: 0.8rem; margin-top: 2px; color: #f1f5f9;">${data.devices}</div>
+        </div>
+        <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06);">
+          <div style="font-size: 0.72rem; color: var(--accent-amber); font-weight: 700; text-transform: uppercase;">Criterio de Ingeniería:</div>
+          <div style="font-size: 0.78rem; margin-top: 3px; color: var(--text-muted);">${data.notes}</div>
+        </div>
+      `;
+    }
+
+    // Layer Toggle Function
+    function toggleLayer(layerId, isVisible) {
+      const el = document.getElementById(layerId);
+      if (!el) return;
+      if (isVisible === undefined) {
+        const current = el.style.display !== 'none';
+        el.style.display = current ? 'none' : 'inline';
+        const chk = document.getElementById(layerId.replace('layer-', 'chk-'));
+        if (chk) chk.checked = !current;
+      } else {
+        el.style.display = isVisible ? 'inline' : 'none';
+      }
+    }
+
+    // Pan & Zoom Logic
+    const svg = document.getElementById('blueprintSvg');
+    const scene = document.getElementById('sceneTransform');
+    let scale = 1;
+    let pointX = 0;
+    let pointY = 0;
+    let isPanning = false;
+    let startX = 0;
+    let startY = 0;
+
+    function setTransform() {
+      scene.setAttribute('transform', `translate(${pointX}, ${pointY}) scale(${scale})`);
+    }
+
+    function zoomIn() {
+      scale = Math.min(scale * 1.25, 4);
+      setTransform();
+    }
+
+    function zoomOut() {
+      scale = Math.max(scale / 1.25, 0.4);
+      setTransform();
+    }
+
+    function resetView() {
+      scale = 1;
+      pointX = 0;
+      pointY = 0;
+      setTransform();
+    }
+
+    svg.onmousedown = function (e) {
+      if (e.target.closest('.room-group') && e.detail === 1) {
+        // Permitir click en room
+      }
+      isPanning = true;
+      startX = e.clientX - pointX;
+      startY = e.clientY - pointY;
+    };
+
+    window.onmousemove = function (e) {
+      if (!isPanning) return;
+      pointX = e.clientX - startX;
+      pointY = e.clientY - startY;
+      setTransform();
+    };
+
+    window.onmouseup = function () {
+      isPanning = false;
+    };
+
+    svg.onwheel = function (e) {
+      e.preventDefault();
+      const xs = (e.clientX - pointX) / scale;
+      const ys = (e.clientY - pointY) / scale;
+      const delta = -e.deltaY;
+      (delta > 0) ? (scale *= 1.1) : (scale /= 1.1);
+      scale = Math.min(Math.max(0.4, scale), 4);
+      pointX = e.clientX - xs * scale;
+      pointY = e.clientY - ys * scale;
+      setTransform();
+    };
+
+    // Tooltip Helper
+    const tooltip = document.getElementById('tooltip');
+    function showTip(evt, text) {
+      tooltip.innerText = text;
+      tooltip.style.display = 'block';
+      tooltip.style.left = (evt.clientX + 14) + 'px';
+      tooltip.style.top = (evt.clientY + 14) + 'px';
+    }
+    function hideTip() {
+      tooltip.style.display = 'none';
+    }
+
+    // SVG Export Function
+    function exportSVG() {
+      const serializer = new XMLSerializer();
+      const source = serializer.serializeToString(svg);
+      const blob = new Blob([source], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'plano_red_policlinico_salud_vida.svg';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    // Auto-select MDF on startup
+    window.addEventListener('DOMContentLoaded', () => {
+      selectRoom('mdf');
+    });
+  </script>
+</body>
+</html>

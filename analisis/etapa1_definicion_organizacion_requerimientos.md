@@ -23,34 +23,65 @@ El **Policlínico de Especialidades Médicas "Salud & Vida"** ha experimentado u
 * **Giro:** Servicios de salud ambulatoria, medicina preventiva, consultas especializadas, diagnóstico por imágenes, laboratorio clínico y farmacia.
 * **Horario de Operación:** Lunes a Sábado de 07:00 a 20:00 horas (13 horas de operación continua).
 
-### 2.2. Características Físicas y Dimensiones del Inmueble
-* **Tipo de Inmueble:** Edificación de un solo nivel (planta baja amplia), lo que permite concentrar el tendido horizontal hacia un único Cuarto de Comunicaciones (MDF / Rack Principal) sin necesidad de enlaces verticales entre pisos, cumpliendo holgadamente con la restricción de **máximo 90 metros de enlace permanente** según la norma ANSI/TIA-568.
-* **Área Total Construida:** **450 m²** (30 metros de largo por 15 metros de ancho).
-* **Paredes y Tabiquería:** Muros de mampostería con divisiones de drywall en consultorios, piso de porcelanato sanitario y falso cielo raso suspendido (ideal para el tendido de escalerillas / canalizaciones de cableado estructurado).
+### 2.2. Características Físicas y Justificación del Inmueble (1 Solo Piso)
+* **Número de Pisos:** **1 solo nivel (Planta Baja)**.
+  * **Justificación técnica:** 
+    1. Permite un diseño de red limpio y concentrado en un único **Cuarto de Telecomunicaciones (MDF / Rack Central)**, evitando la necesidad de un subsistema de cableado vertical (backbone) entre pisos que añadiría complejidad innecesaria para los alcances de la Unidad I.
+    2. Al tener 30 m de largo por 15 m de ancho, el radio máximo de tendido desde el centro del edificio hacia el rincón más alejado es de aproximadamente **28 a 35 metros de recorrido real por canaleta**, cumpliendo holgadamente el límite de **90 metros de enlace permanente** estipulado por la norma **ANSI/TIA-568**.
+* **Dimensiones Totales:** **450 m²** (30 metros de longitud × 15 metros de ancho).
+* **Altura libre:** 3.00 metros de piso a techo, con falso cielo raso suspendido a 2.60 m (espacio técnico de 40 cm para tendido de bandejas portacables tipo malla o escalerilla).
 
-### 2.3. Distribución de Ambientes y Áreas Funcionales
-El centro médico cuenta con 10 zonas o ambientes claramente diferenciados:
+### 2.3. Estructura y Dimensiones Exactas por Ambiente
 
-1. **Admisión, Caja y Recepción:** Zona de atención al público donde se registran pacientes, emiten citas y cobranza.
-2. **Sala de Espera General:** Área común para pacientes y acompañantes.
-3. **Triaje y Tópico de Urgencias:** Medición de signos vitales y atención rápida.
-4. **Bloque de Consultorios Médicos (8 consultorios):**
-   * Consultorio 1: Medicina General
-   * Consultorio 2: Pediatría
-   * Consultorio 3: Ginecología y Obstetricia
-   * Consultorio 4: Cardiología
-   * Consultorio 5: Traumatología
-   * Consultorio 6: Oftalmología
-   * Consultorio 7: Odontología
-   * Consultorio 8: Psicología / Nutrición
-5. **Área de Diagnóstico por Imágenes (Rayos X y Ecografía):** Adquisición de imágenes médicas digitales (formato DICOM) que requieren transferencia rápida a servidores locales.
-6. **Laboratorio Clínico y Toma de Muestras:** Procesamiento hematológico, bioquímico y emisión de reportes.
-7. **Farmacia Asistencial:** Despacho de medicamentos, control de inventario y facturación.
-8. **Administración, Facturación y Jefatura Médica:** Gestión contable, dirección médica, auditoría y recursos humanos.
-9. **Estar Médico y Sala de Reuniones:** Espacio de coordinación del personal de salud.
-10. **Cuarto de Comunicaciones (MDF / Rack Central):** Espacio cerrado, ventilado y de acceso restringido donde se alojarán el gabinete de red, patch panels, switches de acceso y servidores locales.
+Para mantener un diseño sencillo de dibujar y calcular, las áreas se han estandarizado de forma **modular**:
 
-### 2.4. Personal y Usuarios Estimados
+| Ambiente | Dimensiones (m) | Área (m²) | Características y Equipamiento de Red |
+|---|:---:|:---:|---|
+| **Recepción / Admisión y Caja** | 6.0 m × 4.0 m | 24 m² | Ingreso principal; 3 puestos de atención, 1 impresora de red y 2 teléfonos IP. |
+| **Sala de Espera General** | 8.0 m × 5.0 m | 40 m² | Espacio abierto frente a recepción con bancas para 35 pacientes; **equipado con 1 toma RJ-45 para Smart TV (sistema de turnos digital) y 1 punto en techo para Access Point (AP PoE Wi-Fi)**. |
+| **Triaje / Tópico de Urgencias** | 4.0 m × 4.0 m | 16 m² | Control previo a consulta; 2 puestos con PC médica y 1 teléfono IP. |
+| **Consultorios Médicos (8 salas)** | 3.5 m × 4.0 m (c/u) | 112 m² *(14 m² c/u)* | **8 consultorios modulares idénticos** alineados en un bloque continuo. Cada uno con 2 tomas dobles de pared (PC médica, teléfono IP / toma libre). |
+| **Rayos X y Ecografía** | 6.0 m × 5.0 m | 30 m² | Sala plomada y aislada; 2 estaciones DICOM de alta resolución, 1 impresora de placas. Cableado blindado F/UTP contra EMI. |
+| **Laboratorio Clínico** | 6.0 m × 5.0 m | 30 m² | Mesa de análisis químico; 2 PCs de analistas y 1 analizador clínico con interfaz de red IP. Cableado blindado F/UTP. |
+| **Farmacia Asistencial** | 5.0 m × 4.0 m | 20 m² | Mostrador hacia pasillo/sala de espera y almacén; 2 terminales de venta y 1 impresora térmica de tickets. |
+| **Administración y Jefatura** | 6.0 m × 4.0 m | 24 m² | Oficina administrativa; 4 puestos de trabajo, 1 impresora multifuncional y 1 teléfono IP. |
+| **Estar Médico / Sala de Reuniones** | 5.0 m × 4.0 m | 20 m² | Sala de descanso médico con mesa de trabajo, 1 PC de consulta y 1 AP PoE Wi-Fi de techo. |
+| **Cuarto de Comunicaciones (MDF)** | 3.0 m × 3.0 m | 9 m² | **Ubicado en el centro del edificio** para equidistancia; aloja el rack cerrado de 42U, switches, patch panels, servidores y UPS. |
+| **Servicios Higiénicos (SS.HH.)** | 5.0 m × 3.0 m | 15 m² | Baños diferenciados para público y personal (sin puntos de red). |
+| **Pasillo Central de Distribución** | 30.0 m × 2.0 m | 60 m² | Corredor central que recorre toda la clínica y alberga la bandeja portacables principal en el cielo raso + 2 APs de techo. |
+| **ÁREA TOTAL CONSTRUIDA** | **30 m × 15 m** | **450 m²** | **100% del área del predio.** |
+
+### 2.4. Esquema en Planta y Distribución Espacial
+
+A continuación se muestra cómo se organiza visualmente la planta de la clínica (vista superior), mostrando el pasillo central que facilita el recorrido de las canaletas hacia el Cuarto de Telecomunicaciones central:
+
+```text
++----------------------------------------------------------------------------------------------------+
+|                                    LONGITUD: 30 METROS                                             |
+|                                                                                                    |
+| +--------------------+-------------------+-------------------+-----------------+-----------------+ |
+| | Admisión y Caja    | Farmacia          | Consultorio 1     | Consultorio 2   | Consultorio 3   | |
+| | (6m x 4m)          | (5m x 4m)         | (3.5m x 4m)       | (3.5m x 4m)     | (3.5m x 4m)     | |
+| +--------------------+-------------------+-------------------+-----------------+-----------------+ |
+| |                                                                                                | |
+| | =================== PASILLO CENTRAL Y BANDEJA PORTACABLES (30m x 2m) ========================= | |
+| |                                                                                                | |
+| +-----------------+-----------------+-------------------+-------------------+--------------------+ |
+| | Sala de Espera  | Triaje / Tópico | CUARTO DE COMUN.  | Laboratorio       | Rayos X / Ecograf. | |
+| | (TV Turnos + AP)| (4m x 4m)       | (MDF / RACK)      | Clínico           | (Blindaje EMI)     | |
+| | (8m x 5m)       |                 | (3m x 3m)         | (6m x 5m)         | (6m x 5m)          | |
+| +-----------------+-----------------+-------------------+-------------------+--------------------+ |
+| | Consultorio 4   | Consultorio 5   | Consultorio 6     | Consultorio 7     | Consultorio 8      | |
+| | (3.5m x 4m)     | (3.5m x 4m)     | (3.5m x 4m)       | (3.5m x 4m)       | (3.5m x 4m)        | |
+| +-----------------+-----------------+-------------------+-------------------+--------------------+ |
+| | Estar Médico y Reuniones (5m x 4m)| Administración y Jefatura (6m x 4m)   | SS.HH. (5m x 3m)   | |
+| +-----------------------------------+---------------------------------------+--------------------+ |
+|                                                                                                    |
++----------------------------------------------------------------------------------------------------+
+                                      ANCHO: 15 METROS
+```
+
+### 2.5. Personal y Usuarios Estimados
 * **Personal Médico y Asistencial:** 12 médicos y 6 licenciadas/técnicas en enfermería.
 * **Personal Administrativo y Servicios:** 8 colaboradores (recepcionistas, cajeros, laboratoristas, farmacéuticos y administradores).
 * **Pacientes concurrentes:** Entre 30 y 50 pacientes en sala de espera en horas punta.
