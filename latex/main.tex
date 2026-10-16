@@ -1,0 +1,169 @@
+\documentclass[12pt, a4paper]{report}
+
+% --- PAQUETES DE IDIOMA Y CODIFICACIÓN ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+
+% --- TIPOGRAFÍA Y FORMATO DE PÁRRAFO ---
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{parskip}
+\setlength{\parskip}{10pt}
+\usepackage{setspace}
+\singlespacing
+\usepackage[left=3cm,right=3cm,top=2.5cm,bottom=2.5cm]{geometry}
+
+% --- COLORES Y GRÁFICOS ---
+\usepackage{xcolor}
+\definecolor{orcidlogocol}{HTML}{A6CE39}
+\definecolor{mdpiBlue}{HTML}{2B7CB6}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds, calc, decorations.pathreplacing, babel}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+
+% --- TABLAS ---
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{pdflscape}
+
+% --- MATEMÁTICAS Y SÍMBOLOS ---
+\usepackage{amsmath, amssymb}
+\usepackage{fontawesome5}
+
+% --- BIBLIOGRAFÍA ---
+\usepackage{csquotes}
+\usepackage[style=authoryear, backend=biber]{biblatex}
+\addbibresource{referencias.bib}
+
+% --- TÍTULOS Y ESTRUCTURA ---
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+
+% Configuración para Figuras ---
+\captionsetup[figure]{
+    font={small},
+    justification=centering,
+    labelsep=period,
+    skip=10pt
+}
+
+% --- CONFIGURACIÓN DE TÍTULOS ---
+% Nivel 1: CAPÍTULOS
+\titleformat{\chapter}[block]
+  {\normalfont\fontsize{14}{16}\bfseries\filright}
+  {\thechapter.}{1em}{}
+\titlespacing*{\chapter}{0pt}{0pt}{10pt}
+
+% Nivel 2: Sección
+\titleformat{\section}
+  {\normalfont\fontsize{14}{16}\bfseries\filright}
+  {\thesection}{1em}{}
+
+% Nivel 3: Subsección
+\titleformat{\subsection}
+  {\normalfont\fontsize{12}{14}\bfseries\filright}
+  {\thesubsection}{1em}{}
+
+% Nivel 4: Subsubsección
+\titleformat{\subsubsection}
+  {\normalfont\fontsize{12}{14}\bfseries\filright}
+  {\thesubsubsection}{1em}{}
+
+% Nivel 5: Párrafo
+\titleformat{\paragraph}
+  {\normalfont\fontsize{12}{14}\bfseries\filright}
+  {\theparagraph}{1em}{}
+\setcounter{secnumdepth}{5}
+
+% Nivel 6: Subpárrafo
+\titleformat{\subparagraph}[block]
+  {\normalfont\fontsize{12}{14}\bfseries\filright}
+  {\thesubparagraph}{1em}{\underline}
+
+% --- ENLACES Y URLS ---
+\usepackage{url}
+\def\UrlBreaks{\do\/\do-\do_}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=mdpiBlue,
+    linkcolor=black,
+    urlcolor=mdpiBlue
+}
+
+\emergencystretch=3em
+\hbadness=10000
+\hfuzz=50pt
+
+% --- ENCABEZADOS Y NUMERACIÓN (Superior Derecha) ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{14.5pt}
+
+% --- CONFIGURACIÓN DE TABLAS Y FIGURAS (APA 7) ---
+\captionsetup{labelsep=newline, justification=raggedright, singlelinecheck=false, font={small,bf}}
+
+% --- QUITA EL SALTO DE PÁGINA ANTES DE CAPÍTULO ---
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+\makeatother
+
+% Redefinir estilo plain para que sea igual al fancy
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyhead[R]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% --- COMANDO PARA AUTORES CON ORCID ---
+\newcommand{\autorconorcid}[3]{%
+  \textbf{#1}, #2\quad%
+  \href{https://orcid.org/#3}{\textcolor{orcidlogocol}{\faOrcid\ \underline{#3}}}%
+}
+\newcommand{\autorsinorcid}[2]{%
+  \textbf{#1}, #2%
+}
+
+% ===================================================================
+\begin{document}
+% ===================================================================
+
+% --- PORTADA ---
+\input{portada}
+
+\newpage
+\pagenumbering{roman}
+\setcounter{page}{1}
+\tableofcontents
+
+\newpage
+% --- INICIO DEL CUERPO ---
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% --- CAPÍTULOS ---
+\input{capitulos/introduccion}
+\input{capitulos/etapa1_definicion}
+\input{capitulos/etapa2_topologia}
+\input{capitulos/etapa3_cableado}
+\input{capitulos/etapa4_planos}
+\input{capitulos/etapa5_pruebas}
+\input{capitulos/conclusiones}
+
+% --- REFERENCIAS ---
+\newpage
+\nocite{*}
+\printbibliography[heading=bibintoc, title={REFERENCIAS}]
+
+\end{document}

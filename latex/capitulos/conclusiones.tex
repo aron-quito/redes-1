@@ -1,0 +1,26 @@
+\chapter*{CONCLUSIONES}
+\addcontentsline{toc}{chapter}{CONCLUSIONES}
+
+\begin{enumerate}[leftmargin=*, label=\arabic*.]
+
+    \item El Policlínico de Especialidades Médicas ``Salud \& Vida'' S.A.C. dispone de \textbf{450~m$^2$ de planta única} con 14 ambientes funcionales, cuya demanda de red asciende a \textbf{48 tomas activas} más 8 de reserva técnica (total 56 puertos), dentro del rango de 30 a 60 dispositivos exigido por la rúbrica, con perfiles de tráfico heterogéneos: archivos DICOM de hasta 300~MB por estudio radiológico, VoIP de baja latencia y tráfico administrativo convencional.
+    
+    \item La \textbf{topología física en estrella jerárquica} con nodo central en el MDF geocéntrico resultó ser la elección óptima para este proyecto: concentra la conmutación y el mantenimiento en un único punto, elimina los dominios de colisión mediante conmutación Full-Duplex~Gigabit (IEEE~802.3ab) y permite escalar la red sin reestructurar el tendido existente.
+    
+    \item La decisión de ubicar el \textbf{MDF en el centro geográfico del edificio} (coordenada $X = 14.0$~m, $Y = 2.1$~m) es la clave de diseño más crítica del proyecto: reduce la tirada más larga a \textbf{34.80~m} (Laboratorio Clínico), lo que representa apenas el 38.7\% del límite de 90~m establecido por la norma ANSI/TIA-568, otorgando un margen de seguridad superior al 61\% y eliminando la necesidad de repetidores intermedios.
+    
+    \item La combinación de \textbf{Cable UTP Cat~6 LSZH para el 85\% de las tomas} y \textbf{Cable F/UTP Cat~6A apantallado para el 15\%} restante (Rayos~X y Laboratorio) constituye la solución técnico-económica óptima: garantiza 1~Gbps en todos los puestos de trabajo, protege las tomas críticas de la interferencia electromagnética de los equipos inductivos (100~kV) mediante pantalla de aluminio, y mantiene el costo dentro de un presupuesto razonable.
+    
+    \item El \textbf{sistema de canalizaciones en dos niveles} (bandeja portacables tipo malla de 200$\times$50~mm suspendida en el plenum + canaleta perimetral de PVC de dos vías de 40$\times$25~mm con tabique divisor) logra separar físicamente los cables de datos de los de fuerza eléctrica de 220~VAC, mitigando la inducción de ruido electromagnético de 60~Hz, con una ocupación transversal del tendido de apenas \textbf{15.8\%} sobre el límite del 40\% prescrito por la norma ANSI/TIA-569-D.
+    
+    \item El \textbf{Gabinete Rack 42U} del MDF centraliza eficientemente los 3 Patch Panels (56 puertos totales), 3 switches Gigabit/10G con PoE+ (para alimentar los 4 APs Wi-Fi~6), 2 servidores de misión crítica (HCE/PACS), 1 NAS de backup y un sistema UPS Online de Doble Conversión de 3~kVA con 45 minutos de autonomía. El costo total de suministros (BOM) asciende a \textbf{USD~\$9,632} (S/.~36,120), distribuyéndose el mayor gasto en equipos activos (38.3\%) y respaldo eléctrico (27.5\%).
+    
+    \item El \textbf{plan de cobertura WLAN con 4 Access Points Wi-Fi~6 (IEEE~802.11ax)} garantiza conectividad inalámbrica médica y pública en toda la planta, con celdas de 8.0~m de radio y solapamiento del 15\% para \textit{Fast Roaming} sin interrupciones, segmentada en una red de personal médico con WPA3-Enterprise y una red pública aislada para pacientes.
+    
+    \item La \textbf{norma de terminación T568B}, adoptada en todos los jacks, patch panels y latiguillos del proyecto, garantiza la consistencia y homogeneidad del cableado en concordancia con el estándar de facto del mercado peruano y latinoamericano, facilita el soporte técnico y elimina errores de pinout durante el mantenimiento.
+    
+    \item El \textbf{protocolo de certificación con el analizador Fluke DSX-8000 (Nivel~IIIe)} bajo la configuración de Enlace Permanente es el único método técnicamente válido para garantizar la entrega de una infraestructura de cableado con \textbf{20 años de vida útil certificada}. Los 7 parámetros evaluados (Wire Map, Longitud, IL, NEXT, PS-NEXT, Return Loss y Delay Skew) demuestran que el diseño posee márgenes de aprobación (\textit{headroom}) ampliamente positivos en todos los enlaces.
+    
+    \item La identificación y análisis del \textbf{par dividido (\textit{Split Pair})} como la falla de terminación más crítica del cableado --- capaz de superar la verificación de un tester básico pero destruir el rendimiento Gigabit en la transmisión real --- consolida la comprensión técnica del equipo sobre la importancia de las pruebas metrológicas de alta frecuencia como componente indispensable de la ingeniería de redes.
+
+\end{enumerate}

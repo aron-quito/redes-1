@@ -1,0 +1,299 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{TIA568C2}{manual}{}{}
+      \list{location}{1}{%
+        {Arlington, VA, USA}%
+      }
+      \list{organization}{1}{%
+        {Telecommunications Industry Association}%
+      }
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labeltitlesource}{title}
+      \field{note}{Define los parámetros eléctricos y de transmisión para cableado de par trenzado balanceado de Categoría 6 (250~MHz) y Categoría 6A (500~MHz)}
+      \field{title}{{ANSI/TIA-568-C.2: Balanced Twisted-Pair Telecommunications Cabling and Components Standards}}
+      \field{year}{2018}
+      \true{nocite}
+    \endentry
+    \entry{TIA568}{manual}{}{}
+      \list{location}{1}{%
+        {Arlington, VA, USA}%
+      }
+      \list{organization}{1}{%
+        {Telecommunications Industry Association}%
+      }
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labeltitlesource}{title}
+      \field{note}{Estándar que establece los requisitos generales de cableado genérico de telecomunicaciones, incluyendo la topología en estrella jerárquica y el límite de 90~m para el enlace permanente}
+      \field{title}{{ANSI/TIA-568.0-D: Generic Telecommunications Cabling for Customer Premises}}
+      \field{year}{2021}
+      \true{nocite}
+    \endentry
+    \entry{TIA569}{manual}{}{}
+      \list{location}{1}{%
+        {Arlington, VA, USA}%
+      }
+      \list{organization}{1}{%
+        {Telecommunications Industry Association}%
+      }
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labeltitlesource}{title}
+      \field{note}{Regula las dimensiones, accesibilidad y capacidad de carga de bandejas portacables, canaletas y cuartos de telecomunicaciones; establece el límite de llenado del 40\%}
+      \field{title}{{ANSI/TIA-569-D: Telecommunications Pathways and Spaces}}
+      \field{year}{2020}
+      \true{nocite}
+    \endentry
+    \entry{TIA606}{manual}{}{}
+      \list{location}{1}{%
+        {Arlington, VA, USA}%
+      }
+      \list{organization}{1}{%
+        {Telecommunications Industry Association}%
+      }
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labeltitlesource}{title}
+      \field{note}{Define el esquema alfanumérico para etiquetado unívoco de cables, tomas de pared, paneles de parcheo y gabinetes de telecomunicaciones}
+      \field{title}{{ANSI/TIA-606-B: Administration Standard for Commercial Telecommunications Infrastructure}}
+      \field{year}{2012}
+      \true{nocite}
+    \endentry
+    \entry{TIA607}{manual}{}{}
+      \list{location}{1}{%
+        {Arlington, VA, USA}%
+      }
+      \list{organization}{1}{%
+        {Telecommunications Industry Association}%
+      }
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labeltitlesource}{title}
+      \field{note}{Prescribe la infraestructura de puesta a tierra equipotencial (bonding) para instalaciones de telecomunicaciones, obligatoria en sistemas con cable blindado F/UTP}
+      \field{title}{{ANSI/TIA-607-C: Generic Telecommunications Grounding and Bonding for Customer Premises}}
+      \field{year}{2015}
+      \true{nocite}
+    \endentry
+    \entry{APCSchneider2023}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=78d0485cd4c45cb1f50b7f58ade7edf1}{%
+           family={{APC by Schneider Electric}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{78d0485cd4c45cb1f50b7f58ade7edf1}
+      \strng{fullhash}{78d0485cd4c45cb1f50b7f58ade7edf1}
+      \strng{fullhashraw}{78d0485cd4c45cb1f50b7f58ade7edf1}
+      \strng{bibnamehash}{78d0485cd4c45cb1f50b7f58ade7edf1}
+      \strng{authorbibnamehash}{78d0485cd4c45cb1f50b7f58ade7edf1}
+      \strng{authornamehash}{78d0485cd4c45cb1f50b7f58ade7edf1}
+      \strng{authorfullhash}{78d0485cd4c45cb1f50b7f58ade7edf1}
+      \strng{authorfullhashraw}{78d0485cd4c45cb1f50b7f58ade7edf1}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Hoja de especificaciones técnicas del fabricante}
+      \field{note}{UPS de topología Online Doble Conversión, 3000~VA / 2700~W, factor de potencia 0.9, tiempo de transferencia 0~ms, interfaz SNMP integrada}
+      \field{title}{{Smart-UPS On-Line SRT 3000VA 230V --- Technical Specifications}}
+      \field{year}{2023}
+      \true{nocite}
+    \endentry
+    \entry{Fluke2023}{report}{}{}
+      \list{institution}{1}{%
+        {Fluke Networks}%
+      }
+      \list{location}{1}{%
+        {Everett, WA, USA}%
+      }
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labeltitlesource}{title}
+      \field{note}{Manual técnico del certificador de cableado estructurado Fluke DSX-5000/8000 CableAnalyzer con capacidad de medición Nivel IIIe para Cat~6 y Cat~6A}
+      \field{number}{PN 4819888}
+      \field{title}{{DSX CableAnalyzer Series: Versiv Main Unit User Manual}}
+      \field{type}{techreport}
+      \field{year}{2023}
+      \true{nocite}
+    \endentry
+    \entry{Forouzan2022}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=15fe25340ae8cf0fe75afb7426a1df18}{%
+           family={Forouzan},
+           familyi={F\bibinitperiod},
+           given={Behrouz\bibnamedelima A.},
+           giveni={B\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {McGraw-Hill Education}%
+      }
+      \strng{namehash}{15fe25340ae8cf0fe75afb7426a1df18}
+      \strng{fullhash}{15fe25340ae8cf0fe75afb7426a1df18}
+      \strng{fullhashraw}{15fe25340ae8cf0fe75afb7426a1df18}
+      \strng{bibnamehash}{15fe25340ae8cf0fe75afb7426a1df18}
+      \strng{authorbibnamehash}{15fe25340ae8cf0fe75afb7426a1df18}
+      \strng{authornamehash}{15fe25340ae8cf0fe75afb7426a1df18}
+      \strng{authorfullhash}{15fe25340ae8cf0fe75afb7426a1df18}
+      \strng{authorfullhashraw}{15fe25340ae8cf0fe75afb7426a1df18}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{5}
+      \field{isbn}{978-0-07-338099-3}
+      \field{title}{Data Communications and Networking}
+      \field{year}{2022}
+      \true{nocite}
+    \endentry
+    \entry{IEEE80211ax}{manual}{}{}
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{organization}{2}{%
+        {Institute of Electrical}%
+        {Electronics Engineers}%
+      }
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labeltitlesource}{title}
+      \field{note}{Estándar que define la tecnología Wi-Fi~6 (802.11ax) con modulación OFDMA, MU-MIMO y Target Wake Time para redes de alta densidad}
+      \field{title}{{IEEE 802.11ax-2021: IEEE Standard for Information Technology -- Telecommunications and Information Exchange Between Systems -- High Efficiency WLAN (Wi-Fi 6)}}
+      \field{year}{2021}
+      \true{nocite}
+    \endentry
+    \entry{IEEE8023ab}{manual}{}{}
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{organization}{2}{%
+        {Institute of Electrical}%
+        {Electronics Engineers}%
+      }
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labeltitlesource}{title}
+      \field{note}{Define el estándar 1000BASE-T con modulación 4D-PAM5 sobre cuatro pares de cobre, incluyendo la tecnología Auto-MDIX que elimina la necesidad de cables cruzados}
+      \field{title}{{IEEE 802.3ab-1999: IEEE Standard for Information Technology -- 1000BASE-T Gigabit Ethernet over Balanced Twisted-Pair Cable}}
+      \field{year}{1999}
+      \true{nocite}
+    \endentry
+    \entry{Panduit2023}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=1ed85bdc98a35fe4fc166a0906ce016b}{%
+           family={{Panduit Corp.}},
+           familyi={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{1ed85bdc98a35fe4fc166a0906ce016b}
+      \strng{fullhash}{1ed85bdc98a35fe4fc166a0906ce016b}
+      \strng{fullhashraw}{1ed85bdc98a35fe4fc166a0906ce016b}
+      \strng{bibnamehash}{1ed85bdc98a35fe4fc166a0906ce016b}
+      \strng{authorbibnamehash}{1ed85bdc98a35fe4fc166a0906ce016b}
+      \strng{authornamehash}{1ed85bdc98a35fe4fc166a0906ce016b}
+      \strng{authorfullhash}{1ed85bdc98a35fe4fc166a0906ce016b}
+      \strng{authorfullhashraw}{1ed85bdc98a35fe4fc166a0906ce016b}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Ficha técnica del fabricante}
+      \field{note}{Especificaciones de rendimiento del sistema de cableado UTP Categoría 6A: 500~MHz, 10~Gbps hasta 100~m}
+      \field{title}{{TX6A\texttrademark{} 10Gig\texttrademark{} UTP Copper Cabling System: Category 6A Performance Data Sheet}}
+      \field{year}{2023}
+      \true{nocite}
+    \endentry
+    \entry{Tanenbaum2021}{book}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=2414455c999bc471f803cd14fdea939d}{%
+           family={Tanenbaum},
+           familyi={T\bibinitperiod},
+           given={Andrew\bibnamedelima S.},
+           giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ddc392a97c1ef32887361a67ff1aab9c}{%
+           family={Feamster},
+           familyi={F\bibinitperiod},
+           given={Nick},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ed3fc532903c051209e0750c2c89f2ac}{%
+           family={Wetherall},
+           familyi={W\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {Pearson Education}%
+      }
+      \strng{namehash}{03091153d091e697812f80000aa2eb37}
+      \strng{fullhash}{03091153d091e697812f80000aa2eb37}
+      \strng{fullhashraw}{03091153d091e697812f80000aa2eb37}
+      \strng{bibnamehash}{03091153d091e697812f80000aa2eb37}
+      \strng{authorbibnamehash}{03091153d091e697812f80000aa2eb37}
+      \strng{authornamehash}{03091153d091e697812f80000aa2eb37}
+      \strng{authorfullhash}{03091153d091e697812f80000aa2eb37}
+      \strng{authorfullhashraw}{03091153d091e697812f80000aa2eb37}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{6}
+      \field{isbn}{978-0-13-662483-1}
+      \field{title}{Computer Networks}
+      \field{year}{2021}
+      \true{nocite}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

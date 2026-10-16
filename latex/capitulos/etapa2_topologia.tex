@@ -1,0 +1,169 @@
+\chapter{Topología, Modelos de Referencia y Selección de Medios de Transmisión}
+
+\section{Tipo y Clasificación de la Red}
+
+\subsection{Clasificación por Alcance Geográfico}
+
+La infraestructura proyectada se clasifica como una \textbf{Red de Área Local (LAN --- Local Area Network)} combinada con un segmento inalámbrico \textbf{WLAN (Wireless Local Area Network)}:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Cobertura espacial:} Confinada dentro del predio del policlínico: 30~m $\times$ 15~m (450~m$^2$, planta única).
+    \item \textbf{Propiedad:} Red privada de administración interna exclusiva de la institución de salud.
+    \item \textbf{Tasa de transferencia proyectada:} \textbf{1~Gbps} (1000BASE-T) en puestos de trabajo y \textbf{10~Gbps} (10GBASE-T) en el enlace troncal hacia servidores y el switch de distribución.
+    \item \textbf{Componente WLAN (IEEE~802.11ax --- Wi-Fi~6):} Cuatro APs PoE+ con células de cobertura de \textbf{8.0~m de radio efectivo a 5~GHz}, con solapamiento controlado del 15\% para garantizar \textit{Fast Roaming} (802.11r/k/v) del personal médico en movimiento.
+\end{itemize}
+
+\section{Topología Física: Estrella Jerárquica}
+
+Se ha seleccionado una \textbf{Topología Física en Estrella Jerárquica} con un único nodo central de consolidación en el \textbf{Cuarto de Telecomunicaciones (MDF --- Main Distribution Frame)}.
+
+\subsection{Justificación Técnica de la Topología}
+
+\begin{enumerate}[leftmargin=*, label=\arabic*.]
+    \item \textbf{Aislamiento de fallas:} Si un jack o cable horizontal en un consultorio sufre daño físico, el fallo queda completamente aislado a ese puerto sin afectar a los demás ambientes.
+    \item \textbf{Centralización del mantenimiento:} Toda la conmutación, parcheo, respaldo eléctrico (UPS) y monitoreo se concentran en el Rack~42U del MDF, facilitando la auditoría bajo ANSI/TIA-606-B.
+    \item \textbf{Optimización de recorridos:} Al situar el MDF en el centro geográfico del edificio, la longitud máxima de cable horizontal hasta la toma más lejana es de \textbf{34.8~m}, muy por debajo del límite de \textbf{90~m} de la norma ANSI/TIA-568.
+    \item \textbf{Escalabilidad:} La incorporación de nuevos puntos de red solo requiere tender un cable adicional desde el puesto de trabajo hasta el patch panel, sin reestructurar el tendido existente.
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    ap/.style={circle, draw, fill=orange!20, minimum size=0.9cm, font=\tiny\bfseries},
+    pc/.style={rectangle, draw, fill=gray!15, minimum width=1.1cm, minimum height=0.55cm, rounded corners=2pt, font=\tiny},
+    sw/.style={rectangle, draw, fill=mdpiBlue, text=white, minimum width=2.2cm, minimum height=0.7cm, font=\small\bfseries},
+    rack/.style={rectangle, draw, fill=mdpiBlue!80, text=white, minimum width=2.6cm, minimum height=0.9cm, rounded corners=3pt, font=\small\bfseries},
+    link/.style={thick, color=mdpiBlue!60},
+    wlink/.style={dashed, thick, color=orange!70}
+]
+% MDF central
+\node[rack] (mdf) at (0,0) {MDF Rack 42U};
+% Switches
+\node[sw] (sw1) at (-3.5, 0) {SW Acceso 01};
+\node[sw] (sw2) at (3.5, 0) {SW Acceso 02};
+\draw[link, double] (mdf) -- (sw1) node[midway, above, font=\tiny] {10G};
+\draw[link, double] (mdf) -- (sw2) node[midway, above, font=\tiny] {10G};
+% Nodos ala norte
+\node[pc] (c1) at (-6.5,  1.4) {C01 Med.Gral};
+\node[pc] (c2) at (-6.5,  0.5) {C02 Ped.};
+\node[pc] (c3) at (-6.5, -0.4) {C03 Gin.};
+\node[pc] (rec) at (-6.5,-1.3) {Recepción};
+\node[pc] (far) at (-6.5,-2.2) {Farmacia};
+\foreach \n in {c1,c2,c3,rec,far} \draw[link] (sw1) -- (\n);
+% Nodos ala sur
+\node[pc] (c6) at (6.5,  1.4) {C06 Oftal.};
+\node[pc] (c7) at (6.5,  0.5) {C07 Odont.};
+\node[pc] (lab) at (6.5, -0.4) {Laboratorio};
+\node[pc] (rx)  at (6.5, -1.3) {Rayos~X};
+\node[pc] (adm) at (6.5, -2.2) {Adm.};
+\foreach \n in {c6,c7,lab,rx,adm} \draw[link] (sw2) -- (\n);
+% APs
+\node[ap] (ap1) at (-1.5, 2.4) {AP-01};
+\node[ap] (ap2) at (-0.5, 2.4) {AP-02};
+\node[ap] (ap3) at (0.5, 2.4)  {AP-03};
+\node[ap] (ap4) at (1.5, 2.4)  {AP-04};
+\draw[wlink] (mdf) -- (ap1);
+\draw[wlink] (mdf) -- (ap2);
+\draw[wlink] (mdf) -- (ap3);
+\draw[wlink] (mdf) -- (ap4);
+\end{tikzpicture}
+\caption{Diagrama de topología física en estrella jerárquica del Policlínico ``Salud \& Vida''. Las líneas continuas representan cableado UTP/F-UTP y las líneas punteadas los enlaces PoE+ a los APs Wi-Fi~6.}
+\label{fig:topologia}
+\end{figure}
+
+\subsection{Topología Lógica: Punto a Punto Conmutado}
+
+La topología lógica opera mediante \textbf{enlaces punto a punto Full-Duplex conmutados (Switched Ethernet --- IEEE~802.3ab)}. Cada estación dispone de un canal exclusivo de \textbf{1~Gbps simétrico} hacia el puerto del switch, eliminando completamente los dominios de colisión que existían en redes antiguas de tipo bus.
+
+\section{Aplicación de los Modelos de Referencia OSI y TCP/IP}
+
+\subsection{Correspondencia de Capas Aplicada al Policlínico}
+
+\begin{table}[H]
+\caption{Correspondencia de capas OSI / TCP-IP con componentes del policlínico}
+\begin{tabularx}{\textwidth}{@{}ccXX@{}}
+\toprule
+\textbf{OSI} & \textbf{TCP/IP} & \textbf{Componente Real} & \textbf{Función en la Infraestructura} \\
+\midrule
+7. Aplicación & Aplicación & Software EMR, visor DICOM, navegador de facturación & Interfaz de software médico con la que interactúan los usuarios \\
+6. Presentación & Aplicación & Formatos DICOM, HL7, cifrado SSL/TLS & Estandarización y cifrado de datos clínicos sensibles \\
+5. Sesión & Aplicación & Keep-Alive, RPC entre PC médica y servidor HCE & Mantiene la sesión de atención sin pérdida de datos \\
+4. Transporte & Transporte & TCP (HCE, recetas) / UDP (VoIP, turnero TV) & Segmentación y asignación de puertos de origen y destino \\
+3. Red & Internet & Direccionamiento IPv4 (\textit{configurado en Unidad~II}) & Identificación lógica de nodos y servidores \\
+2. Enlace & Acceso Red & NICs con direcciones MAC, switches Layer~2, tramas Ethernet (IEEE~802.3) & Detección de errores CRC-32 y control de acceso al medio \\
+\textbf{1. Física} & \textbf{Acceso Red} & \textbf{Cable UTP Cat~6, F/UTP Cat~6A, jacks RJ-45, patch panels, señales Wi-Fi~6} & \textbf{Conversión de bits en señales eléctricas en los pares de cobre} \\
+\bottomrule
+\end{tabularx}
+\label{tab:capas-osi}
+\end{table}
+
+\subsection{Ejemplo de Encapsulación: Envío de Estudio Radiológico al Servidor PACS}
+
+Cuando el tecnólogo médico en la sala de Rayos~X envía una imagen radiológica al servidor PACS del rack, el proceso de encapsulación recorre las capas del modelo en orden descendente:
+
+\begin{enumerate}[leftmargin=*, label=\arabic*.]
+    \item \textbf{Capa 7/6/5:} El estudio DICOM (50--300~MB) se genera con metadatos clínicos y matriz de píxeles.
+    \item \textbf{Capa 4 (TCP):} El archivo se divide en segmentos de \textbf{MSS = 1460~bytes} con puerto de destino \textbf{TCP/104} (estándar DICOM Storage).
+    \item \textbf{Capa 3 (IP):} Se añaden cabeceras IP de origen (PC Rayos~X) y destino (Servidor PACS).
+    \item \textbf{Capa 2 (Ethernet):} Se encierra en tramas Ethernet con cabecera MAC y cola \textbf{FCS CRC-32} para detección de errores.
+    \item \textbf{Capa 1 (Física):} Los bits se codifican en niveles de tensión mediante modulación \textbf{4D-PAM5} y se transmiten en paralelo por los cuatro pares del cable F/UTP Cat~6A apantallado.
+\end{enumerate}
+
+\section{Sistemas y Medios de Comunicación}
+
+\subsection{Señales y Esquema de Codificación}
+
+El estándar \textbf{1000BASE-T (Gigabit Ethernet)} emplea los cuatro pares de cobre simultáneamente en modo full-duplex bidireccional con modulación \textbf{4D-PAM5}:
+
+\begin{equation}
+\text{Tasa Total} = 125~\text{MBaudios} \times 2~\frac{\text{bits}}{\text{baudio}} \times 4~\text{pares} = \mathbf{1000~\text{Mbps}} = 1~\text{Gbps}
+\end{equation}
+
+\subsection{Capacidad del Canal: Teorema de Shannon-Hartley}
+
+En zonas con alto ruido electromagnético como Rayos~X, si no se emplea blindaje físico, la relación señal a ruido (SNR) decae y la capacidad teórica del canal disminuye:
+
+\begin{equation}
+C = B \log_2 \!\left(1 + \frac{S}{N}\right)
+\end{equation}
+
+Esto justifica técnicamente el uso de cable \textbf{F/UTP Cat~6A apantallado} en las salas con equipos inductivos, cuya pantalla de aluminio logra una eficacia de aislamiento electromagnético $\geq 40~\text{dB}$ en el rango de 30~MHz a 1000~MHz.
+
+\section{Selección y Justificación de Medios de Transmisión}
+
+\subsection{Matriz Comparativa de Medios Físicos}
+
+\begin{table}[H]
+\caption{Matriz comparativa de medios de transmisión}
+\begin{tabularx}{\textwidth}{@{}Xccccc@{}}
+\toprule
+\textbf{Criterio} & \textbf{UTP Cat~6} & \textbf{F/UTP Cat~6A} & \textbf{Coaxial} & \textbf{FO Multimodo} & \textbf{FO Monomodo} \\
+\midrule
+Ancho de Banda & 250~MHz & 500~MHz & $\leq$1~GHz & 4700~MHz·km & $\sim$THz \\
+Velocidad LAN & 1~Gbps & 10~Gbps & $<$100~Mbps & 10--100~Gbps & $>$10~Gbps \\
+Dist. Máxima & 90~m & 90~m & 185~m & 300--550~m & $>$10~km \\
+Inmunidad EMI & Media & \textbf{Muy alta} & Media-Alta & \textbf{Total} & \textbf{Total} \\
+Costo/metro & Bajo & Moderado & Obsoleto & Alto & Alto \\
+Uso en Proyecto & \textbf{85\%} & \textbf{15\%} & Descartado & Uplink Rack & Descartado \\
+\bottomrule
+\end{tabularx}
+\label{tab:medios}
+\end{table}
+
+\subsection{Decisiones de Selección Justificadas}
+
+\subsubsection{Cable UTP Categoría 6 LSZH para el 85\% de las tomas}
+
+Soporta holgadamente \textbf{1~Gbps a 250~MHz} para todas las aplicaciones médico-administrativas. El forro \textbf{LSZH (Low Smoke Zero Halogen)} es obligatorio en centros de salud: en caso de incendio no propaga la llama ni emite gases halógenos tóxicos, protegiendo a pacientes de movilidad reducida.
+
+\subsubsection{Cable F/UTP Categoría 6A Apantallado para Rayos X y Laboratorio}
+
+La pantalla de aluminio aisla los picos electromagnéticos del tubo de Rayos~X (100~kV), evitando la corrupción de las tramas DICOM durante la transferencia al servidor PACS. La categoría 6A (500~MHz, 10~Gbps) soporta los archivos de 50--300~MB sin degradación de velocidad.
+
+\subsubsection{Descarte del Cable Coaxial}
+
+El cable coaxial (10BASE2 / 10BASE5) es una tecnología obsoleta desde la década de 1990. Su topología en bus compartido introduce colisiones masivas, no soporta conmutación full-duplex y sus conectores BNC son incompatibles con los switches modernos de Gigabit Ethernet.
+
+\subsubsection{Fibra Óptica solo en el Troncal del Rack}
+
+La fibra hasta el escritorio (\textit{FTTD}) es antieconómica para distancias cortas (menores a 40~m). En el MDF se usan cables DAC (\textit{Direct Attach Copper}) o latiguillos de fibra multimodo \textbf{OM3} para interconectar los switches y los servidores a \textbf{10~Gbps (10GBASE-SR)}, eliminando cuellos de botella en el núcleo de la red.

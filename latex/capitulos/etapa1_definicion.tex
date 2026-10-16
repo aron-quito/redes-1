@@ -1,0 +1,144 @@
+\chapter{Definición de la Organización y Requerimientos de Red}
+
+\section{Descripción de la Organización}
+
+El \textbf{Policlínico de Especialidades Médicas ``Salud \& Vida'' S.A.C.} es una institución de salud privada de nivel ambulatorio que brinda atención multidisciplinaria especializada. Se ubica en Tacna, Perú, y opera en una infraestructura de \textbf{planta única de 450~m$^2$ (30.00~m $\times$ 15.00~m)}.
+
+\subsection{Misión y Perfil Tecnológico}
+
+La organización requiere una red de datos de alta disponibilidad para soportar la gestión digital de historiales clínicos electrónicos (EMR/HCE), la transferencia de imágenes radiológicas en estándar DICOM, el control de inventarios de farmacia y la comunicación interna mediante telefonía IP (VoIP).
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    box/.style={draw, rounded corners=3pt, fill=mdpiBlue!15, minimum width=3.2cm, minimum height=0.65cm, align=center, font=\small\bfseries, text=mdpiBlue},
+    jefe/.style={draw, rounded corners=3pt, fill=mdpiBlue, minimum width=4cm, minimum height=0.7cm, align=center, font=\small\bfseries, text=white},
+    linea/.style={-Stealth, thick, color=mdpiBlue!70}
+]
+\node[jefe] (dir) at (0,0) {Dirección General};
+\node[box] (adm) at (-4.5,-1.6) {Administración\\Jefatura};
+\node[box] (med) at (0,-1.6) {Área Médica\\(8 consultorios)};
+\node[box] (diag) at (4.5,-1.6) {Diagnóstico\\Rayos~X / Lab.};
+\node[box] (rec) at (-3,-3.2) {Recepción\\y Caja};
+\node[box] (farm) at (0,-3.2) {Farmacia\\Asistencial};
+\node[box] (triaje) at (3,-3.2) {Triaje\\y Tópico};
+\draw[linea] (dir) -- (adm);
+\draw[linea] (dir) -- (med);
+\draw[linea] (dir) -- (diag);
+\draw[linea] (adm) -- (rec);
+\draw[linea] (med) -- (farm);
+\draw[linea] (med) -- (triaje);
+\end{tikzpicture}
+\caption{Organigrama funcional del Policlínico ``Salud \& Vida'' S.A.C.}
+\label{fig:organigrama}
+\end{figure}
+
+\subsection{Número de Trabajadores y Dispositivos}
+
+La plantilla operativa asciende a \textbf{38 a 50 personas} entre médicos, enfermeras, técnicos, personal administrativo y personal de apoyo. El número de dispositivos de red que operan simultáneamente varía entre \textbf{44 y 50 terminales activos}, dentro del rango exigido por la rúbrica del proyecto (30 a 60 dispositivos).
+
+\section{Inventario de Ambientes y Distribución de Planta}
+
+La edificación se organiza en tres zonas funcionales claramente diferenciadas, tal como se muestra en el plano arquitectónico interactivo diseñado en SVG a escala 1:100:
+
+\subsection{Zona Norte: Consultorios y Servicios Médicos}
+
+\begin{table}[H]
+\caption{Inventario de ambientes — Ala Norte}
+\begin{tabular}{@{}llcl@{}}
+\toprule
+\textbf{Ambiente} & \textbf{Dimensiones} & \textbf{Área} & \textbf{Función Principal} \\
+\midrule
+MDF (Telecomunicaciones) & 3.50~m $\times$ 4.20~m & 14.7~m$^2$ & Cuarto central de comunicaciones \\
+Recepción / Admisión / Caja & 6.00~m $\times$ 4.20~m & 25.2~m$^2$ & Atención al público y facturación \\
+Consultorio 01 & 3.50~m $\times$ 4.20~m & 14.7~m$^2$ & Medicina General \\
+Consultorio 02 & 3.50~m $\times$ 4.20~m & 14.7~m$^2$ & Pediatría \\
+Consultorio 03 & 3.50~m $\times$ 4.20~m & 14.7~m$^2$ & Ginecología \\
+Consultorio 04 & 3.50~m $\times$ 4.20~m & 14.7~m$^2$ & Cardiología \\
+Consultorio 05 & 3.50~m $\times$ 4.20~m & 14.7~m$^2$ & Traumatología \\
+Farmacia Asistencial & 3.50~m $\times$ 4.20~m & 14.7~m$^2$ & Dispensación de medicamentos \\
+\bottomrule
+\end{tabular}
+\label{tab:ambientes-norte}
+\end{table}
+
+\subsection{Zona Central: Pasillo y Circulación}
+
+El pasillo central de \textbf{30.00~m $\times$ 2.40~m (72~m$^2$)} constituye el eje troncal del sistema de canalización. Aloja la bandeja portacables tipo malla de 200$\times$50~mm suspendida a 2.75~m de altura, y los puntos de acceso Wi-Fi~6 AP-02 y AP-03 anclados al cielo raso.
+
+\subsection{Zona Sur: Diagnóstico, Especialidades y Administración}
+
+\begin{table}[H]
+\caption{Inventario de ambientes — Ala Sur}
+\begin{tabular}{@{}llcl@{}}
+\toprule
+\textbf{Ambiente} & \textbf{Dimensiones} & \textbf{Área} & \textbf{Función Principal} \\
+\midrule
+Sala de Espera General & 7.00~m $\times$ 7.00~m & 49.0~m$^2$ & Sala pública para 35 personas \\
+Triaje y Tópico & 3.50~m $\times$ 4.20~m & 14.7~m$^2$ & Registro y urgencias \\
+Consultorio 06 & 3.50~m $\times$ 4.20~m & 14.7~m$^2$ & Oftalmología \\
+Consultorio 07 & 3.50~m $\times$ 4.20~m & 14.7~m$^2$ & Odontología \\
+Consultorio 08 & 3.50~m $\times$ 4.20~m & 14.7~m$^2$ & Psicología / Nutrición \\
+Laboratorio Clínico & 4.50~m $\times$ 4.20~m & 18.9~m$^2$ & Bioquímica y análisis clínicos \\
+Diagnóstico por Imágenes (Rayos~X) & 5.00~m $\times$ 4.20~m & 21.0~m$^2$ & Radiología y ecografía \\
+Administración / Jefatura / Contabilidad & 3.50~m $\times$ 7.00~m & 24.5~m$^2$ & Gestión administrativa \\
+\bottomrule
+\end{tabular}
+\label{tab:ambientes-sur}
+\end{table}
+
+\section{Justificación de la Ubicación Geocéntrica del MDF}
+
+El \textbf{Cuarto de Telecomunicaciones (MDF)} se sitúa en la posición central del edificio, con coordenadas georreferenciadas en el plano SVG de \(X = 14.00~\text{m},\; Y = 2.10~\text{m}\). Esta decisión reduce la distancia de la tirada horizontal más larga a \textbf{34.80~m} (Laboratorio Clínico), lo que representa apenas el \textbf{38.7\% del límite máximo de 90~m} establecido por la norma ANSI/TIA-568, otorgando un margen de seguridad superior al 61\%.
+
+\section{Marco de Requerimientos de Red (Sección 6)}
+
+\subsection{Cobertura de Red Inalámbrica (WLAN Wi-Fi 6)}
+
+Se proyectan \textbf{cuatro Puntos de Acceso (APs) Wi-Fi~6 (IEEE~802.11ax)} PoE+ con radio efectivo de 8.0~m en banda de 5~GHz, distribuidos estratégicamente:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{AP-01:} Sala de Espera General — red pública de cortesía para pacientes y pantalla de turnos.
+    \item \textbf{AP-02:} Pasillo Central Oeste — cobertura médica a Consultorios 1 al 4 y Triaje.
+    \item \textbf{AP-03:} Pasillo Central Este — cobertura médica a Consultorios 5 al 8 y Laboratorio.
+    \item \textbf{AP-04:} Administración General (sector este) — cobertura corporativa a jefatura y contabilidad.
+\end{itemize}
+
+\subsection{Matriz de Requerimientos de Red por Ambiente}
+
+\begin{table}[H]
+\caption{Matriz de requerimientos de red por ambiente}
+\begin{tabularx}{\textwidth}{@{}clXcc@{}}
+\toprule
+\textbf{N°} & \textbf{Ambiente} & \textbf{Dispositivos} & \textbf{Tomas RJ-45} & \textbf{Medio} \\
+\midrule
+1  & Admisión, Caja y Recepción & 3 PCs, 1 impresora, 2 teléfonos IP & 6 & UTP Cat~6 \\
+2  & Sala de Espera General    & 1 Smart TV, 1 AP-01 PoE & 2 & UTP Cat~6 \\
+3  & Triaje y Tópico           & 2 PCs, 1 teléfono IP & 3 & UTP Cat~6 \\
+4--8 & Consultorios 1 al 5     & 5 PCs, 5 teléfonos IP & 10 & UTP Cat~6 \\
+9--11 & Consultorios 6 al 8   & 3 PCs, 3 teléfonos IP & 6 & UTP Cat~6 \\
+12 & Laboratorio Clínico       & 2 PCs, 1 analizador bioquímico & 3 & F/UTP Cat~6A \\
+13 & Rayos~X y Ecografía       & 2 estaciones DICOM, 1 impresora médica & 3 & F/UTP Cat~6A \\
+14 & Farmacia Asistencial      & 2 terminales de venta, 1 impresora térmica & 3 & UTP Cat~6 \\
+15 & Administración y Jefatura & 4 PCs, 1 multifuncional, 1 teléfono IP, 1 AP-04 & 7 & UTP Cat~6 \\
+16 & Pasillo Central (APs)     & AP-02, AP-03 PoE & 2 & UTP Cat~6 \\
+17 & MDF (Servidores)          & Servidor HCE, Servidor PACS, NAS Backup & 3 & F/UTP Cat~6A \\
+\midrule
+   & \textbf{Subtotal Activos}  &  & \textbf{48} & \\
+   & Reserva técnica ($>$15\%) &  & \textbf{8}  & \\
+\midrule
+   & \textbf{TOTAL PARCHEO}     &  & \textbf{56} & \\
+\bottomrule
+\end{tabularx}
+\label{tab:requerimientos-red}
+\end{table}
+
+\subsection{Resumen de Características Técnicas Identificadas}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Rango de dispositivos simultáneos:} 44 a 50 terminales activos (dentro del rango de 30 a 60 exigido).
+    \item \textbf{Tráfico crítico de imágenes médicas:} Archivos DICOM de 50~MB a 300~MB por estudio radiológico.
+    \item \textbf{Tráfico VoIP:} Sensible a latencia y jitter; requiere calidad de servicio (QoS).
+    \item \textbf{Zonas con EMI elevada:} Rayos~X (tubo de 100~kV) y Laboratorio (centrífugas y analizadores) exigen cable blindado F/UTP Cat~6A y puesta a tierra bajo ANSI/TIA-607-C.
+    \item \textbf{Seguridad ante incendios:} Forro LSZH obligatorio en entornos hospitalarios (IEC~60332-1).
+\end{itemize}

@@ -1,0 +1,313 @@
+\chapter{Planos de Distribución Física y Cuadro Consolidado de Materiales}
+
+\section{Introducción al Diseño Físico}
+
+La presente etapa consolida la representación gráfica de ingeniería y la valoración económica de la infraestructura física del Policlínico ``Salud \& Vida''. El diseño físico está modelado a escala exacta \textbf{1:100} en el sistema interactivo SVG (\texttt{plano/index.html}), descompuesto en cuatro capas vectoriales independientes:
+
+\begin{enumerate}[leftmargin=*, label=\arabic*.]
+    \item \textbf{Capa 1:} Arquitectura y tabiquería (muros de 15~cm, puertas y losa).
+    \item \textbf{Capa 2:} Tomas de usuario y puntos de conexión (56 jacks RJ-45).
+    \item \textbf{Capa 3:} Canalizaciones físicas (bandeja tipo malla + canaleta PVC de dos vías).
+    \item \textbf{Capa 4:} Células de cobertura WLAN Wi-Fi~6 (radios de 8.0~m a 5~GHz).
+\end{enumerate}
+
+\section{Simbología Normalizada ANSI/TIA-606-B}
+
+\begin{table}[H]
+\caption{Simbología técnica normalizada para planos de red}
+\begin{tabularx}{\textwidth}{@{}cclX@{}}
+\toprule
+\textbf{Símbolo} & \textbf{Código TIA} & \textbf{Componente} & \textbf{Ubicación y Altura} \\
+\midrule
+$[\bullet\ \bullet]$ & TO-UTP-2  & Toma doble RJ-45 Cat~6 UTP      & Pared a +0.40~m s.n.p.t. / +1.10~m en mesadas \\
+$[\blacksquare\ \blacksquare]$  & TO-FTP-2  & Toma doble RJ-45 Cat~6A F/UTP   & Pared a +1.10~m en Lab. y Rayos~X, con tierra \\
+$((\text{AP}))$      & WLAN-AP   & Access Point Wi-Fi~6 PoE+       & Anclado en cielo raso a +2.60~m \\
+$[\text{TV}]$        & TO-IPTV   & Toma RJ-45 para Smart TV Turnos & Mural a +1.80~m en Sala de Espera \\
+$[\text{Rack 42U}]$  & MDF-R1    & Gabinete Rack 42U principal     & Centro geográfico, fijado en losa de concreto \\
+$\equiv$             & PATH-BM   & Bandeja malla 200$\times$50~mm  & Suspendida en falso techo a +2.75~m (pasillo) \\
+$-\,-\,-$            & PATH-CP   & Canaleta PVC 2 vías 40$\times$25~mm & Adosada a muros a +0.40~m s.n.p.t. \\
+\bottomrule
+\end{tabularx}
+\label{tab:simbologia}
+\end{table}
+
+\section{Matriz de Coordenadas y Distancias por Ambiente}
+
+\begin{table}[H]
+\caption{Distancias de enlace permanente por ambiente respecto al MDF}
+\begin{tabular}{@{}clcccc@{}}
+\toprule
+\textbf{N°} & \textbf{Ambiente} & \textbf{Dim. (m)} & \textbf{Tomas} & \textbf{Dist. Horiz.} & \textbf{Enl. Perm.} \\
+\midrule
+01 & Recepción / Admisión / Caja        & 6.0$\times$4.2 & 6 UTP   & 13.80~m & 18.00~m \\
+02 & Sala de Espera General             & 7.0$\times$7.0 & 2 UTP   &  9.50~m & 13.70~m \\
+03 & Triaje y Tópico                    & 3.5$\times$4.2 & 3 UTP   &  8.20~m & 12.40~m \\
+04 & Consultorio 01                     & 3.5$\times$4.2 & 2 UTP   &  5.50~m &  9.70~m \\
+05 & Consultorio 02                     & 3.5$\times$4.2 & 2 UTP   &  9.00~m & 13.20~m \\
+06 & Consultorio 03                     & 3.5$\times$4.2 & 2 UTP   & 12.50~m & 16.70~m \\
+07 & Consultorio 04                     & 3.5$\times$4.2 & 2 UTP   & 16.00~m & 20.20~m \\
+08 & Consultorio 05 (Extremo Oeste)     & 3.5$\times$4.2 & 2 UTP   & 19.50~m & 23.70~m \\
+09 & Consultorio 06                     & 3.5$\times$4.2 & 2 UTP   &  6.20~m & 10.40~m \\
+10 & Consultorio 07                     & 3.5$\times$4.2 & 2 UTP   &  9.70~m & 13.90~m \\
+11 & Consultorio 08                     & 3.5$\times$4.2 & 2 UTP   & 13.20~m & 17.40~m \\
+12 & Rayos~X y Ecografía (Zona Crítica) & 5.0$\times$4.2 & 3 F/UTP & 28.50~m & 32.70~m \\
+13 & Lab. Clínico (Zona Crítica)        & 4.5$\times$4.2 & 3 F/UTP & 30.60~m & \textbf{34.80~m}$^*$ \\
+14 & Farmacia Asistencial               & 3.5$\times$4.2 & 3 UTP   & 11.20~m & 15.40~m \\
+15 & Administración / Jefatura          & 3.5$\times$7.0 & 7 UTP   & 17.80~m & 22.00~m \\
+16 & Pasillo Central (AP-02 y AP-03)    & 30.0$\times$2.4& 2 PoE   &  7.00~m &  8.50~m \\
+17 & Rack MDF (Servidores directos)     & 3.5$\times$4.2 & 3 F/UTP &  1.50~m &  2.50~m \\
+18 & Reservas técnicas (distribuidas)   & ---            & 8 UTP   & 18.00~m & 22.20~m \\
+\midrule
+\multicolumn{3}{l}{\textbf{Total}} & \textbf{56 Tomas} & --- & \textbf{Prom.: 16.5~m} \\
+\bottomrule
+\multicolumn{6}{l}{$^*$Toma más lejana. Límite normativo ANSI/TIA-568: $\leq 90.0$~m. Margen de seguridad: +55.2~m (61.3\%).} \\
+\end{tabular}
+\label{tab:distancias}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.52, every node/.style={transform shape}]
+    % Perímetro exterior del edificio (30m x 15m escala conceptual)
+    \draw[line width=2pt, fill=gray!5] (0,0) rectangle (28, 14);
+    
+    % Pasillo central horizontal (ancho 2.4m proporcional)
+    \draw[fill=yellow!10, draw=gray!40] (0, 5.8) rectangle (28, 8.2);
+    \node[font=\bfseries\small, text=gray!60] at (14, 7.0) {PASILLO CENTRAL DE CIRCULACIÓN (30.0~m $\times$ 2.4~m)};
+
+    % ALA NORTE (Consultorios y Triaje)
+    % C05, C04, C03, C02, C01, Triaje, Tópico
+    \draw[line width=1pt] (0, 8.2) rectangle (4, 14);
+    \node[align=center, font=\scriptsize] at (2, 11) {\textbf{C-05}\\Extremo Oeste\\(2 UTP)};
+
+    \draw[line width=1pt] (4, 8.2) rectangle (8, 14);
+    \node[align=center, font=\scriptsize] at (6, 11) {\textbf{C-04}\\Consultorio\\(2 UTP)};
+
+    \draw[line width=1pt] (8, 8.2) rectangle (12, 14);
+    \node[align=center, font=\scriptsize] at (10, 11) {\textbf{C-03}\\Consultorio\\(2 UTP)};
+
+    \draw[line width=1pt] (12, 8.2) rectangle (16, 14);
+    \node[align=center, font=\scriptsize] at (14, 11) {\textbf{C-02}\\Consultorio\\(2 UTP)};
+
+    \draw[line width=1pt] (16, 8.2) rectangle (20, 14);
+    \node[align=center, font=\scriptsize] at (18, 11) {\textbf{C-01}\\Consultorio\\(2 UTP)};
+
+    \draw[line width=1pt] (20, 8.2) rectangle (24, 14);
+    \node[align=center, font=\scriptsize] at (22, 11) {\textbf{Triaje}\\y Tópico\\(3 UTP)};
+
+    \draw[line width=1pt, fill=blue!10] (24, 8.2) rectangle (28, 14);
+    \node[align=center, font=\scriptsize\bfseries] at (26, 11) {Admisión /\\Recepción\\(6 UTP)};
+
+    % ALA SUR (Críticos, Farmacia, Adm, Espera)
+    \draw[line width=1pt, fill=red!10] (0, 0) rectangle (5, 5.8);
+    \node[align=center, font=\scriptsize\bfseries] at (2.5, 2.9) {LABORATORIO\\CLÍNICO\\(3 F/UTP)\\\textbf{34.8~m}};
+
+    \draw[line width=1pt, fill=red!10] (5, 0) rectangle (10, 5.8);
+    \node[align=center, font=\scriptsize\bfseries] at (7.5, 2.9) {RAYOS X Y\\ECOGRAFÍA\\(3 F/UTP)};
+
+    % GABINETE MDF (RACK 42U) - Ubicación central
+    \draw[line width=1.8pt, fill=teal!30, draw=teal!80!black] (10, 0) rectangle (14, 5.8);
+    \node[align=center, font=\small\bfseries, text=teal!90!black] at (12, 3.2) {SALA MDF\\(RACK 42U)\\(3 Serv.)};
+    \draw[fill=black] (11.3, 1.0) rectangle (12.7, 2.2);
+    \node[text=white, font=\tiny\bfseries] at (12, 1.6) {RACK};
+
+    \draw[line width=1pt] (14, 0) rectangle (18, 5.8);
+    \node[align=center, font=\scriptsize] at (16, 2.9) {Farmacia\\Asistencial\\(3 UTP)};
+
+    \draw[line width=1pt, fill=green!10] (18, 0) rectangle (23, 5.8);
+    \node[align=center, font=\scriptsize] at (20.5, 2.9) {Administración\\y Jefatura\\(7 UTP)};
+
+    \draw[line width=1pt, fill=orange!10] (23, 0) rectangle (28, 5.8);
+    \node[align=center, font=\scriptsize] at (25.5, 2.9) {Sala de\\Espera Gral.\\(2 UTP + TV)};
+
+    % BANDEJA TIPO MALLA (Backbone en pasillo)
+    \draw[line width=3pt, color=blue!70, dashed] (2, 7.0) -- (26, 7.0);
+    \draw[line width=3pt, color=blue!70, dashed] (12, 7.0) -- (12, 2.2);
+    \node[font=\bfseries\footnotesize, text=blue!80, fill=white, inner sep=1pt] at (7, 7.5) {Bandeja Portacable Malla 200$\times$50~mm (Falso Techo)};
+
+    % Puntos de Acceso Wi-Fi 6 (AP-01 a AP-04)
+    \node[circle, fill=purple, text=white, inner sep=2pt, font=\bfseries\tiny] at (25.5, 3.5) {AP1};
+    \draw[purple, dashed, line width=0.8pt] (25.5, 3.5) circle (2.8cm);
+
+    \node[circle, fill=purple, text=white, inner sep=2pt, font=\bfseries\tiny] at (19, 7.0) {AP2};
+    \draw[purple, dashed, line width=0.8pt] (19, 7.0) circle (2.8cm);
+
+    \node[circle, fill=purple, text=white, inner sep=2pt, font=\bfseries\tiny] at (8, 7.0) {AP3};
+    \draw[purple, dashed, line width=0.8pt] (8, 7.0) circle (2.8cm);
+
+    \node[circle, fill=purple, text=white, inner sep=2pt, font=\bfseries\tiny] at (20.5, 1.5) {AP4};
+    \draw[purple, dashed, line width=0.8pt] (20.5, 1.5) circle (2.8cm);
+
+    % Leyenda inferior
+    \node[draw, fill=white, rounded corners=2pt, font=\scriptsize, align=left] at (14, -1.8) {
+        \textbf{Leyenda de Infraestructura:} \quad
+        {\color{blue!70}\textbf{---}} Bandeja malla aérea \quad
+        \textbf{[$\bullet$]} Puntos UTP Cat~6 \quad
+        {\color{red!70}\textbf{[$\blacksquare$]}} Puntos F/UTP Cat~6A blindados \quad
+        {\color{purple}\textbf{((AP))}} Célula Wi-Fi~6 (Radio 8.0~m)
+    };
+\end{tikzpicture}
+\caption{Plano esquemático arquitectónico y distribución de canalizaciones de la red LAN}
+\label{fig:planoesquematico}
+\end{figure}
+
+\section{Diseño de Cobertura Inalámbrica Wi-Fi 6}
+
+\subsection{Criterios de Propagación en Banda de 5 GHz}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Radio de célula efectivo:} 8.0~m en espacio semiabierto hospitalario.
+    \item \textbf{RSSI en borde de célula:} $\geq -65~\text{dBm}$, garantizando modulaciones MCS altas y tasas reales superiores a 150~Mbps por usuario.
+    \item \textbf{Solapamiento entre APs adyacentes:} 15\%, garantizando \textit{Fast Roaming} (802.11r/k/v) sin corte de sesión.
+    \item \textbf{Separación de redes (SSID):}
+    \begin{itemize}
+        \item \textit{SSID Médico (``Salud\_Clinica''):} WPA3-Enterprise, prioridad QoS-WMM para VoIP y EMR.
+        \item \textit{SSID Público (``Salud\_Pacientes''):} Aislado de la red interna, ancho de banda limitado por usuario.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Ubicación y Cobertura de los Cuatro APs}
+
+\begin{table}[H]
+\caption{Distribución y cobertura de los Access Points Wi-Fi~6}
+\begin{tabularx}{\textwidth}{@{}clXl@{}}
+\toprule
+\textbf{AP} & \textbf{Ubicación Física} & \textbf{Cobertura Funcional} & \textbf{Código PP} \\
+\midrule
+AP-01 & Sala de Espera General     & Red pública de pacientes y pantalla de turnos & PP01-08 \\
+AP-02 & Pasillo Central Oeste      & Médica: Consultorios 1--4 y Triaje (Roaming) & PP02-14 \\
+AP-03 & Pasillo Central Este       & Médica: Consultorios 5--8 y Laboratorio       & PP02-15 \\
+AP-04 & Administración (Sector E)  & Corporativa: Jefatura, Contabilidad, Estar Médico & PP02-13 \\
+\bottomrule
+\end{tabularx}
+\label{tab:aps}
+\end{table}
+
+\section{BOM Valorizado y Presupuesto Referencial}
+
+Los precios corresponden a mercado institucional en Perú (distribuidores Panduit, Siemon, Cisco, APC) a tipo de cambio referencial de \textbf{S/.~3.75 por USD}.
+
+\subsection{Partida 01: Infraestructura Pasiva de Cableado}
+
+\begin{table}[H]
+\caption{Partida 01 --- Infraestructura pasiva y conectividad}
+\begin{tabular}{@{}clccrr@{}}
+\toprule
+\textbf{Ítem} & \textbf{Descripción} & \textbf{Cant.} & \textbf{Ud.} & \textbf{P.Unit. (USD)} & \textbf{Subtotal (USD)} \\
+\midrule
+1.1  & Cable UTP Cat~6 LSZH (305~m)            & 4  & Rollo & \$195.00 & \$780.00 \\
+1.2  & Cable F/UTP Cat~6A Blindado (305~m)     & 1  & Rollo & \$340.00 & \$340.00 \\
+1.3  & Jack Keystone Cat~6 UTP                 & 50 & Pza   & \$3.80   & \$190.00 \\
+1.4  & Jack Keystone Cat~6A Blindado           & 6  & Pza   & \$8.50   & \$51.00  \\
+1.5  & Faceplate 2 ventanas                    & 23 & Pza   & \$2.20   & \$50.60  \\
+1.6  & Faceplate 4 ventanas                    & 2  & Pza   & \$3.50   & \$7.00   \\
+1.7  & Patch Cord UTP Cat~6 2.0~m              & 46 & Pza   & \$4.20   & \$193.20 \\
+1.8  & Patch Cord UTP Cat~6 1.0~m (rack)       & 50 & Pza   & \$3.10   & \$155.00 \\
+1.9  & Patch Cord F/UTP Cat~6A 2.0~m           & 6  & Pza   & \$7.80   & \$46.80  \\
+1.10 & Patch Cord F/UTP Cat~6A 1.0~m (rack)    & 6  & Pza   & \$5.90   & \$35.40  \\
+1.11 & Patch Panel 24p Cat~6 UTP 19''          & 2  & Pza   & \$85.00  & \$170.00 \\
+1.12 & Patch Panel 24p Cat~6A Blindado         & 1  & Pza   & \$135.00 & \$135.00 \\
+1.13 & Organizador horizontal 1U 19''          & 3  & Pza   & \$18.00  & \$54.00  \\
+\midrule
+\multicolumn{5}{r}{\textbf{SUBTOTAL Partida 01}} & \textbf{\$2,208.00} \\
+\bottomrule
+\end{tabular}
+\label{tab:partida01}
+\end{table}
+
+\subsection{Partida 02: Canalizaciones y Puesta a Tierra}
+
+\begin{table}[H]
+\caption{Partida 02 --- Canalizaciones y sistema de tierra}
+\begin{tabular}{@{}clccrr@{}}
+\toprule
+\textbf{Ítem} & \textbf{Descripción} & \textbf{Cant.} & \textbf{Ud.} & \textbf{P.Unit. (USD)} & \textbf{Subtotal (USD)} \\
+\midrule
+2.1 & Bandeja malla cincada 200$\times$50~mm (tramos 3~m) & 10 & Tramo & \$32.00  & \$320.00 \\
+2.2 & Kit accesorios para bandeja (uniones, grapas)        & 1  & Glb   & \$85.00  & \$85.00  \\
+2.3 & Varilla roscada 3/8'' + tacos + tuercas              & 12 & Juego & \$6.50   & \$78.00  \\
+2.4 & Canaleta PVC 2 vías 40$\times$25~mm (tramos 2~m)    & 45 & Tramo & \$8.40   & \$378.00 \\
+2.5 & Accesorios canaleta (esquineros, tes, uniones)       & 1  & Glb   & \$65.00  & \$65.00  \\
+2.6 & Barra TMGB de cobre 10$\times$50$\times$300~mm      & 1  & Pza   & \$110.00 & \$110.00 \\
+2.7 & Cable de tierra cobre AWG~6 (15~m)                   & 1  & Rollo & \$48.00  & \$48.00  \\
+\midrule
+\multicolumn{5}{r}{\textbf{SUBTOTAL Partida 02}} & \textbf{\$1,084.00} \\
+\bottomrule
+\end{tabular}
+\label{tab:partida02}
+\end{table}
+
+\subsection{Partida 03: Gabinete Rack, Respaldo Eléctrico y Climatización}
+
+\begin{table}[H]
+\caption{Partida 03 --- Rack, UPS y climatización}
+\begin{tabular}{@{}clccrr@{}}
+\toprule
+\textbf{Ítem} & \textbf{Descripción} & \textbf{Cant.} & \textbf{Ud.} & \textbf{P.Unit. (USD)} & \textbf{Subtotal (USD)} \\
+\midrule
+3.1 & Gabinete Rack 42U 19'', profundidad 800~mm            & 1 & Pza & \$750.00  & \$750.00  \\
+3.2 & PDU horizontal 1U, 8 tomas C13 con switch térmico     & 1 & Pza & \$75.00   & \$75.00   \\
+3.3 & UPS Online Doble Conversión 3000~VA / 2700~W (3U)     & 1 & Pza & \$1,150.00 & \$1,150.00 \\
+3.4 & Banco baterías extendido para UPS (3U, 45~min)        & 1 & Pza & \$580.00  & \$580.00  \\
+3.5 & Bandeja 4 extractores de aire 220~VAC con termostato  & 1 & Pza & \$95.00   & \$95.00   \\
+\midrule
+\multicolumn{5}{r}{\textbf{SUBTOTAL Partida 03}} & \textbf{\$2,650.00} \\
+\bottomrule
+\end{tabular}
+\label{tab:partida03}
+\end{table}
+
+\subsection{Partida 04: Equipamiento Activo de Red y WLAN}
+
+\begin{table}[H]
+\caption{Partida 04 --- Equipamiento activo y conectividad inalámbrica}
+\begin{tabular}{@{}clccrr@{}}
+\toprule
+\textbf{Ítem} & \textbf{Descripción} & \textbf{Cant.} & \textbf{Ud.} & \textbf{P.Unit. (USD)} & \textbf{Subtotal (USD)} \\
+\midrule
+4.1 & Switch L2 Adm. 24p GbE PoE+ (370W) + 4 SFP+~10G  & 2 & Pza & \$820.00 & \$1,640.00 \\
+4.2 & Switch Core/Distribución 24p GbE + 4 SFP+~10G     & 1 & Pza & \$950.00 & \$950.00   \\
+4.3 & Cable DAC pasivo SFP+~10G de 1.0~m (uplinks)      & 4 & Pza & \$35.00  & \$140.00   \\
+4.4 & Access Point Wi-Fi~6 (802.11ax) Dual Band PoE+    & 4 & Pza & \$240.00 & \$960.00   \\
+\midrule
+\multicolumn{5}{r}{\textbf{SUBTOTAL Partida 04}} & \textbf{\$3,690.00} \\
+\bottomrule
+\end{tabular}
+\label{tab:partida04}
+\end{table}
+
+\subsection{Resumen General del Presupuesto}
+
+\begin{table}[H]
+\caption{Resumen consolidado del presupuesto de infraestructura}
+\begin{tabular}{@{}clrrr@{}}
+\toprule
+\textbf{Partida} & \textbf{Descripción del Rubro} & \textbf{Subtotal (USD)} & \textbf{Subtotal (PEN)} & \textbf{Incidencia} \\
+\midrule
+01 & Infraestructura Pasiva de Cableado   & \$2,208.00 & S/.~8,280.00  & 22.92\% \\
+02 & Canalizaciones y Puesta a Tierra     & \$1,084.00 & S/.~4,065.00  & 11.25\% \\
+03 & Gabinete, UPS y Climatización        & \$2,650.00 & S/.~9,937.50  & 27.52\% \\
+04 & Equipamiento Activo y WLAN           & \$3,690.00 & S/.~13,837.50 & 38.31\% \\
+\midrule
+\textbf{TOTAL} & \textbf{Costo Total Directo de Suministros} & \textbf{\$9,632.00} & \textbf{S/.~36,120.00} & \textbf{100.00\%} \\
+\bottomrule
+\end{tabular}
+\label{tab:presupuesto-total}
+\end{table}
+
+\section{Plan de Mantenimiento Preventivo Físico}
+
+\begin{table}[H]
+\caption{Calendario de mantenimiento preventivo de la infraestructura}
+\begin{tabularx}{\textwidth}{@{}clX@{}}
+\toprule
+\textbf{Frecuencia} & \textbf{Actividad} & \textbf{Descripción} \\
+\midrule
+Trimestral  & Limpieza de rack          & Filtros y ventiladores del techo del rack 42U; monitoreo térmico (18--24°C). \\
+Semestral   & Inspección de bandeja     & Verificación visual en cielo raso; control de peinado de patch cords en 1U. \\
+Anual       & Tierra de telecomunicaciones & Medición con telurómetro: resistencia $\leq 5~\Omega$ (TIA-607-C); reapriete de cables de drenaje. \\
+Bianual     & Re-certificación aleatoria & 10\% de enlaces permanentes con Fluke DSX-5000/8000 CableAnalyzer. \\
+\bottomrule
+\end{tabularx}
+\label{tab:mantenimiento}
+\end{table}
