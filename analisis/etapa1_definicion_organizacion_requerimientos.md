@@ -2,11 +2,12 @@
 **Proyecto:** Diseño de la Infraestructura Física y Cableado Estructurado de una Red LAN  
 **Curso:** Redes I (Unidad I)  
 **Organización Seleccionada:** Policlínico de Especialidades Médicas *"Salud & Vida"*  
+**Secciones de la Memoria Técnica Cubiertas:** Sección 1 (Portada), Sección 2 (Introducción), Sección 3 (Descripción de la organización), Sección 4 (Problemática), Sección 5 (Objetivos) y Sección 6 (Requerimientos de red)  
 **Fecha de Elaboración:** Octubre 2026  
 
 ---
 
-## 1. Introducción al Caso de Estudio
+## 1. Introducción al Caso de Estudio (Sección 2)
 
 El presente documento constituye la **Etapa 1** del proyecto de diseño de infraestructura de telecomunicaciones y cableado estructurado. 
 
@@ -16,7 +17,7 @@ El **Policlínico de Especialidades Médicas "Salud & Vida"** ha experimentado u
 
 ---
 
-## 2. Descripción de la Organización
+## 2. Descripción de la Organización (Sección 3)
 
 ### 2.1. Razón Social y Giro Asistencial
 * **Razón Social:** Policlínico de Especialidades Médicas "Salud & Vida" S.A.C.
@@ -51,7 +52,7 @@ Para mantener un diseño sencillo de dibujar y calcular, las áreas se han estan
 | **Pasillo Central de Distribución** | 30.0 m × 2.0 m | 60 m² | Corredor central que recorre toda la clínica y alberga la bandeja portacables principal en el cielo raso + 2 APs de techo. |
 | **ÁREA TOTAL CONSTRUIDA** | **30 m × 15 m** | **450 m²** | **100% del área del predio.** |
 
-### 2.4. Esquema Arquitectónico Visual y Distribución Espacial en Planta
+### 2.4. Esquema Arquitectónico Visual y Distribución Espacial en Planta (Bases de la Sección 12 - Diseño Físico)
 
 Para superar las limitaciones de los diagramas de texto y garantizar una visualización profesional de ingeniería a escala exacta (**30.00 m × 15.00 m = 450 m²**), se ha desarrollado un **visor interactivo por código** en SVG / HTML5 (`plano/index.html`) disponible localmente en `http://localhost:3456`.
 
@@ -83,7 +84,7 @@ A continuación se muestra la captura del plano arquitectónico con las capas de
 
 ---
 
-## 3. Diagnóstico de la Problemática Actual
+## 3. Diagnóstico de la Problemática Actual (Sección 4)
 
 ### 3.1. Estado de la Infraestructura Existente
 Actualmente, el policlínico opera bajo una "red improvisada" producto de expansiones desordenadas:
@@ -100,7 +101,7 @@ Actualmente, el policlínico opera bajo una "red improvisada" producto de expans
 
 ---
 
-## 4. Objetivos del Proyecto
+## 4. Objetivos del Proyecto (Sección 5)
 
 ### 4.1. Objetivo General
 Diseñar y justificar técnicamente la infraestructura física y el sistema de cableado estructurado para la red de área local (LAN) del Policlínico "Salud & Vida", bajo normativas internacionales **ANSI/TIA/EIA**, garantizando alta disponibilidad, inmunidad a interferencias, escalabilidad y orden en el cuarto de telecomunicaciones.
@@ -115,7 +116,7 @@ Diseñar y justificar técnicamente la infraestructura física y el sistema de c
 
 ---
 
-## 5. Matriz Detallada de Requerimientos de Red
+## 5. Matriz Detallada de Requerimientos de Red (Sección 6)
 
 A continuación se presenta el inventario exhaustivo de puntos de red proyectados por ambiente, totalizando **44 puntos de red activos** más reserva técnica para expansión futura:
 
