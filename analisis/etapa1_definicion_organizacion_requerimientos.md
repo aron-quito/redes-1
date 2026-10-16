@@ -57,7 +57,7 @@ Para asegurar la máxima rigurosidad de ingeniería, cada ambiente ha sido dimen
 | **Ala Sur** | **Administración, Jefatura y Contabilidad** | 3.50 m × 7.00 m | 24.5 m² | 4 PCs administrativas, 1 multifuncional, 1 teléfono IP + **AP-04 de techo (7 tomas Cat 6/PoE)**. |
 | **Zona Crítica** | **Laboratorio Clínico (Bioquímica)** | 4.50 m × 3.40 m | 15.3 m² | 2 PCs analistas, 1 analizador químico en red (**3 tomas F/UTP Cat 6A blindadas contra EMI**). |
 | **Zona Crítica** | **Rayos X y Ecografía (Muros Plomados)** | 4.50 m × 3.60 m | 16.2 m² | 2 estaciones DICOM de alta resolución, 1 impresora médica (**3 tomas F/UTP Cat 6A blindadas contra EMI**). |
-| **TOTAL** | **PREDIO INTEGRAL DEL POLICLÍNICO** | **30.00 m × 15.00 m** | **450.0 m²** | **49 Puntos de red activos proyectados** (balanceados en el plano). |
+| **TOTAL** | **PREDIO INTEGRAL DEL POLICLÍNICO** | **30.00 m × 15.00 m** | **450.0 m²** | **48 Puntos de red activos proyectados** (balanceados en el plano). |
 
 ### 2.4. Esquema Arquitectónico Visual y Distribución Espacial en Planta (Bases de la Sección 12 - Diseño Físico)
 
@@ -134,22 +134,22 @@ Diseñar y justificar técnicamente la infraestructura física y el sistema de c
 
 A continuación se presenta el inventario exhaustivo de puntos de red proyectados por ambiente, totalizando **44 puntos de red activos** más reserva técnica para expansión futura:
 
-| N° | Ambiente / Sala | Dispositivos a Conectar | Tipo de Dispositivo | Puntos RJ-45 Requeridos | Justificación Operativa |
+| N° | Ambiente / Sala | Dispositivos a Conectar | Tipo de Conexión | Puntos RJ-45 Requeridos | Justificación Operativa |
 |:---:|---|---|---|:---:|---|
-| **1** | **Admisión, Caja y Recepción** | • 3 PCs de atención<br>• 1 Impresora láser red<br>• 2 Teléfonos IP (VoIP) | Cableado (UTP) | **6 tomas** | Atención al público, registro de pacientes, cobros y llamadas a seguros. |
-| **2** | **Sala de Espera General** | • 1 Pantalla Smart TV informativa<br>• 1 Access Point (AP PoE) | Cableado (UTP/PoE) | **2 tomas** | Información de turnos y conectividad Wi-Fi para pacientes. |
-| **3** | **Triaje y Tópico** | • 2 PCs de registro<br>• 1 Teléfono IP | Cableado (UTP) | **3 tomas** | Ingreso inmediato de signos vitales al sistema EMR. |
-| **4** | **Consultorios Médicos (8 salas)** | • 8 PCs (1 por consultorio)<br>• 4 Impresoras compartidas (1 c/2 salas)<br>• 4 Teléfonos IP (1 c/2 salas) | Cableado (UTP) | **16 tomas**<br>*(2 tomas dobles por consultorio = 16 tomas)* | Consulta y prescripción de recetas médicas en línea con contingencia de toma libre. |
-| **5** | **Diagnóstico por Imágenes (Rayos X / Eco)** | • 2 Estaciones DICOM alta resolución<br>• 1 Impresora médica de red | Cableado (F/UTP blindado) | **3 tomas** | Transferencia de archivos volumétricos de imagen; requiere protección contra ruido electromagnético. |
-| **6** | **Laboratorio Clínico** | • 2 PCs de analistas<br>• 1 Analizador bioquímico con puerto IP | Cableado (F/UTP blindado) | **3 tomas** | Envío directo de resultados de análisis al servidor central. |
-| **7** | **Farmacia** | • 2 PCs terminal de ventas<br>• 1 Impresora de tickets/facturas de red | Cableado (UTP) | **3 tomas** | Consulta de recetas despachadas y control de stock en tiempo real. |
-| **8** | **Administración y Jefatura Médica** | • 4 PCs administrativas<br>• 1 Impresora multifuncional de red<br>• 1 Teléfono IP de dirección | Cableado (UTP) | **6 tomas** | Gestión contable, administrativa y auditoría clínica. |
-| **9** | **Estar Médico / Reuniones** | • 1 PC de consulta<br>• 1 Access Point (AP PoE) corporativo | Cableado (UTP/PoE) | **2 tomas** | Conectividad interna del cuerpo médico y reuniones clínicas. |
-| **10**| **Puntos de Cobertura Wi-Fi Adicionales** | • 2 Access Points de techo (Pasillos y zonas asistenciales) | Cableado (UTP/PoE) | **2 tomas** | Roaming Wi-Fi continuo para tablets médicas y rondas de enfermería. |
-| **11**| **Cuarto de Comunicaciones (Servidores)** | • 1 Servidor Historias Clínicas (HCE)<br>• 1 Servidor PACS (Imágenes DICOM)<br>• 1 Enlace de contingencia NAS | Conexión directa en Rack | **3 tomas** | Almacenamiento y base de datos centralizada de la institución. |
-| **--**| **SUBTOTAL PUNTOS ACTIVOS** | | | **49 tomas** | |
-| **--**| **Reserva técnica (Crecimiento futuro)** | Tomas adicionales en canaleta | Reserva | **7 tomas** | Cumplimiento del 15% de holgura según norma TIA-568. |
-| **TOTAL** | **CAPACIDAD DE PARCHEO PROYECTADA** | | | **56 tomas** | Dimensionado para **2 Patch Panels de 24 puertos + 1 de 24 puertos (o 1 de 48 + 1 de 24)**. |
+| **1** | **Admisión, Caja y Recepción** | • 3 PCs de atención<br>• 1 Impresora láser de red<br>• 2 Teléfonos IP (VoIP) | Cableado horizontal (UTP Cat 6) | **6 tomas** | Atención al público, registro de pacientes, cobros y verificación de seguros. |
+| **2** | **Sala de Espera General** | • 1 Pantalla Smart TV informativa (turnero)<br>• 1 Access Point de techo (AP-01 público) | Cableado horizontal (UTP / PoE) | **2 tomas** | Visualización de turnos de llamada y red Wi-Fi de cortesía para pacientes. |
+| **3** | **Triaje y Tópico de Urgencias** | • 2 PCs de registro clínico<br>• 1 Teléfono IP | Cableado horizontal (UTP Cat 6) | **3 tomas** | Registro ágil de signos vitales e ingreso de emergencias al sistema EMR. |
+| **4** | **Consultorios Médicos 1 al 5 (Ala Norte)** | • 5 PCs médicas (1 por consultorio)<br>• 5 Teléfonos IP / ECG digital IP | Cableado horizontal (UTP Cat 6) | **10 tomas**<br>*(2 tomas dobles por sala)* | Prescripción médica en línea, consulta de historial y descarga de ECG. |
+| **5** | **Consultorios Médicos 6, 7 y 8 (Ala Sur)** | • 3 PCs médicas (1 por consultorio)<br>• 3 Teléfonos IP de interconsulta | Cableado horizontal (UTP Cat 6) | **6 tomas**<br>*(2 tomas dobles por sala)* | Atención especializada en Oftalmología, Odontología y Psicología/Nutrición. |
+| **6** | **Laboratorio Clínico (Bioquímica)** | • 2 PCs de analistas de laboratorio<br>• 1 Analizador bioquímico con puerto IP | Cableado horizontal blindado (F/UTP Cat 6A) | **3 tomas** | Envío directo de analíticas clínicas; protegido contra ruido electromagnético. |
+| **7** | **Diagnóstico por Imágenes (Rayos X)** | • 2 Estaciones DICOM de alta resolución<br>• 1 Impresora médica de placas | Cableado horizontal blindado (F/UTP Cat 6A) | **3 tomas** | Transferencia de archivos radiológicos pesados; canalización y tomas apantalladas. |
+| **8** | **Farmacia Asistencial** | • 2 PCs terminal de ventas/stock<br>• 1 Impresora térmica de tickets de red | Cableado horizontal (UTP Cat 6) | **3 tomas** | Validación de recetas digitales y control de inventario farmacéutico en tiempo real. |
+| **9** | **Administración y Jefatura Médica** | • 4 PCs administrativas y contables<br>• 1 Impresora multifuncional departamental<br>• 1 Teléfono IP de dirección<br>• 1 Access Point corporativo (AP-04) | Cableado horizontal (UTP / PoE) | **7 tomas** | Gestión contable, dirección médica, reuniones clínicas y Wi-Fi administrativo. |
+| **10**| **Pasillo Central (APs de Techo)** | • AP-02 de techo (Pasillo Oeste / Sector 1)<br>• AP-03 de techo (Pasillo Este / Sector 2) | Cableado horizontal (UTP / PoE) | **2 tomas** | Células Wi-Fi PoE para roaming ininterrumpido de tablets de enfermería y médicos. |
+| **11**| **Cuarto de Telecomunicaciones (MDF)** | • 1 Servidor Historias Clínicas (HCE/EMR)<br>• 1 Servidor PACS (Imágenes DICOM)<br>• 1 Unidad de almacenamiento NAS / Backup | Conexión directa en Rack 42U | **3 tomas** | Servidores locales de misión crítica conectados a los switches de distribución. |
+| **--**| **SUBTOTAL PUNTOS ACTIVOS** | | | **48 tomas** | |
+| **--**| **Reserva técnica (Crecimiento futuro)** | Tomas adicionales en canaleta perimetral | Reserva horizontal | **8 tomas** | Cumplimiento de margen de holgura (>15%) según norma ANSI/TIA-568. |
+| **TOTAL** | **CAPACIDAD DE PARCHEO PROYECTADA** | | | **56 tomas** | Dimensionado para **2 Patch Panels de 24p (Cat 6) + 1 Patch Panel de 24p (Cat 6A blindado)**. |
 
 ---
 
