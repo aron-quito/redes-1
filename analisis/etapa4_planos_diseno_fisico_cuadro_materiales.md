@@ -61,25 +61,25 @@ Al estar el **MDF ubicado en la posición central geocéntrica** ($X = 14.00\tex
 
 | N° | Ambiente / Sala | Dimensiones (m) | Tomas RJ-45 | Recorrido Horizontal por Bandeja/Canaleta | Bajada Vertical Total (Muro + Rack) | Longitud Real Enlace Permanente | Cumplimiento TIA-568 ($\le 90\text{ m}$) |
 |:---:|---|:---:|:---:|:---:|:---:|:---:|:---:|
-| **01** | Recepción / Admisión y Caja | 6.0 × 4.0 | 6 (UTP) | 13.80 m | 4.20 m | **18.00 m** | Cumple (80.0% margen) |
-| **02** | Sala de Espera General | 8.0 × 5.0 | 2 (1 TV + 1 AP) | 9.50 m | 4.20 m (TV) / 1.50 m (AP) | **13.70 m / 11.00 m** | Cumple (84.7% margen) |
-| **03** | Triaje y Tópico | 4.0 × 4.0 | 3 (UTP) | 8.20 m | 4.20 m | **12.40 m** | Cumple (86.2% margen) |
-| **04** | Consultorio 01 | 3.5 × 4.0 | 2 (UTP) | 5.50 m | 4.20 m | **9.70 m** | Cumple (89.2% margen) |
-| **05** | Consultorio 02 | 3.5 × 4.0 | 2 (UTP) | 9.00 m | 4.20 m | **13.20 m** | Cumple (85.3% margen) |
-| **06** | Consultorio 03 | 3.5 × 4.0 | 2 (UTP) | 12.50 m | 4.20 m | **16.70 m** | Cumple (81.4% margen) |
-| **07** | Consultorio 04 | 3.5 × 4.0 | 2 (UTP) | 16.00 m | 4.20 m | **20.20 m** | Cumple (77.5% margen) |
-| **08** | Consultorio 05 (Extremo Oeste) | 3.5 × 4.0 | 2 (UTP) | 19.50 m | 4.20 m | **23.70 m** | Cumple (73.6% margen) |
-| **09** | Consultorio 06 | 3.5 × 4.0 | 2 (UTP) | 6.20 m | 4.20 m | **10.40 m** | Cumple (88.4% margen) |
-| **10** | Consultorio 07 | 3.5 × 4.0 | 2 (UTP) | 9.70 m | 4.20 m | **13.90 m** | Cumple (84.5% margen) |
-| **11** | Consultorio 08 | 3.5 × 4.0 | 2 (UTP) | 13.20 m | 4.20 m | **17.40 m** | Cumple (80.6% margen) |
-| **12** | Rayos X y Ecografía (Zona Crítica) | 6.0 × 5.0 | 3 (F/UTP) | 28.50 m | 4.20 m | **32.70 m** | Cumple (63.6% margen) |
-| **13** | Laboratorio Clínico (Zona Crítica) | 6.0 × 5.0 | 3 (F/UTP) | 30.60 m | 4.20 m | **34.80 m** *(Toma más lejana)* | Cumple (61.3% margen) |
-| **14** | Farmacia Asistencial | 5.0 × 4.0 | 3 (UTP) | 11.20 m | 4.20 m | **15.40 m** | Cumple (82.8% margen) |
-| **15** | Administración General | 6.0 × 4.0 | 6 (UTP) | 17.80 m | 4.20 m | **22.00 m** | Cumple (75.5% margen) |
-| **16** | Estar Médico / Reuniones | 5.0 × 4.0 | 2 (1 PC + 1 AP) | 14.50 m | 4.20 m | **18.70 m** | Cumple (79.2% margen) |
-| **17** | Puntos de AP Techo Pasillo (02) | Pasillo Central | 2 (PoE) | 7.00 m / 12.00 m | 1.50 m | **8.50 m / 13.50 m** | Cumple (90.5% margen) |
-| **18** | Enlaces Directos en Rack MDF | 3.5 × 4.2 | 3 (Servidores) | 1.50 m | 1.00 m | **2.50 m** | Cumple (Directo) |
-| **--** | **TOTAL PUNTOS ACTIVOS + RESERVAS** | **450 m²** | **56 Tomas** | -- | -- | **Promedio: 16.5 m** | **100% CUMPLE NORMA** |
+| **01** | Recepción / Admisión y Caja | 6.0 × 4.2 | 6 (UTP) | 13.80 m | 4.20 m | **18.00 m** | Cumple (80.0% margen) |
+| **02** | Sala de Espera General | 7.0 × 7.0 | 2 (1 TV + 1 AP) | 9.50 m | 4.20 m (TV) / 1.50 m (AP) | **13.70 m / 11.00 m** | Cumple (84.7% margen) |
+| **03** | Triaje y Tópico | 3.5 × 4.2 | 3 (UTP) | 8.20 m | 4.20 m | **12.40 m** | Cumple (86.2% margen) |
+| **04** | Consultorio 01 | 3.5 × 4.2 | 2 (UTP) | 5.50 m | 4.20 m | **9.70 m** | Cumple (89.2% margen) |
+| **05** | Consultorio 02 | 3.5 × 4.2 | 2 (UTP) | 9.00 m | 4.20 m | **13.20 m** | Cumple (85.3% margen) |
+| **06** | Consultorio 03 | 3.5 × 4.2 | 2 (UTP) | 12.50 m | 4.20 m | **16.70 m** | Cumple (81.4% margen) |
+| **07** | Consultorio 04 | 3.5 × 4.2 | 2 (UTP) | 16.00 m | 4.20 m | **20.20 m** | Cumple (77.5% margen) |
+| **08** | Consultorio 05 (Extremo Oeste) | 3.5 × 4.2 | 2 (UTP) | 19.50 m | 4.20 m | **23.70 m** | Cumple (73.6% margen) |
+| **09** | Consultorio 06 | 3.5 × 4.2 | 2 (UTP) | 6.20 m | 4.20 m | **10.40 m** | Cumple (88.4% margen) |
+| **10** | Consultorio 07 | 3.5 × 4.2 | 2 (UTP) | 9.70 m | 4.20 m | **13.90 m** | Cumple (84.5% margen) |
+| **11** | Consultorio 08 | 3.5 × 4.2 | 2 (UTP) | 13.20 m | 4.20 m | **17.40 m** | Cumple (80.6% margen) |
+| **12** | Rayos X y Ecografía (Zona Crítica) | 5.0 × 4.2 | 3 (F/UTP) | 28.50 m | 4.20 m | **32.70 m** | Cumple (63.6% margen) |
+| **13** | Laboratorio Clínico (Zona Crítica) | 4.5 × 4.2 | 3 (F/UTP) | 30.60 m | 4.20 m | **34.80 m** *(Toma más lejana)* | Cumple (61.3% margen) |
+| **14** | Farmacia Asistencial | 3.5 × 4.2 | 3 (UTP) | 11.20 m | 4.20 m | **15.40 m** | Cumple (82.8% margen) |
+| **15** | Administración, Jefatura y Contabilidad | 3.5 × 7.0 | 7 (6 UTP + 1 AP-04) | 17.80 m | 4.20 m (PCs) / 1.50 m (AP) | **22.00 m / 19.30 m** | Cumple (75.5% margen) |
+| **16** | Pasillo Central (Troncal y APs de Techo) | 30.0 × 2.4 | 2 (AP-02 y AP-03 PoE) | 7.00 m / 12.00 m | 1.50 m | **8.50 m / 13.50 m** | Cumple (90.5% margen) |
+| **17** | Enlaces Directos en Rack MDF (Servidores) | 3.5 × 4.2 | 3 (Servidores HCE, PACS, NAS) | 1.50 m | 1.00 m | **2.50 m** | Cumple (Directo en Rack) |
+| **18** | Tomas de Reserva Técnica (Expansión) | Distribuidas | 8 (UTP Cat 6) | ~18.00 m | 4.20 m | **~22.20 m** | Cumple (Holgura > 15%) |
+| **--** | **TOTAL PUNTOS PROYECTADOS** | **450 m²** | **56 Tomas (48 Activas + 8 Reservas)** | -- | -- | **Promedio: 16.5 m** | **100% CUMPLE NORMA** |
 
 ---
 
@@ -115,11 +115,11 @@ Para satisfacer la movilidad de las tablets del personal médico y la conectivid
 
 ```mermaid
 graph TD
-    subgraph Distribucion_APs["Distribución de Puntos de Acceso Wi-Fi 6 en Planta"]
-        AP1["AP-01: Sala de Espera General<br>(Alta Densidad de Pacientes - Capacidad: 60 clientes simultáneos)"]
-        AP2["AP-02: Estar Médico y Consultorios Sur<br>(Sesiones Clínicas y Acceso Médico Confidencial)"]
-        AP3["AP-03: Pasillo Central Norte (Consultorios 1 al 4 y Farmacia)<br>(Movilidad de Enfermería y Tablets)"]
-        AP4["AP-04: Pasillo Central Este (Consultorios 5 al 8, Lab y Rayos X)<br>(Monitoreo Móvil y Rondas Médicas)"]
+    subgraph Distribucion_APs["Distribución Estratégica de Puntos de Acceso Wi-Fi 6 en Planta"]
+        AP1["AP-01: Sala de Espera General<br>(Alta Densidad de Pacientes - Capacidad: 60 clientes simultáneos - Turnero)"]
+        AP2["AP-02: Pasillo Central Oeste<br>(Sector Médico 1: Cobertura a Consultorios 1 al 4 y Triaje - Roaming)"]
+        AP3["AP-03: Pasillo Central Este<br>(Sector Médico 2: Cobertura a Consultorios 5 al 8 y Laboratorio Clínico)"]
+        AP4["AP-04: Administración General (Sector Este)<br>(Gestión Corporativa, Jefatura, Contabilidad y Cobertura Wi-Fi a Estar Médico)"]
     end
 ```
 
