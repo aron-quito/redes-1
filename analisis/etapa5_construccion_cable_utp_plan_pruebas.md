@@ -54,7 +54,7 @@ flowchart TD
 
 ### 2.2. Parámetros Eléctricos y de RF Evaluados en Campo (TIA-568-C.2)
 
-Cada uno de los 56 enlaces del policlínico (48 UTP Cat 6 y 6 F/UTP Cat 6A apantallados) debe ser sometido al barrido de frecuencias del certificador de campo de Nivel IIIe (*Fluke DSX-5000 / DSX-8000*), evaluando los siguientes parámetros críticos:
+Cada uno de los 56 enlaces del policlínico (50 enlaces UTP Cat 6 y 6 enlaces F/UTP Cat 6A blindados) debe ser sometido al barrido de frecuencias del certificador de campo de Nivel IIIe (*Fluke DSX-5000 / DSX-8000*), evaluando los siguientes parámetros críticos:
 
 ```mermaid
 graph TD
