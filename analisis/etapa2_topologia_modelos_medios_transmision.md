@@ -239,6 +239,6 @@ flowchart TD
 ```
 
 ### Elementos Clave que se transferirán a la Etapa 3:
-1. **Dimensionamiento del Parcheo:** 49 puntos activos + 7 de reserva = **56 tomas**, lo que define exactamente **dos Patch Panels de 24 puertos Cat 6 (48 puertos) + un Patch Panel blindado de 24 puertos Cat 6A (para las 6 tomas blindadas de Rayos X y Laboratorio)**.
+1. **Dimensionamiento del Parcheo:** 48 puntos activos + 8 de reserva técnica = **56 tomas**, lo que define exactamente **dos Patch Panels de 24 puertos Cat 6 (48 puertos) + un Patch Panel blindado de 24 puertos Cat 6A (para las 6 tomas blindadas de Rayos X y Laboratorio)**.
 2. **Estándar de Conexión:** Adopción justificada de la norma **T568B** por estandarización industrial y coincidencia con la infraestructura preexistente en la mayoría de periféricos comerciales.
 3. **Cálculo de Bobinas de Cable:** Con una distancia promedio de 18.5 metros por punto más bajadas verticales y margen de curvatura del 10%, se requerirán aproximadamente **1,200 metros de cable UTP Cat 6 (4 bobinas de 305m)** y **150 metros de cable F/UTP Cat 6A (1 bobina)**.

@@ -795,7 +795,7 @@
               <text x="2475" y="1210" class="room-title">ADMINISTRACIÓN</text>
               <text x="2475" y="1255" class="room-meta">Dirección y Contabilidad</text>
               <text x="2475" y="1295" class="room-meta">3.50m × 7.00m • 24.5 m²</text>
-              <text x="2475" y="1335" class="room-meta" fill="#38bdf8">6 Puntos RJ-45</text>
+              <text x="2475" y="1335" class="room-meta" fill="#38bdf8">7 Puntos RJ-45</text>
               <path d="M 2420 900 L 2420 970 A 70 70 0 0 1 2490 900" class="door-arc" />
               <line x1="2420" y1="900" x2="2420" y2="970" class="door-leaf" />
             </g>
@@ -896,7 +896,7 @@
               <!-- AP-03 (Pasillo Este - R: 8.0m) -->
               <circle cx="2300" cy="780" r="800" fill="rgba(168, 85, 247, 0.12)" stroke="#a855f7" stroke-width="2.5" stroke-dasharray="10,5" opacity="0.85" />
               <!-- AP-04 (Administración - R: 8.0m) -->
-              <circle cx="2800" cy="1150" r="800" fill="rgba(168, 85, 247, 0.12)" stroke="#a855f7" stroke-width="2.5" stroke-dasharray="10,5" opacity="0.85" />
+              <circle cx="2550" cy="1060" r="800" fill="rgba(168, 85, 247, 0.12)" stroke="#a855f7" stroke-width="2.5" stroke-dasharray="10,5" opacity="0.85" />
             </g>
 
             <!-- Nodos Físicos de APs (Hardware en Techo con Etiquetas) -->
@@ -926,10 +926,10 @@
 
             <!-- AP-04 -->
             <g class="ap-hardware">
-              <circle cx="2800" cy="1150" r="22" fill="#121826" stroke="#a855f7" stroke-width="4" />
-              <circle cx="2800" cy="1150" r="9" fill="#a855f7" />
-              <rect x="2650" y="1080" width="300" height="34" rx="6" fill="rgba(18, 24, 38, 0.88)" stroke="#a855f7" stroke-width="1.5" />
-              <text x="2800" y="1103" fill="#a855f7" font-size="16" font-weight="700" text-anchor="middle">AP-04 (Administración)</text>
+              <circle cx="2550" cy="1060" r="22" fill="#121826" stroke="#a855f7" stroke-width="4" />
+              <circle cx="2550" cy="1060" r="9" fill="#a855f7" />
+              <rect x="2445" y="990" width="200" height="34" rx="6" fill="rgba(18, 24, 38, 0.88)" stroke="#a855f7" stroke-width="1.5" />
+              <text x="2545" y="1013" fill="#a855f7" font-size="14" font-weight="700" text-anchor="middle">AP-04 (Administración)</text>
             </g>
           </g>
 
@@ -1110,11 +1110,11 @@
       admin: {
         title: "Administración, Jefatura y Contabilidad",
         area: "24.5 m² (3.50m × 7.00m)",
-        jacks: "6 Tomas RJ-45 Cat 6",
-        devices: "4 PCs administrativas, 1 Impresora multifuncional departamental, 1 Teléfono IP",
-        cableType: "UTP Cat 6 LSZH",
+        jacks: "7 Tomas (6 Tomas Cat 6 + 1 AP-04 PoE)",
+        devices: "4 PCs administrativas, 1 Impresora multifuncional departamental, 1 Teléfono IP de dirección, 1 Access Point corporativo (AP-04)",
+        cableType: "UTP Cat 6 LSZH / PoE (802.3at)",
         distanceRack: "13.0 metros reales",
-        notes: "Oficina administrativa central para gestión financiera, auditoría y facturación electrónica."
+        notes: "Oficina administrativa central para gestión financiera, auditoría, jefatura médica, reuniones clínicas y facturación electrónica."
       },
       diagnostico: {
         title: "Zona de Diagnóstico (Laboratorio Clínico y Rayos X)",
