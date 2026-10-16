@@ -11,17 +11,18 @@ La organización requiere una red de datos de alta disponibilidad para soportar 
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}[
-    box/.style={draw, rounded corners=3pt, fill=mdpiBlue!15, minimum width=3.2cm, minimum height=0.65cm, align=center, font=\small\bfseries, text=mdpiBlue},
-    jefe/.style={draw, rounded corners=3pt, fill=mdpiBlue, minimum width=4cm, minimum height=0.7cm, align=center, font=\small\bfseries, text=white},
+    scale=0.92, transform shape,
+    box/.style={draw, rounded corners=3pt, fill=mdpiBlue!12, minimum width=2.8cm, minimum height=0.7cm, align=center, font=\footnotesize\bfseries, text=mdpiBlue!90!black},
+    jefe/.style={draw, rounded corners=3pt, fill=mdpiBlue, minimum width=3.8cm, minimum height=0.75cm, align=center, font=\small\bfseries, text=white},
     linea/.style={-Stealth, thick, color=mdpiBlue!70}
 ]
 \node[jefe] (dir) at (0,0) {Dirección General};
-\node[box] (adm) at (-4.5,-1.6) {Administración\\Jefatura};
+\node[box] (adm) at (-4.2,-1.6) {Administración\\Jefatura};
 \node[box] (med) at (0,-1.6) {Área Médica\\(8 consultorios)};
-\node[box] (diag) at (4.5,-1.6) {Diagnóstico\\Rayos~X / Lab.};
-\node[box] (rec) at (-3,-3.2) {Recepción\\y Caja};
-\node[box] (farm) at (0,-3.2) {Farmacia\\Asistencial};
-\node[box] (triaje) at (3,-3.2) {Triaje\\y Tópico};
+\node[box] (diag) at (4.2,-1.6) {Diagnóstico\\Rayos~X / Lab.};
+\node[box] (rec) at (-3.5,-3.3) {Recepción\\y Caja};
+\node[box] (farm) at (0,-3.3) {Farmacia\\Asistencial};
+\node[box] (triaje) at (3.5,-3.3) {Triaje\\y Tópico};
 \draw[linea] (dir) -- (adm);
 \draw[linea] (dir) -- (med);
 \draw[linea] (dir) -- (diag);
@@ -44,8 +45,9 @@ La edificación se organiza en tres zonas funcionales claramente diferenciadas, 
 \subsection{Zona Norte: Consultorios y Servicios Médicos}
 
 \begin{table}[H]
+\centering
 \caption{Inventario de ambientes — Ala Norte}
-\begin{tabular}{@{}llcl@{}}
+\begin{tabularx}{\textwidth}{@{} >{\raggedright\arraybackslash}p{5.5cm} c c X @{}}
 \toprule
 \textbf{Ambiente} & \textbf{Dimensiones} & \textbf{Área} & \textbf{Función Principal} \\
 \midrule
@@ -58,7 +60,7 @@ Consultorio 04 & 3.50~m $\times$ 4.20~m & 14.7~m$^2$ & Cardiología \\
 Consultorio 05 & 3.50~m $\times$ 4.20~m & 14.7~m$^2$ & Traumatología \\
 Farmacia Asistencial & 3.50~m $\times$ 4.20~m & 14.7~m$^2$ & Dispensación de medicamentos \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \label{tab:ambientes-norte}
 \end{table}
 
@@ -69,8 +71,9 @@ El pasillo central de \textbf{30.00~m $\times$ 2.40~m (72~m$^2$)} constituye el 
 \subsection{Zona Sur: Diagnóstico, Especialidades y Administración}
 
 \begin{table}[H]
+\centering
 \caption{Inventario de ambientes — Ala Sur}
-\begin{tabular}{@{}llcl@{}}
+\begin{tabularx}{\textwidth}{@{} >{\raggedright\arraybackslash}p{5.5cm} c c X @{}}
 \toprule
 \textbf{Ambiente} & \textbf{Dimensiones} & \textbf{Área} & \textbf{Función Principal} \\
 \midrule
@@ -81,9 +84,9 @@ Consultorio 07 & 3.50~m $\times$ 4.20~m & 14.7~m$^2$ & Odontología \\
 Consultorio 08 & 3.50~m $\times$ 4.20~m & 14.7~m$^2$ & Psicología / Nutrición \\
 Laboratorio Clínico & 4.50~m $\times$ 4.20~m & 18.9~m$^2$ & Bioquímica y análisis clínicos \\
 Diagnóstico por Imágenes (Rayos~X) & 5.00~m $\times$ 4.20~m & 21.0~m$^2$ & Radiología y ecografía \\
-Administración / Jefatura / Contabilidad & 3.50~m $\times$ 7.00~m & 24.5~m$^2$ & Gestión administrativa \\
+Administración / Jefatura & 3.50~m $\times$ 7.00~m & 24.5~m$^2$ & Gestión administrativa y contable \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \label{tab:ambientes-sur}
 \end{table}
 
@@ -107,22 +110,24 @@ Se proyectan \textbf{cuatro Puntos de Acceso (APs) Wi-Fi~6 (IEEE~802.11ax)} PoE+
 \subsection{Matriz de Requerimientos de Red por Ambiente}
 
 \begin{table}[H]
+\centering
 \caption{Matriz de requerimientos de red por ambiente}
-\begin{tabularx}{\textwidth}{@{}clXcc@{}}
+\small
+\begin{tabularx}{\textwidth}{@{} c >{\raggedright\arraybackslash}p{4.2cm} X c >{\centering\arraybackslash}p{2.4cm} @{}}
 \toprule
-\textbf{N°} & \textbf{Ambiente} & \textbf{Dispositivos} & \textbf{Tomas RJ-45} & \textbf{Medio} \\
+\textbf{N°} & \textbf{Ambiente} & \textbf{Dispositivos Asignados} & \textbf{Tomas} & \textbf{Medio Físico} \\
 \midrule
-1  & Admisión, Caja y Recepción & 3 PCs, 1 impresora, 2 teléfonos IP & 6 & UTP Cat~6 \\
+1  & Admisión, Caja y Recepción & 3 PCs, 1 impresora, 2 VoIP & 6 & UTP Cat~6 \\
 2  & Sala de Espera General    & 1 Smart TV, 1 AP-01 PoE & 2 & UTP Cat~6 \\
 3  & Triaje y Tópico           & 2 PCs, 1 teléfono IP & 3 & UTP Cat~6 \\
 4--8 & Consultorios 1 al 5     & 5 PCs, 5 teléfonos IP & 10 & UTP Cat~6 \\
 9--11 & Consultorios 6 al 8   & 3 PCs, 3 teléfonos IP & 6 & UTP Cat~6 \\
 12 & Laboratorio Clínico       & 2 PCs, 1 analizador bioquímico & 3 & F/UTP Cat~6A \\
-13 & Rayos~X y Ecografía       & 2 estaciones DICOM, 1 impresora médica & 3 & F/UTP Cat~6A \\
-14 & Farmacia Asistencial      & 2 terminales de venta, 1 impresora térmica & 3 & UTP Cat~6 \\
-15 & Administración y Jefatura & 4 PCs, 1 multifuncional, 1 teléfono IP, 1 AP-04 & 7 & UTP Cat~6 \\
-16 & Pasillo Central (APs)     & AP-02, AP-03 PoE & 2 & UTP Cat~6 \\
-17 & MDF (Servidores)          & Servidor HCE, Servidor PACS, NAS Backup & 3 & F/UTP Cat~6A \\
+13 & Rayos~X y Ecografía       & 2 estaciones DICOM, 1 impresora & 3 & F/UTP Cat~6A \\
+14 & Farmacia Asistencial      & 2 terminales venta, 1 imp. térmica & 3 & UTP Cat~6 \\
+15 & Administración y Jefatura & 4 PCs, 1 multifuncional, 1 VoIP, 1 AP & 7 & UTP Cat~6 \\
+16 & Pasillo Central (APs)     & AP-02, AP-03 PoE Wi-Fi~6 & 2 & UTP Cat~6 \\
+17 & MDF (Servidores)          & Servidor HCE, Servidor PACS, NAS & 3 & F/UTP Cat~6A \\
 \midrule
    & \textbf{Subtotal Activos}  &  & \textbf{48} & \\
    & Reserva técnica ($>$15\%) &  & \textbf{8}  & \\

@@ -113,11 +113,8 @@
 % --- CONFIGURACIÓN DE TABLAS Y FIGURAS (APA 7) ---
 \captionsetup{labelsep=newline, justification=raggedright, singlelinecheck=false, font={small,bf}}
 
-% --- QUITA EL SALTO DE PÁGINA ANTES DE CAPÍTULO ---
+% --- PAQUETES AUXILIARES ---
 \usepackage{etoolbox}
-\makeatletter
-\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
-\makeatother
 
 % Redefinir estilo plain para que sea igual al fancy
 \fancypagestyle{plain}{

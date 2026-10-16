@@ -56,21 +56,23 @@ Cuatro enlaces terminan en cajas de pase octogonales en el cielo raso a 2.60~m, 
 \subsection{Comparativa de Asignación de Pines}
 
 \begin{table}[H]
+\centering
 \caption{Asignación de pines T568A vs. T568B en conector RJ-45 (8P8C)}
-\begin{tabular}{@{}ccccc@{}}
+\small
+\begin{tabularx}{\textwidth}{@{} c c c c X @{}}
 \toprule
 \textbf{Pin} & \textbf{Par TIA} & \textbf{T568A} & \textbf{T568B (Adoptado)} & \textbf{Función 1000BASE-T} \\
 \midrule
-1 & Par 3 / Par 2 & Blanco/Verde   & Blanco/Naranja & BI\_DA+ \\
-2 & Par 3 / Par 2 & Verde          & Naranja        & BI\_DA- \\
-3 & Par 2 / Par 3 & Blanco/Naranja & Blanco/Verde   & BI\_DB+ \\
-4 & Par 1         & Azul           & Azul           & BI\_DC+ \\
-5 & Par 1         & Blanco/Azul    & Blanco/Azul    & BI\_DC- \\
-6 & Par 2 / Par 3 & Naranja        & Verde          & BI\_DB- \\
-7 & Par 4         & Blanco/Marrón  & Blanco/Marrón  & BI\_DD+ \\
-8 & Par 4         & Marrón         & Marrón         & BI\_DD- \\
+1 & Par 3 / Par 2 & Blanco/Verde   & Blanco/Naranja & BI\_DA+ (Trx A+) \\
+2 & Par 3 / Par 2 & Verde          & Naranja        & BI\_DA- (Trx A-) \\
+3 & Par 2 / Par 3 & Blanco/Naranja & Blanco/Verde   & BI\_DB+ (Trx B+) \\
+4 & Par 1         & Azul           & Azul           & BI\_DC+ (Trx C+) \\
+5 & Par 1         & Blanco/Azul    & Blanco/Azul    & BI\_DC- (Trx C-) \\
+6 & Par 2 / Par 3 & Naranja        & Verde          & BI\_DB- (Trx B-) \\
+7 & Par 4         & Blanco/Marrón  & Blanco/Marrón  & BI\_DD+ (Trx D+) \\
+8 & Par 4         & Marrón         & Marrón         & BI\_DD- (Trx D-) \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \label{tab:t568b}
 \end{table}
 
@@ -247,13 +249,13 @@ Se implementa un \textbf{Gabinete de Telecomunicaciones cerrado de 42U} (19'', 8
 \label{fig:rack42u}
 \end{figure}
 
-Se implementa un \textbf{Gabinete de Telecomunicaciones cerrado de 42U} (19'', 800~mm de profundidad, puerta de vidrio templado con cerradura). La distribución vertical optimiza la separación térmica y la ergonomía de parcheo:
-
 \begin{table}[H]
+\centering
 \caption{Distribución vertical del Gabinete Rack 42U --- Vista frontal}
-\begin{tabular}{@{}clp{8.5cm}@{}}
+\small
+\begin{tabularx}{\textwidth}{@{} c >{\raggedright\arraybackslash}p{3.8cm} X @{}}
 \toprule
-\textbf{U\#} & \textbf{Elemento} & \textbf{Descripción} \\
+\textbf{U\#} & \textbf{Elemento} & \textbf{Descripción Técnica} \\
 \midrule
 U41--U42 & Ventilación    & Bandeja de 4 extractores de techo con termostato \\
 U40      & Reserva        & Espacio libre para expansión futura \\
@@ -278,7 +280,7 @@ U09--U10 & PDU            & Regleta PDU horizontal 8 tomas C13 con interruptor t
 U04--U08 & UPS Online     & Doble conversión 3000~VA / 2700~W --- 3U \\
 U01--U03 & Baterías       & Banco externo para UPS (autonomía 45~min) --- 3U \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \label{tab:rack}
 \end{table}
 
@@ -315,7 +317,9 @@ Las bajadas verticales fijas suman: $2.20~\text{m}$ (cielo raso a toma de pared)
 \subsection{Resumen del Bill of Materials (BOM)}
 
 \begin{table}[H]
+\centering
 \caption{Bill of Materials --- Resumen de componentes principales}
+\small
 \begin{tabularx}{\textwidth}{@{}clXcc@{}}
 \toprule
 \textbf{Ítem} & \textbf{Código} & \textbf{Descripción} & \textbf{Cant.} & \textbf{Unidad} \\

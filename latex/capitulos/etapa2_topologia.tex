@@ -29,6 +29,7 @@ Se ha seleccionado una \textbf{Topología Física en Estrella Jerárquica} con u
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}[
+    scale=0.82, transform shape,
     ap/.style={circle, draw, fill=orange!20, minimum size=0.9cm, font=\tiny\bfseries},
     pc/.style={rectangle, draw, fill=gray!15, minimum width=1.1cm, minimum height=0.55cm, rounded corners=2pt, font=\tiny},
     sw/.style={rectangle, draw, fill=mdpiBlue, text=white, minimum width=2.2cm, minimum height=0.7cm, font=\small\bfseries},
@@ -80,6 +81,7 @@ La topología lógica opera mediante \textbf{enlaces punto a punto Full-Duplex c
 \subsection{Correspondencia de Capas Aplicada al Policlínico}
 
 \begin{table}[H]
+\centering
 \caption{Correspondencia de capas OSI / TCP-IP con componentes del policlínico}
 \begin{tabularx}{\textwidth}{@{}ccXX@{}}
 \toprule
@@ -134,17 +136,19 @@ Esto justifica técnicamente el uso de cable \textbf{F/UTP Cat~6A apantallado} e
 \subsection{Matriz Comparativa de Medios Físicos}
 
 \begin{table}[H]
+\centering
 \caption{Matriz comparativa de medios de transmisión}
-\begin{tabularx}{\textwidth}{@{}Xccccc@{}}
+\small
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\raggedright\arraybackslash}p{2.6cm} *{5}{>{\centering\arraybackslash}X}@{}}
 \toprule
-\textbf{Criterio} & \textbf{UTP Cat~6} & \textbf{F/UTP Cat~6A} & \textbf{Coaxial} & \textbf{FO Multimodo} & \textbf{FO Monomodo} \\
+Criterio & \textbf{UTP Cat~6} & \textbf{F/UTP Cat~6A} & \textbf{Coaxial} & \textbf{FO Multi.} & \textbf{FO Mono.} \\
 \midrule
-Ancho de Banda & 250~MHz & 500~MHz & $\leq$1~GHz & 4700~MHz·km & $\sim$THz \\
-Velocidad LAN & 1~Gbps & 10~Gbps & $<$100~Mbps & 10--100~Gbps & $>$10~Gbps \\
-Dist. Máxima & 90~m & 90~m & 185~m & 300--550~m & $>$10~km \\
-Inmunidad EMI & Media & \textbf{Muy alta} & Media-Alta & \textbf{Total} & \textbf{Total} \\
-Costo/metro & Bajo & Moderado & Obsoleto & Alto & Alto \\
-Uso en Proyecto & \textbf{85\%} & \textbf{15\%} & Descartado & Uplink Rack & Descartado \\
+Ancho de Banda & 250~MHz & 500~MHz & $\leq$1~GHz & 4.7~GHz$\cdot$km & $\sim$THz \\
+Velocidad LAN  & 1~Gbps  & 10~Gbps & $<$100~Mbps & 10--100~Gbps & $>$10~Gbps \\
+Dist. Máxima   & 90~m    & 90~m    & 185~m       & 300--550~m   & $>$10~km \\
+Inmunidad EMI  & Media   & \textbf{Muy alta} & Media-Alta & \textbf{Total} & \textbf{Total} \\
+Costo / metro  & Bajo    & Moderado & Obsoleto   & Alto         & Alto \\
+Uso Proyecto   & \textbf{85\%} & \textbf{15\%} & Descartado & Troncal MDF & Descartado \\
 \bottomrule
 \end{tabularx}
 \label{tab:medios}

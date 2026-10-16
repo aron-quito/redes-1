@@ -1,86 +1,86 @@
 \babel@toc {spanish}{}\relax 
 \contentsline {chapter}{INTRODUCCIÓN}{1}{chapter*.2}%
-\contentsline {chapter}{\numberline {1}Definición de la Organización y Requerimientos de Red}{2}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Descripción de la Organización}{2}{section.1.1}%
-\contentsline {subsection}{\numberline {1.1.1}Misión y Perfil Tecnológico}{2}{subsection.1.1.1}%
+\contentsline {chapter}{\numberline {1}Definición de la Organización y Requerimientos de Red}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Descripción de la Organización}{3}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Misión y Perfil Tecnológico}{3}{subsection.1.1.1}%
 \contentsline {subsection}{\numberline {1.1.2}Número de Trabajadores y Dispositivos}{3}{subsection.1.1.2}%
 \contentsline {section}{\numberline {1.2}Inventario de Ambientes y Distribución de Planta}{3}{section.1.2}%
-\contentsline {subsection}{\numberline {1.2.1}Zona Norte: Consultorios y Servicios Médicos}{3}{subsection.1.2.1}%
-\contentsline {subsection}{\numberline {1.2.2}Zona Central: Pasillo y Circulación}{3}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.1}Zona Norte: Consultorios y Servicios Médicos}{4}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Zona Central: Pasillo y Circulación}{4}{subsection.1.2.2}%
 \contentsline {subsection}{\numberline {1.2.3}Zona Sur: Diagnóstico, Especialidades y Administración}{4}{subsection.1.2.3}%
-\contentsline {section}{\numberline {1.3}Justificación de la Ubicación Geocéntrica del MDF}{4}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Marco de Requerimientos de Red (Sección 6)}{4}{section.1.4}%
-\contentsline {subsection}{\numberline {1.4.1}Cobertura de Red Inalámbrica (WLAN Wi-Fi 6)}{4}{subsection.1.4.1}%
-\contentsline {subsection}{\numberline {1.4.2}Matriz de Requerimientos de Red por Ambiente}{5}{subsection.1.4.2}%
+\contentsline {section}{\numberline {1.3}Justificación de la Ubicación Geocéntrica del MDF}{5}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Marco de Requerimientos de Red (Sección 6)}{5}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Cobertura de Red Inalámbrica (WLAN Wi-Fi 6)}{5}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Matriz de Requerimientos de Red por Ambiente}{6}{subsection.1.4.2}%
 \contentsline {subsection}{\numberline {1.4.3}Resumen de Características Técnicas Identificadas}{6}{subsection.1.4.3}%
-\contentsline {chapter}{\numberline {2}Topología, Modelos de Referencia y Selección de Medios de Transmisión}{6}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Tipo y Clasificación de la Red}{6}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Clasificación por Alcance Geográfico}{6}{subsection.2.1.1}%
-\contentsline {section}{\numberline {2.2}Topología Física: Estrella Jerárquica}{6}{section.2.2}%
+\contentsline {chapter}{\numberline {2}Topología, Modelos de Referencia y Selección de Medios de Transmisión}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Tipo y Clasificación de la Red}{7}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Clasificación por Alcance Geográfico}{7}{subsection.2.1.1}%
+\contentsline {section}{\numberline {2.2}Topología Física: Estrella Jerárquica}{7}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}Justificación Técnica de la Topología}{7}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Topología Lógica: Punto a Punto Conmutado}{7}{subsection.2.2.2}%
-\contentsline {section}{\numberline {2.3}Aplicación de los Modelos de Referencia OSI y TCP/IP}{8}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Correspondencia de Capas Aplicada al Policlínico}{8}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Ejemplo de Encapsulación: Envío de Estudio Radiológico al Servidor PACS}{8}{subsection.2.3.2}%
-\contentsline {section}{\numberline {2.4}Sistemas y Medios de Comunicación}{9}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Señales y Esquema de Codificación}{9}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}Capacidad del Canal: Teorema de Shannon-Hartley}{9}{subsection.2.4.2}%
-\contentsline {section}{\numberline {2.5}Selección y Justificación de Medios de Transmisión}{10}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Matriz Comparativa de Medios Físicos}{10}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}Decisiones de Selección Justificadas}{10}{subsection.2.5.2}%
-\contentsline {subsubsection}{\numberline {2.5.2.1}Cable UTP Categoría 6 LSZH para el 85\% de las tomas}{10}{subsubsection.2.5.2.1}%
-\contentsline {subsubsection}{\numberline {2.5.2.2}Cable F/UTP Categoría 6A Apantallado para Rayos X y Laboratorio}{10}{subsubsection.2.5.2.2}%
+\contentsline {subsection}{\numberline {2.2.2}Topología Lógica: Punto a Punto Conmutado}{8}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.3}Aplicación de los Modelos de Referencia OSI y TCP/IP}{9}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Correspondencia de Capas Aplicada al Policlínico}{9}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Ejemplo de Encapsulación: Envío de Estudio Radiológico al Servidor PACS}{9}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}Sistemas y Medios de Comunicación}{10}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Señales y Esquema de Codificación}{10}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Capacidad del Canal: Teorema de Shannon-Hartley}{10}{subsection.2.4.2}%
+\contentsline {section}{\numberline {2.5}Selección y Justificación de Medios de Transmisión}{11}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Matriz Comparativa de Medios Físicos}{11}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Decisiones de Selección Justificadas}{11}{subsection.2.5.2}%
+\contentsline {subsubsection}{\numberline {2.5.2.1}Cable UTP Categoría 6 LSZH para el 85\% de las tomas}{11}{subsubsection.2.5.2.1}%
+\contentsline {subsubsection}{\numberline {2.5.2.2}Cable F/UTP Categoría 6A Apantallado para Rayos X y Laboratorio}{11}{subsubsection.2.5.2.2}%
 \contentsline {subsubsection}{\numberline {2.5.2.3}Descarte del Cable Coaxial}{11}{subsubsection.2.5.2.3}%
-\contentsline {subsubsection}{\numberline {2.5.2.4}Fibra Óptica solo en el Troncal del Rack}{11}{subsubsection.2.5.2.4}%
-\contentsline {chapter}{\numberline {3}Cableado Estructurado, Diseño del Rack 42U y Cómputo de Materiales}{11}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Marco Normativo Internacional Aplicable}{11}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Subsistemas de Cableado Estructurado}{11}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Subsistema de Área de Trabajo (WA)}{12}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Subsistema de Cableado Horizontal}{12}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Subsistema del Cuarto de Telecomunicaciones (MDF)}{12}{subsection.3.2.3}%
-\contentsline {section}{\numberline {3.3}Diseño de Canalizaciones (ANSI/TIA-569-D)}{12}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Troncal Principal: Bandeja Tipo Malla en Pasillo Central}{12}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Distribución Perimetral: Canaleta de PVC de Dos Vías}{12}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Puntos de Techo para Access Points}{13}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}Estándar de Terminación T568A vs. T568B}{13}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Comparativa de Asignación de Pines}{13}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Justificación de la Elección de T568B}{13}{subsection.3.4.2}%
-\contentsline {section}{\numberline {3.5}Diseño del Gabinete Rack 42U (MDF)}{14}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Cómputo Métrico de Cable y Bill of Materials}{16}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}Metodología de Cálculo}{16}{subsection.3.6.1}%
-\contentsline {subsection}{\numberline {3.6.2}Cable UTP Categoría 6 (50 Puntos)}{16}{subsection.3.6.2}%
-\contentsline {subsection}{\numberline {3.6.3}Cable F/UTP Categoría 6A Blindado (6 Puntos)}{16}{subsection.3.6.3}%
-\contentsline {subsection}{\numberline {3.6.4}Resumen del Bill of Materials (BOM)}{17}{subsection.3.6.4}%
-\contentsline {chapter}{\numberline {4}Planos de Distribución Física y Cuadro Consolidado de Materiales}{18}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Introducción al Diseño Físico}{18}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Simbología Normalizada ANSI/TIA-606-B}{19}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Matriz de Coordenadas y Distancias por Ambiente}{20}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Diseño de Cobertura Inalámbrica Wi-Fi 6}{21}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Criterios de Propagación en Banda de 5 GHz}{21}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Ubicación y Cobertura de los Cuatro APs}{21}{subsection.4.4.2}%
-\contentsline {section}{\numberline {4.5}BOM Valorizado y Presupuesto Referencial}{21}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Partida 01: Infraestructura Pasiva de Cableado}{22}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Partida 02: Canalizaciones y Puesta a Tierra}{22}{subsection.4.5.2}%
-\contentsline {subsection}{\numberline {4.5.3}Partida 03: Gabinete Rack, Respaldo Eléctrico y Climatización}{23}{subsection.4.5.3}%
-\contentsline {subsection}{\numberline {4.5.4}Partida 04: Equipamiento Activo de Red y WLAN}{23}{subsection.4.5.4}%
-\contentsline {subsection}{\numberline {4.5.5}Resumen General del Presupuesto}{23}{subsection.4.5.5}%
-\contentsline {section}{\numberline {4.6}Plan de Mantenimiento Preventivo Físico}{24}{section.4.6}%
-\contentsline {chapter}{\numberline {5}Construcción de Cable UTP y Plan de Pruebas de Certificación}{24}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Introducción y Objetivos}{24}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Plan de Pruebas y Certificación de Enlace Permanente}{24}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Enlace Permanente vs. Canal Completo}{24}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Parámetros Eléctricos y de RF Certificados (TIA-568-C.2)}{25}{subsection.5.2.2}%
-\contentsline {subsubsection}{\numberline {5.2.2.1}Cálculo de Atenuación en el Enlace Más Lejano}{27}{subsubsection.5.2.2.1}%
-\contentsline {subsection}{\numberline {5.2.3}Diagnóstico de Fallas y el Par Dividido (\textit {Split Pair})}{27}{subsection.5.2.3}%
-\contentsline {section}{\numberline {5.3}Guía de Fabricación de la Muestra Física UTP (T568B)}{28}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Materiales Necesarios}{28}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Procedimiento Paso a Paso}{28}{subsection.5.3.2}%
-\contentsline {section}{\numberline {5.4}Guía para la Evaluación Individual Aleatoria}{29}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Preguntas Típicas de Sustentación y Respuestas Esperadas}{29}{subsection.5.4.1}%
-\contentsline {subsubsection}{\numberline {5.4.1.1}¿Por qué se eligió T568B frente a T568A?}{29}{subsubsection.5.4.1.1}%
-\contentsline {subsubsection}{\numberline {5.4.1.2}¿Por qué la norma prohíbe destrenzar más de 13~mm?}{29}{subsubsection.5.4.1.2}%
-\contentsline {subsubsection}{\numberline {5.4.1.3}Si los LEDs 1 y 2 no encienden en el tester, ¿qué falla indica?}{30}{subsubsection.5.4.1.3}%
-\contentsline {subsubsection}{\numberline {5.4.1.4}¿Para qué servía el cable cruzado y por qué hoy se usa solo cable directo?}{30}{subsubsection.5.4.1.4}%
-\contentsline {section}{\numberline {5.5}Ficha Técnica de Reporte de Certificación}{31}{section.5.5}%
-\contentsline {chapter}{CONCLUSIONES}{31}{chapter*.31}%
-\contentsline {chapter}{REFERENCIAS}{34}{chapter*.32}%
+\contentsline {subsubsection}{\numberline {2.5.2.4}Fibra Óptica solo en el Troncal del Rack}{12}{subsubsection.2.5.2.4}%
+\contentsline {chapter}{\numberline {3}Cableado Estructurado, Diseño del Rack 42U y Cómputo de Materiales}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Marco Normativo Internacional Aplicable}{13}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Subsistemas de Cableado Estructurado}{13}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Subsistema de Área de Trabajo (WA)}{13}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Subsistema de Cableado Horizontal}{13}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Subsistema del Cuarto de Telecomunicaciones (MDF)}{14}{subsection.3.2.3}%
+\contentsline {section}{\numberline {3.3}Diseño de Canalizaciones (ANSI/TIA-569-D)}{14}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Troncal Principal: Bandeja Tipo Malla en Pasillo Central}{14}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Distribución Perimetral: Canaleta de PVC de Dos Vías}{14}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Puntos de Techo para Access Points}{14}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Estándar de Terminación T568A vs. T568B}{15}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Comparativa de Asignación de Pines}{15}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Justificación de la Elección de T568B}{15}{subsection.3.4.2}%
+\contentsline {section}{\numberline {3.5}Diseño del Gabinete Rack 42U (MDF)}{15}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Cómputo Métrico de Cable y Bill of Materials}{17}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Metodología de Cálculo}{17}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Cable UTP Categoría 6 (50 Puntos)}{18}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.3}Cable F/UTP Categoría 6A Blindado (6 Puntos)}{18}{subsection.3.6.3}%
+\contentsline {subsection}{\numberline {3.6.4}Resumen del Bill of Materials (BOM)}{19}{subsection.3.6.4}%
+\contentsline {chapter}{\numberline {4}Planos de Distribución Física y Cuadro Consolidado de Materiales}{20}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Introducción al Diseño Físico}{20}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Simbología Normalizada ANSI/TIA-606-B}{22}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Matriz de Coordenadas y Distancias por Ambiente}{23}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Diseño de Cobertura Inalámbrica Wi-Fi 6}{24}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Criterios de Propagación en Banda de 5 GHz}{24}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Ubicación y Cobertura de los Cuatro APs}{25}{subsection.4.4.2}%
+\contentsline {section}{\numberline {4.5}BOM Valorizado y Presupuesto Referencial}{25}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Partida 01: Infraestructura Pasiva de Cableado}{26}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Partida 02: Canalizaciones y Puesta a Tierra}{27}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}Partida 03: Gabinete Rack, Respaldo Eléctrico y Climatización}{27}{subsection.4.5.3}%
+\contentsline {subsection}{\numberline {4.5.4}Partida 04: Equipamiento Activo de Red y WLAN}{28}{subsection.4.5.4}%
+\contentsline {subsection}{\numberline {4.5.5}Resumen General del Presupuesto}{28}{subsection.4.5.5}%
+\contentsline {section}{\numberline {4.6}Plan de Mantenimiento Preventivo Físico}{29}{section.4.6}%
+\contentsline {chapter}{\numberline {5}Construcción de Cable UTP y Plan de Pruebas de Certificación}{30}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Introducción y Objetivos}{30}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Plan de Pruebas y Certificación de Enlace Permanente}{30}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Enlace Permanente vs. Canal Completo}{30}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Parámetros Eléctricos y de RF Certificados (TIA-568-C.2)}{31}{subsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.2.1}Cálculo de Atenuación en el Enlace Más Lejano}{31}{subsubsection.5.2.2.1}%
+\contentsline {subsection}{\numberline {5.2.3}Diagnóstico de Fallas y el Par Dividido (\textit {Split Pair})}{32}{subsection.5.2.3}%
+\contentsline {section}{\numberline {5.3}Guía de Fabricación de la Muestra Física UTP (T568B)}{33}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Materiales Necesarios}{33}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Procedimiento Paso a Paso}{33}{subsection.5.3.2}%
+\contentsline {section}{\numberline {5.4}Guía para la Evaluación Individual Aleatoria}{34}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Preguntas Típicas de Sustentación y Respuestas Esperadas}{34}{subsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.1.1}¿Por qué se eligió T568B frente a T568A?}{34}{subsubsection.5.4.1.1}%
+\contentsline {subsubsection}{\numberline {5.4.1.2}¿Por qué la norma prohíbe destrenzar más de 13~mm?}{34}{subsubsection.5.4.1.2}%
+\contentsline {subsubsection}{\numberline {5.4.1.3}Si los LEDs 1 y 2 no encienden en el tester, ¿qué falla indica?}{34}{subsubsection.5.4.1.3}%
+\contentsline {subsubsection}{\numberline {5.4.1.4}¿Para qué servía el cable cruzado y por qué hoy se usa solo cable directo?}{35}{subsubsection.5.4.1.4}%
+\contentsline {section}{\numberline {5.5}Ficha Técnica de Reporte de Certificación}{35}{section.5.5}%
+\contentsline {chapter}{CONCLUSIONES}{36}{chapter*.33}%
+\contentsline {chapter}{REFERENCIAS}{38}{chapter*.34}%

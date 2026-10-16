@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.8.1)  15 OCT 2026 23:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.8.1)  15 OCT 2026 23:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -887,7 +887,7 @@ Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'spanish'.
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 139.
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 136.
  (/Users/aron/Library/TinyTeX/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 ) (./main.aux
@@ -898,26 +898,26 @@ Package babel Info: 'spanish' activates 'spanish' shorthands.
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Info: Redefining \. on input line 139.
-LaTeX Info: Redefining \% on input line 139.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 136.
+LaTeX Font Info:    ... okay on input line 136.
+LaTeX Info: Redefining \. on input line 136.
+LaTeX Info: Redefining \% on input line 136.
 
 Couldn't patch \ttl@straight@ii
 Couldn't patch \ttl@straight@ii
@@ -982,591 +982,94 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 139.
-Package biblatex Info: Reference segment=0 on input line 139.
-Package hyperref Info: Link coloring ON on input line 139.
+Package biblatex Info: Reference section=0 on input line 136.
+Package biblatex Info: Reference segment=0 on input line 136.
+Package hyperref Info: Link coloring ON on input line 136.
  (./main.out) (./main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
 Package babel Info: Main language set to 'spanish'.
  (./portada.tex
-LaTeX Font Info:    Trying to load font information for U+fontawesomefree3 on input line 13.
- (/Users/aron/Library/TinyTeX/texmf-dist/tex/latex/fontawesome5/ufontawesomefree3.fd)
-LaTeX Font Info:    Trying to load font information for U+fontawesomebrands1 on input line 40.
+<./images/logo-unjbg.png, id=312, 1159.6926pt x 236.082pt>
+File: ./images/logo-unjbg.png Graphic file (type png)
+<use ./images/logo-unjbg.png>
+Package pdftex.def Info: ./images/logo-unjbg.png  used on input line 6.
+(pdftex.def)             Requested size: 341.43306pt x 69.50308pt.
+LaTeX Font Info:    Trying to load font information for U+fontawesomebrands1 on input line 31.
  (/Users/aron/Library/TinyTeX/texmf-dist/tex/latex/fontawesome5/ufontawesomebrands1.fd)
 LaTeX Font Info:    Font shape `U/fontawesomebrands1/solid/n' in size <10.95> not available
-(Font)              Font shape `U/fontawesomebrands1/regular/n' tried instead on input line 40.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 40.
+(Font)              Font shape `U/fontawesomebrands1/regular/n' tried instead on input line 31.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 31.
  (/Users/aron/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 40.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 31.
  (/Users/aron/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/Users/aron/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/aron/Library/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}{/Users/aron/Library/TinyTeX/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free3.enc}{/Users/aron/Library/TinyTeX/texmf-dist/fonts/enc/dvips/fontawesome5/fa5brands1.enc}]
+{/Users/aron/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/aron/Library/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}{/Users/aron/Library/TinyTeX/texmf-dist/fonts/enc/dvips/fontawesome5/fa5brands1.enc} <./images/logo-unjbg.png>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.66 \end{titlepage}
+l.57 \end{titlepage}
                      [2]) (./main.toc
 LaTeX Info: Redefining \sptext on input line 1.
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
- [1]
+ [1
+
+]
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <12> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 74.
 )
 \tf@toc=\write6
 \openout6 = `main.toc'.
 
- [2] (./capitulos/introduccion.tex [1]) (./capitulos/etapa1_definicion.tex
+ [2] (./capitulos/introduccion.tex [1
+
+]) (./capitulos/etapa1_definicion.tex [2]
 Cap\'{\i }tulo 1.
-[2]
-Overfull \hbox (72.37416pt too wide) in paragraph at lines 48--63
-[][]
- []
+[3
 
-[3]
-Overfull \hbox (109.88538pt too wide) in paragraph at lines 73--88
-[][]
- []
-
-(/Users/aron/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ts1phv.fd)
-Overfull \hbox (17.34831pt too wide) in paragraph at lines 132--132
-[]|\T1/phv/b/n/12 Dispositivos| 
- []
-
-[4]
-Overfull \vbox (147.93349pt too high) has occurred while \output is active []
-
- [5]) (./capitulos/etapa2_topologia.tex
+] [4] (/Users/aron/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ts1phv.fd) [5]) (./capitulos/etapa2_topologia.tex [6]
 Cap\'{\i }tulo 2.
-[6] [7] [8]
-Overfull \hbox (35.72055pt too wide) in paragraph at lines 149--149
-[]|\T1/phv/b/n/12 Criterio| 
- []
+[7
 
-
-Overfull \hbox (27.0689pt too wide) in paragraph at lines 149--149
-[]|\T1/phv/m/n/12 Ancho
- []
-
-
-Overfull \hbox (6.39307pt too wide) in paragraph at lines 149--149
-\T1/phv/m/n/12 de
- []
-
-
-Overfull \hbox (18.39293pt too wide) in paragraph at lines 149--149
-\T1/phv/m/n/12 Ban-
- []
-
-
-Overfull \hbox (6.39307pt too wide) in paragraph at lines 149--149
-\T1/phv/m/n/12 da| 
- []
-
-
-Overfull \hbox (44.78072pt too wide) in paragraph at lines 149--149
-[]|\T1/phv/m/n/12 Velocidad
- []
-
-
-Overfull \hbox (16.389pt too wide) in paragraph at lines 149--149
-\T1/phv/m/n/12 LAN| 
- []
-
-
-Overfull \hbox (17.04889pt too wide) in paragraph at lines 149--149
-[]|\T1/phv/m/n/12 Dist.
- []
-
-
-Overfull \hbox (19.71306pt too wide) in paragraph at lines 149--149
-\T1/phv/m/n/12 Máx-
- []
-
-
-Overfull \hbox (9.7171pt too wide) in paragraph at lines 149--149
-\T1/phv/m/n/12 ma| 
- []
-
-
-Overfull \hbox (48.95656pt too wide) in paragraph at lines 149--149
-[]|\T1/phv/m/n/12 Inmunidad
- []
-
-
-Overfull \hbox (14.38496pt too wide) in paragraph at lines 149--149
-\T1/phv/m/n/12 EMI| 
- []
-
-
-Overfull \hbox (58.4004pt too wide) in paragraph at lines 149--149
-[]|\T1/phv/m/n/12 Costo/metro| 
- []
-
-
-Overfull \hbox (14.3851pt too wide) in paragraph at lines 149--149
-[]|\T1/phv/m/n/12 Uso
- []
-
-
-Overfull \hbox (6.39307pt too wide) in paragraph at lines 149--149
-\T1/phv/m/n/12 en
- []
-
-
-Overfull \hbox (33.78902pt too wide) in paragraph at lines 149--149
-\T1/phv/m/n/12 Proyec-
- []
-
-
-Overfull \hbox (3.05702pt too wide) in paragraph at lines 149--149
-\T1/phv/m/n/12 to| 
- []
-
-[9] [10]) (./capitulos/etapa3_cableado.tex
+] [8] [9] [10]) (./capitulos/etapa3_cableado.tex [11] [12]
 Cap\'{\i }tulo 3.
-[11] [12]
-Overfull \hbox (12.52486pt too wide) in paragraph at lines 60--75
-[][]
- []
+[13
 
+] [14]
 LaTeX Font Info:    Font shape `T1/phv/b/it' in size <12> not available
-(Font)              Font shape `T1/phv/b/sl' tried instead on input line 143.
-[13] [14] [15]) (./capitulos/etapa4_planos.tex [16]
+(Font)              Font shape `T1/phv/b/sl' tried instead on input line 145.
+ [15] [16] [17]) (./capitulos/etapa4_planos.tex [18] [19]
 Cap\'{\i }tulo 4.
-[17] [18]
-Overfull \hbox (128.1147pt too wide) in paragraph at lines 38--66
-[][]
- []
+<./images/plano.png, id=552, 3854.4pt x 2047.65pt>
+File: ./images/plano.png Graphic file (type png)
+<use ./images/plano.png>
+Package pdftex.def Info: ./images/plano.png  used on input line 16.
+(pdftex.def)             Requested size: 426.79135pt x 226.7107pt.
+<./images/plano_red_preview.png, id=554, 2951.025pt x 1678.27pt>
+File: ./images/plano_red_preview.png Graphic file (type png)
+<use ./images/plano_red_preview.png>
+Package pdftex.def Info: ./images/plano_red_preview.png  used on input line 23.
+(pdftex.def)             Requested size: 426.79135pt x 242.71552pt.
+[20
 
-[19] [20]
-Overfull \hbox (77.6475pt too wide) in paragraph at lines 194--216
-[][]
- []
-
-[21]
-Overfull \hbox (140.16443pt too wide) in paragraph at lines 222--238
-[][]
- []
-
-
-Overfull \hbox (155.74234pt too wide) in paragraph at lines 244--258
-[][]
- []
-
-[22]
-Overfull \hbox (155.64613pt too wide) in paragraph at lines 264--277
-[][]
- []
-
-
-Overfull \hbox (88.61548pt too wide) in paragraph at lines 283--296
-[][]
- []
-
-) (./capitulos/etapa5_pruebas.tex [23]
+ <./images/plano.png>] [21 <./images/plano_red_preview.png>] [22] [23] [24] [25] [26] [27]) (./capitulos/etapa5_pruebas.tex [28] [29]
 Cap\'{\i }tulo 5.
-[24]
+[30
 
-Package tabularx Warning: X Columns too narrow (table too wide)
-(tabularx)                 on input line 54.
+] [31] [32] [33] [34]) (./capitulos/conclusiones.tex [35] [36
 
-
-Overfull \hbox (56.68723pt too wide) in paragraph at lines 54--54
-[]|\T1/phv/b/n/12 Descripción| 
- []
-
-
-Overfull \hbox (51.91121pt too wide) in paragraph at lines 54--54
-[]|\T1/phv/m/n/12 Continuidad
- []
-
-
-Overfull \hbox (4.0078pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 pin
- []
-
-
-Overfull \hbox (4.0078pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 pin
- []
-
-
-Overfull \hbox (12.01172pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 pan-
- []
-
-
-Overfull \hbox (10.00763pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 talla
- []
-
-
-Overfull \hbox (31.88348pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 (Cat 6A)| 
- []
-
-
-Overfull \hbox (34.03136pt too wide) in paragraph at lines 54--54
-[]|\T1/phv/m/n/12 Longitud
- []
-
-
-Overfull \hbox (8.66383pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 me-
- []
-
-
-Overfull \hbox (1.33183pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 di-
- []
-
-
-Overfull \hbox (1.34384pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 da
- []
-
-
-Overfull \hbox (5.3398pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 por
- []
-
-
-Overfull \hbox (2.66383pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 re-
- []
-
-
-Overfull \hbox (10.66788pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 flec-
- []
-
-
-Overfull \hbox (32.0153pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 tometría
- []
-
-
-Overfull \hbox (16.66772pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 (NVP
- []
-
-
-Overfull \hbox (17.9415pt too wide) in paragraph at lines 54--54
-\OT1/cmr/m/n/12 0[]69\OML/cmm/m/it/12 c$\T1/phv/m/n/12 )| 
- []
-
-
-Overfull \hbox (29.3515pt too wide) in paragraph at lines 54--54
-[]|\T1/phv/m/n/12 Pérdida
- []
-
-
-Overfull \hbox (1.34384pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 de
- []
-
-
-Overfull \hbox (5.3398pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 po-
- []
-
-
-Overfull \hbox (8.67567pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 ten-
- []
-
-
-Overfull \hbox (3.33588pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 cia
- []
-
-
-Overfull \hbox (1.34384pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 de
- []
-
-
-Overfull \hbox (16.67972pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 señal
- []
-
-
-Overfull \hbox (35.21967pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 250 MHz| 
- []
-
-
-Overfull \hbox (58.4151pt too wide) in paragraph at lines 54--54
-[]|\T1/phv/m/n/12 Paradiafonía:
- []
-
-
-Overfull \hbox (1.33183pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 in-
- []
-
-
-Overfull \hbox (11.3398pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 duc-
- []
-
-
-Overfull \hbox (10.0078pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 ción
- []
-
-
-Overfull \hbox (5.3398pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 en-
- []
-
-
-Overfull \hbox (2.00375pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 tre
- []
-
-
-Overfull \hbox (18.01172pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 pares
- []
-
-
-Overfull \hbox (1.34384pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 en
- []
-
-
-Overfull \hbox (4.30795pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 ex-
- []
-
-
-Overfull \hbox (18.67163pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 tremo
- []
-
-
-Overfull \hbox (8.66383pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 cer-
- []
-
-
-Overfull \hbox (14.01576pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 cano| 
- []
-
-
-Overfull \hbox (19.3437pt too wide) in paragraph at lines 54--54
-[]|\T1/phv/m/n/12 Suma
- []
-
-
-Overfull \hbox (1.34384pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 de
- []
-
-
-Overfull \hbox (5.3398pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 po-
- []
-
-
-Overfull \hbox (8.67567pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 ten-
- []
-
-
-Overfull \hbox (3.33588pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 cia
- []
-
-
-Overfull \hbox (1.34384pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 de
- []
-
-
-Overfull \hbox (1.33183pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 di-
- []
-
-
-Overfull \hbox (14.32759pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 fonía
- []
-
-
-Overfull \hbox (1.34384pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 de
- []
-
-
-Overfull \hbox (18.01172pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 pares
- []
-
-
-Overfull \hbox (4.66788pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 so-
- []
-
-
-Overfull \hbox (5.3398pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 bre
- []
-
-
-Overfull \hbox (30.02342pt too wide) in paragraph at lines 54--54
-[]|\T1/phv/m/n/12 Energía
- []
-
-
-Overfull \hbox (2.66383pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 re-
- []
-
-
-Overfull \hbox (4.66788pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 fle-
- []
-
-
-Overfull \hbox (1.33183pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 ja-
- []
-
-
-Overfull \hbox (1.34384pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 da
- []
-
-
-Overfull \hbox (5.3398pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 por
- []
-
-
-Overfull \hbox (17.87958pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 varia-
- []
-
-
-Overfull \hbox (22.67972pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 ciones
- []
-
-
-Overfull \hbox (1.34384pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 de
- []
-
-
-Overfull \hbox (38.01547pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 impedan-
- []
-
-
-Overfull \hbox (3.33588pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 cia
- []
-
-
-Overfull \hbox (27.03769pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 (100 $\OT1/cmr/m/n/12 
-$\T1/phv/m/n/12 )| 
- []
-
-
-Overfull \hbox (28.00766pt too wide) in paragraph at lines 54--54
-[]|\T1/phv/m/n/12 Tiempo
- []
-
-
-Overfull \hbox (1.34384pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 de
- []
-
-
-Overfull \hbox (2.66383pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 ar-
- []
-
-
-Overfull \hbox (1.34384pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 bo
- []
-
-
-Overfull \hbox (14.97566pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 difer-
- []
-
-
-Overfull \hbox (5.3398pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 en-
- []
-
-
-Overfull \hbox (3.33588pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 cia
- []
-
-
-Overfull \hbox (5.3398pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 en-
- []
-
-
-Overfull \hbox (2.00375pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 tre
- []
-
-
-Overfull \hbox (5.3398pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 par
- []
-
-
-Overfull \hbox (10.66788pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 más
- []
-
-
-Overfull \hbox (11.99971pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 rápi-
- []
-
-
-Overfull \hbox (30.69531pt too wide) in paragraph at lines 54--54
-\T1/phv/m/n/12 do/lento| 
- []
-
-
-Overfull \hbox (32.30347pt too wide) in alignment at lines 54--54
-[][][][] 
- []
-
-[25]
-Overfull \vbox (564.9635pt too high) has occurred while \output is active []
-
- [26]
-Overfull \hbox (25.05595pt too wide) in paragraph at lines 136--137
- [][] 
- []
-
-LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 137.
-[27] [28] [29]) (./capitulos/conclusiones.tex [30] [31] [32]) [33]
+]) [37]
 LaTeX Font Info:    Font shape `TS1/phv/m/it' in size <12> not available
-(Font)              Font shape `TS1/phv/m/sl' tried instead on input line 167.
- [34] [35] (./main.aux
+(Font)              Font shape `TS1/phv/m/sl' tried instead on input line 164.
+ [38
+
+] [39] (./main.aux
 LaTeX Info: Redefining \sptext on input line 12.
 LaTeX Info: Redefining \. on input line 12.
 LaTeX Info: Redefining \% on input line 12.
@@ -1576,24 +1079,24 @@ LaTeX2e <2026-06-01>
 L3 programming layer <2026-06-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: F759A8E70CE38D01C291EE5D13EE6FF2;21505.
+(rerunfilecheck)             Checksum: 41928524C0CC1D5FCC27D56907EDA264;21505.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 38704 strings out of 469097
- 750221 string characters out of 5457525
- 1566944 words of memory out of 5000000
- 66918 multiletter control sequences out of 15000+600000
- 686734 words of font info for 117 fonts, out of 8000000 for 9000
+ 38724 strings out of 469097
+ 750572 string characters out of 5457525
+ 1566210 words of memory out of 5000000
+ 66936 multiletter control sequences out of 15000+600000
+ 688331 words of font info for 119 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  102i,13n,107p,1197b,2361s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </Users/aron/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Brands-Regular.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Free-Solid.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on main.pdf (39 pages, 285571 bytes).
+ </Users/aron/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Brands-Regular.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></Users/aron/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
+Output written on main.pdf (43 pages, 1993658 bytes).
 PDF statistics:
- 829 PDF objects out of 1000 (max. 8388607)
- 732 compressed objects within 8 object streams
- 221 named destinations out of 1000 (max. 500000)
- 621 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 864 PDF objects out of 1000 (max. 8388607)
+ 754 compressed objects within 8 object streams
+ 227 named destinations out of 1000 (max. 500000)
+ 636 words of extra memory for PDF output out of 10000 (max. 10000000)
 

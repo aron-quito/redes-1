@@ -11,9 +11,24 @@ La presente etapa consolida la representación gráfica de ingeniería y la valo
     \item \textbf{Capa 4:} Células de cobertura WLAN Wi-Fi~6 (radios de 8.0~m a 5~GHz).
 \end{enumerate}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{plano.png}
+\caption{Plano arquitectónico civil y distribución espacial de ambientes del Policlínico (Escala 1:100)}
+\label{fig:plano-civil}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{plano_red_preview.png}
+\caption{Plano integral de ingeniería de red LAN: cableado estructurado, canalizaciones y celdas Wi-Fi~6}
+\label{fig:plano-red-completo}
+\end{figure}
+
 \section{Simbología Normalizada ANSI/TIA-606-B}
 
 \begin{table}[H]
+\centering
 \caption{Simbología técnica normalizada para planos de red}
 \begin{tabularx}{\textwidth}{@{}cclX@{}}
 \toprule
@@ -34,8 +49,10 @@ $-\,-\,-$            & PATH-CP   & Canaleta PVC 2 vías 40$\times$25~mm & Adosad
 \section{Matriz de Coordenadas y Distancias por Ambiente}
 
 \begin{table}[H]
+\centering
 \caption{Distancias de enlace permanente por ambiente respecto al MDF}
-\begin{tabular}{@{}clcccc@{}}
+\small
+\begin{tabularx}{\textwidth}{@{} c X c c c c @{}}
 \toprule
 \textbf{N°} & \textbf{Ambiente} & \textbf{Dim. (m)} & \textbf{Tomas} & \textbf{Dist. Horiz.} & \textbf{Enl. Perm.} \\
 \midrule
@@ -60,14 +77,14 @@ $-\,-\,-$            & PATH-CP   & Canaleta PVC 2 vías 40$\times$25~mm & Adosad
 \midrule
 \multicolumn{3}{l}{\textbf{Total}} & \textbf{56 Tomas} & --- & \textbf{Prom.: 16.5~m} \\
 \bottomrule
-\multicolumn{6}{l}{$^*$Toma más lejana. Límite normativo ANSI/TIA-568: $\leq 90.0$~m. Margen de seguridad: +55.2~m (61.3\%).} \\
-\end{tabular}
+\multicolumn{6}{@{}p{\textwidth}@{}}{\footnotesize $^*$Toma más lejana. Límite normativo ANSI/TIA-568: $\leq 90.0$~m. Margen de seguridad: +55.2~m (61.3\%).} \\
+\end{tabularx}
 \label{tab:distancias}
 \end{table}
 
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}[scale=0.52, every node/.style={transform shape}]
+\begin{tikzpicture}[scale=0.46, every node/.style={transform shape}]
     % Perímetro exterior del edificio (30m x 15m escala conceptual)
     \draw[line width=2pt, fill=gray!5] (0,0) rectangle (28, 14);
     
@@ -190,8 +207,10 @@ Los precios corresponden a mercado institucional en Perú (distribuidores Pandui
 \subsection{Partida 01: Infraestructura Pasiva de Cableado}
 
 \begin{table}[H]
+\centering
 \caption{Partida 01 --- Infraestructura pasiva y conectividad}
-\begin{tabular}{@{}clccrr@{}}
+\small
+\begin{tabularx}{\textwidth}{@{} c X c c r r @{}}
 \toprule
 \textbf{Ítem} & \textbf{Descripción} & \textbf{Cant.} & \textbf{Ud.} & \textbf{P.Unit. (USD)} & \textbf{Subtotal (USD)} \\
 \midrule
@@ -211,15 +230,17 @@ Los precios corresponden a mercado institucional en Perú (distribuidores Pandui
 \midrule
 \multicolumn{5}{r}{\textbf{SUBTOTAL Partida 01}} & \textbf{\$2,208.00} \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \label{tab:partida01}
 \end{table}
 
 \subsection{Partida 02: Canalizaciones y Puesta a Tierra}
 
 \begin{table}[H]
+\centering
 \caption{Partida 02 --- Canalizaciones y sistema de tierra}
-\begin{tabular}{@{}clccrr@{}}
+\small
+\begin{tabularx}{\textwidth}{@{} c X c c r r @{}}
 \toprule
 \textbf{Ítem} & \textbf{Descripción} & \textbf{Cant.} & \textbf{Ud.} & \textbf{P.Unit. (USD)} & \textbf{Subtotal (USD)} \\
 \midrule
@@ -233,15 +254,17 @@ Los precios corresponden a mercado institucional en Perú (distribuidores Pandui
 \midrule
 \multicolumn{5}{r}{\textbf{SUBTOTAL Partida 02}} & \textbf{\$1,084.00} \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \label{tab:partida02}
 \end{table}
 
 \subsection{Partida 03: Gabinete Rack, Respaldo Eléctrico y Climatización}
 
 \begin{table}[H]
+\centering
 \caption{Partida 03 --- Rack, UPS y climatización}
-\begin{tabular}{@{}clccrr@{}}
+\small
+\begin{tabularx}{\textwidth}{@{} c X c c r r @{}}
 \toprule
 \textbf{Ítem} & \textbf{Descripción} & \textbf{Cant.} & \textbf{Ud.} & \textbf{P.Unit. (USD)} & \textbf{Subtotal (USD)} \\
 \midrule
@@ -253,15 +276,17 @@ Los precios corresponden a mercado institucional en Perú (distribuidores Pandui
 \midrule
 \multicolumn{5}{r}{\textbf{SUBTOTAL Partida 03}} & \textbf{\$2,650.00} \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \label{tab:partida03}
 \end{table}
 
 \subsection{Partida 04: Equipamiento Activo de Red y WLAN}
 
 \begin{table}[H]
+\centering
 \caption{Partida 04 --- Equipamiento activo y conectividad inalámbrica}
-\begin{tabular}{@{}clccrr@{}}
+\small
+\begin{tabularx}{\textwidth}{@{} c X c c r r @{}}
 \toprule
 \textbf{Ítem} & \textbf{Descripción} & \textbf{Cant.} & \textbf{Ud.} & \textbf{P.Unit. (USD)} & \textbf{Subtotal (USD)} \\
 \midrule
@@ -272,15 +297,17 @@ Los precios corresponden a mercado institucional en Perú (distribuidores Pandui
 \midrule
 \multicolumn{5}{r}{\textbf{SUBTOTAL Partida 04}} & \textbf{\$3,690.00} \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \label{tab:partida04}
 \end{table}
 
 \subsection{Resumen General del Presupuesto}
 
 \begin{table}[H]
+\centering
 \caption{Resumen consolidado del presupuesto de infraestructura}
-\begin{tabular}{@{}clrrr@{}}
+\small
+\begin{tabularx}{\textwidth}{@{} c X r r r @{}}
 \toprule
 \textbf{Partida} & \textbf{Descripción del Rubro} & \textbf{Subtotal (USD)} & \textbf{Subtotal (PEN)} & \textbf{Incidencia} \\
 \midrule
@@ -291,14 +318,16 @@ Los precios corresponden a mercado institucional en Perú (distribuidores Pandui
 \midrule
 \textbf{TOTAL} & \textbf{Costo Total Directo de Suministros} & \textbf{\$9,632.00} & \textbf{S/.~36,120.00} & \textbf{100.00\%} \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \label{tab:presupuesto-total}
 \end{table}
 
 \section{Plan de Mantenimiento Preventivo Físico}
 
 \begin{table}[H]
+\centering
 \caption{Calendario de mantenimiento preventivo de la infraestructura}
+\small
 \begin{tabularx}{\textwidth}{@{}clX@{}}
 \toprule
 \textbf{Frecuencia} & \textbf{Actividad} & \textbf{Descripción} \\
