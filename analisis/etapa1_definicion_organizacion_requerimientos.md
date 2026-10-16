@@ -51,35 +51,30 @@ Para mantener un diseño sencillo de dibujar y calcular, las áreas se han estan
 | **Pasillo Central de Distribución** | 30.0 m × 2.0 m | 60 m² | Corredor central que recorre toda la clínica y alberga la bandeja portacables principal en el cielo raso + 2 APs de techo. |
 | **ÁREA TOTAL CONSTRUIDA** | **30 m × 15 m** | **450 m²** | **100% del área del predio.** |
 
-### 2.4. Esquema en Planta y Distribución Espacial
+### 2.4. Esquema Arquitectónico Visual y Distribución Espacial en Planta
 
-A continuación se muestra cómo se organiza visualmente la planta de la clínica (vista superior), mostrando el pasillo central que facilita el recorrido de las canaletas hacia el Cuarto de Telecomunicaciones central:
+Para superar las limitaciones de los diagramas de texto y garantizar una visualización profesional de ingeniería a escala exacta (**30.00 m × 15.00 m = 450 m²**), se ha desarrollado un **visor interactivo por código** en SVG / HTML5 (`plano/index.html`) disponible localmente en `http://localhost:3456`.
 
-```text
-+----------------------------------------------------------------------------------------------------+
-|                                    LONGITUD: 30 METROS                                             |
-|                                                                                                    |
-| +--------------------+-------------------+-------------------+-----------------+-----------------+ |
-| | Admisión y Caja    | Farmacia          | Consultorio 1     | Consultorio 2   | Consultorio 3   | |
-| | (6m x 4m)          | (5m x 4m)         | (3.5m x 4m)       | (3.5m x 4m)     | (3.5m x 4m)     | |
-| +--------------------+-------------------+-------------------+-----------------+-----------------+ |
-| |                                                                                                | |
-| | =================== PASILLO CENTRAL Y BANDEJA PORTACABLES (30m x 2m) ========================= | |
-| |                                                                                                | |
-| +-----------------+-----------------+-------------------+-------------------+--------------------+ |
-| | Sala de Espera  | Triaje / Tópico | CUARTO DE COMUN.  | Laboratorio       | Rayos X / Ecograf. | |
-| | (TV Turnos + AP)| (4m x 4m)       | (MDF / RACK)      | Clínico           | (Blindaje EMI)     | |
-| | (8m x 5m)       |                 | (3m x 3m)         | (6m x 5m)         | (6m x 5m)          | |
-| +-----------------+-----------------+-------------------+-------------------+--------------------+ |
-| | Consultorio 4   | Consultorio 5   | Consultorio 6     | Consultorio 7     | Consultorio 8      | |
-| | (3.5m x 4m)     | (3.5m x 4m)     | (3.5m x 4m)       | (3.5m x 4m)       | (3.5m x 4m)        | |
-| +-----------------+-----------------+-------------------+-------------------+--------------------+ |
-| | Estar Médico y Reuniones (5m x 4m)| Administración y Jefatura (6m x 4m)   | SS.HH. (5m x 3m)   | |
-| +-----------------------------------+---------------------------------------+--------------------+ |
-|                                                                                                    |
-+----------------------------------------------------------------------------------------------------+
-                                      ANCHO: 15 METROS
-```
+A continuación se muestra la captura del plano arquitectónico con las capas de ingeniería activadas:
+
+![Plano Arquitectónico y Distribución Física de Red LAN](file:///Users/aron/CODIGO/redes-1/analisis/plano_red_preview.png)
+
+#### Criterios de la Distribución Arquitectónica:
+1. **Flujo de Pacientes Lógico y Secuencial:**
+   * **Ingreso y Admisión:** Ubicado al frente izquierdo (X: 0 a 5.5m), contiguo a la puerta de acceso y con línea visual directa a la **Sala de Espera General (49 m²)**.
+   * **Farmacia Asistencial:** Dispone de mostrador hacia el pasillo y ventanilla hacia la sala de espera para compra directa de medicamentos sin invadir áreas clínicas.
+   * **Triaje y Tópico:** Inmediatamente contiguo a la sala de espera para el control ágil de signos vitales previo al paso a consultorios.
+2. **Corredor Central de Circulación Técnica y Asistencial (Ancho 2.40 m):**
+   * Conecta longitudinalmente los 30 metros del edificio.
+   * Alberga la **Bandeja Portacables Principal (Tipo Malla de 200×50 mm)** suspendida en el falso cielo raso (a 2.60 m de altura), desde la cual se derivan los peines de cable hacia cada ambiente.
+3. **Ubicación Geocéntrica del Cuarto de Telecomunicaciones (MDF):**
+   * Ubicado en el centro de gravedad del edificio (X: 12.5m a 16.0m), lo que minimiza la longitud de los enlaces horizontales.
+   * **Distancia máxima real:** **34.8 metros** hacia el punto más distante (Rayos X / Consultorio 5), cumpliendo con un margen de seguridad superior al 60% respecto a los **90 metros máximos** permitidos por **ANSI/TIA-568**.
+4. **Zona Crítica Aislada (Laboratorio y Rayos X):**
+   * Ubicada en el extremo Este (fondo), con muros baritados/plomados para contención radiológica y cableado **F/UTP apantallado** para inmunidad contra interferencias electromagnéticas (EMI).
+5. **Visor Interactivo y Exportación:**
+   * La aplicación local permite encender/apagar capas (muros, bandeja portacables, tomas RJ-45, cobertura Wi-Fi y tendidos de cable), hacer zoom/pan e inspeccionar cada sala haciendo clic sobre ella.
+   * Cuenta con un botón para **descargar el plano en formato vectorial SVG** listo para ser insertado en la Memoria Técnica y diapositivas de sustentación.
 
 ### 2.5. Personal y Usuarios Estimados
 * **Personal Médico y Asistencial:** 12 médicos y 6 licenciadas/técnicas en enfermería.
