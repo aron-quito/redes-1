@@ -203,6 +203,94 @@ body::after {
   height: 100%;
 }
 
+.layout-blueprint-split {
+  display: grid;
+  grid-template-columns: 1.35fr 0.85fr;
+  gap: 2.8%;
+  width: 100%;
+  height: 100%;
+}
+
+/* Grilla académica de autores para Slide 0 */
+.authors-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  width: 100%;
+  max-width: 950px;
+  margin-top: 14px;
+}
+
+.author-chip {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 8px;
+  padding: 8px 10px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.author-chip:hover {
+  border-color: var(--accent-cyan);
+  background: rgba(56, 189, 248, 0.1);
+  transform: translateY(-2px);
+}
+
+.author-chip .author-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.author-chip .author-code {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-cyan);
+  background: rgba(56, 189, 248, 0.12);
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.narrative-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid var(--accent-cyan);
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 10px;
+}
+
+.narrative-step .step-num {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--accent-cyan);
+  background: rgba(56, 189, 248, 0.15);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.narrative-step .step-content {
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.narrative-step .step-content strong {
+  color: #fff;
+}
+
 /* ==========================================================================
    COMPONENTES GRÁFICOS Y TARJETAS
    ========================================================================== */
@@ -524,17 +612,20 @@ body::after {
 
 @media print {
   @page {
-    size: 297mm 167mm; /* 16:9 A4 proporcional */
+    size: 297mm 167.06mm; /* Exact 16:9 widescreen */
     margin: 0;
   }
   
   html, body {
-    width: 297mm;
-    height: 167mm;
-    overflow: visible;
-    background: #0b0f19 !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 297mm !important;
+    height: auto !important;
+    min-height: 100% !important;
+    overflow: visible !important;
+    background: #07090e !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
   
   #progress-bar, #nav-controls, #fullscreen-hint, body::before, body::after {
@@ -542,29 +633,149 @@ body::after {
   }
   
   #presentation-viewport {
-    display: block;
-    width: 100%;
-    height: auto;
+    display: block !important;
+    position: static !important;
+    width: 297mm !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
   }
   
   .slide-stage {
-    width: 100% !important;
+    display: block !important;
+    position: static !important;
+    width: 297mm !important;
     height: auto !important;
     aspect-ratio: auto !important;
     border: none !important;
     box-shadow: none !important;
     border-radius: 0 !important;
+    background: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   
   .slide {
     position: relative !important;
+    inset: auto !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
     width: 297mm !important;
-    height: 167mm !important;
+    height: 167.06mm !important;
+    min-height: 167.06mm !important;
+    max-height: 167.06mm !important;
+    box-sizing: border-box !important;
+    padding: 16px 26px !important;
+    margin: 0 !important;
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;
-    page-break-after: always;
-    break-after: page;
     display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    page-break-before: auto !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    background: radial-gradient(circle at 50% 15%, rgba(30, 41, 59, 0.45) 0%, rgba(10, 15, 29, 0.95) 100%) !important;
+  }
+
+  /* Compactación para impresión perfecta */
+  .slide-header {
+    margin-bottom: 10px !important;
+    padding-bottom: 6px !important;
+  }
+
+  .slide-tag {
+    font-size: 0.75rem !important;
+    padding: 2px 8px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .slide-title {
+    font-size: 1.85rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .slide-subtitle {
+    font-size: 0.95rem !important;
+    margin-top: 2px !important;
+  }
+
+  .slide-body {
+    flex: 1 !important;
+    min-height: 0 !important;
+    gap: 20px !important;
+  }
+
+  .card {
+    padding: 14px 18px !important;
+    border-radius: 10px !important;
+  }
+
+  .card-title {
+    font-size: 1.15rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .narrative-step {
+    padding: 6px 10px !important;
+    margin-bottom: 6px !important;
+    gap: 8px !important;
+  }
+
+  .narrative-step .step-num {
+    width: 22px !important;
+    height: 22px !important;
+    font-size: 0.8rem !important;
+  }
+
+  .narrative-step .step-content {
+    font-size: 0.82rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .bullet-list {
+    gap: 8px !important;
+  }
+
+  .bullet-item {
+    font-size: 0.84rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .data-table th, .data-table td {
+    padding: 6px 8px !important;
+    font-size: 0.8rem !important;
+  }
+
+  .kpi-row {
+    margin-top: 8px !important;
+    gap: 8px !important;
+  }
+
+  .kpi-box {
+    padding: 6px 10px !important;
+    border-radius: 6px !important;
+  }
+
+  .kpi-value {
+    font-size: 1.35rem !important;
+    margin-bottom: 2px !important;
+  }
+
+  .kpi-label {
+    font-size: 0.68rem !important;
+    letter-spacing: 0.3px !important;
+  }
+
+  .math-formula {
+    font-size: 1.8rem !important;
+    padding: 12px !important;
+    margin-bottom: 10px !important;
   }
 }

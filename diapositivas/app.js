@@ -15,17 +15,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let currentIndex = 0;
 
-  // Inicializar contador total
+  // Inicializar contador total (13 diapositivas de contenido más portada 00)
   if (totalNumEl) {
-    totalNumEl.textContent = String(totalSlides).padStart(2, '0');
+    totalNumEl.textContent = String(totalSlides - 1).padStart(2, '0');
   }
 
-  // Leer hash inicial si existe (ej. #slide-5)
+  // Leer hash inicial si existe (ej. #slide-0 o #slide-5)
   const hash = window.location.hash;
   if (hash && hash.startsWith('#slide-')) {
     const page = parseInt(hash.replace('#slide-', ''), 10);
-    if (!isNaN(page) && page >= 1 && page <= totalSlides) {
-      currentIndex = page - 1;
+    if (!isNaN(page) && page >= 0 && page < totalSlides) {
+      currentIndex = page;
     }
   }
 
@@ -43,9 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Actualizar contador
+    // Actualizar contador: 00 para portada, 01..13 para contenido
     if (currentNumEl) {
-      currentNumEl.textContent = String(currentIndex + 1).padStart(2, '0');
+      currentNumEl.textContent = String(currentIndex).padStart(2, '0');
     }
 
     // Actualizar barra de progreso
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Actualizar URL sin reload
     if (updateHistory) {
-      window.history.replaceState(null, null, `#slide-${currentIndex + 1}`);
+      window.history.replaceState(null, null, `#slide-${currentIndex}`);
     }
   }
 
