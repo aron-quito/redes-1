@@ -1,408 +1,479 @@
-# Documentación y Justificación de Diapositivas
+# Guía Narrativa de la Presentación
 ## Defensa Técnica — Diseño de Infraestructura Física y Cableado Estructurado LAN
 ### Policlínico de Especialidades Médicas «Salud & Vida S.A.C.»
 
-> **Archivo de presentación:** `diapositivas/index.html`  
-> **Total de diapositivas:** 17  
-> **Navegación:** `→` / `←` teclado · Clic / Toque · `F` pantalla completa · `Space` / `Enter` avanzar  
-> **Normas:** ANSI/TIA-568-C.2 · ANSI/TIA-569-D · ANSI/TIA-606-B · IEEE 802.3ab/ax
+> Este documento explica qué se dice y qué se defiende en cada diapositiva,
+> escrito en primera persona como si fueras el expositor frente al jurado.
 
 ---
 
-## Estructura General
+## Slide 01 — Portada
 
-La presentación sigue el hilo narrativo de **defensa de decisiones de ingeniería**, no de exposición teórica. Cada slide responde implícitamente a: *"¿por qué tomaron esta decisión y no otra?"*
+Cuando esta diapositiva aparece en pantalla, lo primero que el jurado ve son
+cuatro etiquetas normativas: **ANSI/TIA-568-C.2, ANSI/TIA-569-D, ANSI/TIA-606-B
+e IEEE 802.3ab/ax**. Eso no es decoración; es una declaración de intención.
+Le estamos diciendo al jurado, antes de abrir la boca, que este proyecto no
+fue hecho a criterio propio sino que cada decisión tiene un estándar que la
+respalda.
 
-```
-Portada → Problema → Requerimientos → Perfil de Tráfico
-→ Topología → Capa Física → Cable Cat 6 → Zonas Críticas (Shannon)
-→ Canalizaciones → Ubicación MDF → Rack 42U → Plano Civil
-→ Plano de Red → Wi-Fi 6 → Certificación → Split Pair → Presupuesto
-```
-
----
-
-## Slide 01 — Portada Académica
-
-**ID:** `#slide-1` | **Etiqueta:** *Defensa Técnica • Unidad I • Redes de Computadoras I*
-
-### Contenido
-- Logo institucional UNJBG
-- Título principal del proyecto
-- 4 pills de normas: ANSI/TIA-568-C.2, ANSI/TIA-569-D, ANSI/TIA-606-B, IEEE 802.3ab/ax
-- Pie: docente Mg. Reynaldo Alfonte Zapana · ESIS · Tacna
-
-### Justificación
-Mostrar los estándares desde el primer instante comunica al jurado que el proyecto tiene respaldo técnico-legal. El layout hero centrado sigue la estética de divulgación científica acordada (estilo Manim / 3Blue1Brown).
+El título describe exactamente lo que se hizo: diseñar la infraestructura
+física y el cableado estructurado de una red LAN para un policlínico real.
+No es una red genérica de laboratorio; tiene un cliente, una dirección y
+requisitos clínicos específicos.
 
 ---
 
-## Slide 02 — El Problema Físico: Caos Operativo en Salud
+## Slide 02 — El Problema: ¿Por Qué Había que Rediseñar?
 
-**ID:** `#slide-2` | **Etiqueta:** *Diagnóstico Situacional*
+Aquí justificamos que el proyecto era necesario. La tarjeta roja de la
+izquierda describe el estado en el que encontramos la instalación:
 
-### Contenido
-Dos tarjetas contrastadas:
+- **Cables Cat 5e tirados en el piso**, sin ningún tipo de canalización,
+  expuestos a que una camilla los pise o los rompa. Eso no es solo un
+  problema técnico; en un entorno médico es un riesgo de interrupción del
+  servicio clínico.
 
-| Tarjeta Izquierda (rojo) | Tarjeta Derecha (verde) |
-|---|---|
-| 3 fallas críticas encontradas | 3 mejoras proyectadas |
-| KPI: 4.0 min apertura Rx / 10 Mbps degradado | KPI: < 1.2 s apertura DICOM / 1000 Mbps |
+- **Mini-switches en cascada**: cuando nadie gestiona la red y se van
+  encadenando switches no administrados, el tráfico de broadcast se
+  multiplica en cada salto. El resultado son tormentas de broadcast que
+  consumen el ancho de banda disponible sin transmitir información útil.
 
-**Fallas descritas:**
-1. Cables Cat 5e en piso sin canalización, expuestos a camillas
-2. Mini-switches en cascada → tormentas de broadcast
-3. Interferencia EMI en Rayos X → datos corrompidos (100 kV)
+- **Interferencia EMI en la sala de Rayos X**: los equipos de diagnóstico
+  por imagen generan pulsos electromagnéticos al disparar. Un cable sin
+  blindaje en ese entorno recibe ese ruido directamente en los conductores
+  de cobre, lo que corrompe los bits transmitidos.
 
-### Justificación
-El contraste visual rojo/verde con KPIs cuantificados hace el problema **memorable y auditable**. El jurado puede contrastar antes/después con números exactos, no con opiniones subjetivas.
+Los dos KPIs de esa tarjeta son datos de estándar, no mediciones en el
+sitio: Cat 5e tiene un límite de **100 Mbps** (IEEE 802.3u, Fast Ethernet)
+y un ancho de banda de **100 MHz** (ANSI/TIA-568-C.2). Con esos topes, el
+cable no puede transportar Gigabit Ethernet, independientemente de cuánto
+mejore el resto de la red.
 
-> **Informe:** Sección 1.1 — Diagnóstico de la Infraestructura Existente
-
----
-
-## Slide 03 — Dimensionamiento: 450 m² y 56 Tomas
-
-**ID:** `#slide-3` | **Etiqueta:** *Requerimientos de Infraestructura*
-
-### Contenido
-- **Tabla — Matriz de Distribución por Zonas:** 5 filas con ambientes, tomas y tipo de cable
-- **Panel de criterios de ingeniería:**
-  - Regla de 2 tomas mínimas (TIA-568)
-  - Reserva técnica 15% (8 puntos para expansión sin obras)
-  - Zonificación Oeste público / Este diagnóstico restringido
-- KPIs: 450 m² (30×15 m) · 56 Jacks RJ-45
-
-### Justificación
-La tabla permite verificar que los números suman correctamente (11+16+6+10+13 = 56). La columna "Tipo Cable" anticipa la decisión de F/UTP Cat 6A solo en zonas críticas, preparando la diapo 08.
-
-> **Informe:** Tabla 3.1 — Distribución de Tomas por Zona
+La tarjeta verde de la derecha muestra la solución proyectada. El KPI
+**< 1.2 s** de apertura de un estudio DICOM es un cálculo matemático
+directo: un estudio radiológico estándar pesa aproximadamente 120 MB; a
+1 Gbps (125 MB/s de throughput máximo teórico), el tiempo de transferencia
+es **t = 120 MB ÷ 125 MB/s = 0.96 s**, que es menor a 1.2 s. El
+**1000 Mbps** es la velocidad garantizada por IEEE 802.3ab sobre Cat 6 UTP.
 
 ---
 
-## Slide 04 — Perfil de Tráfico: EMR vs. DICOM
+## Slide 03 — ¿Cuántos Puntos de Red y Dónde?
 
-**ID:** `#slide-4` | **Etiqueta:** *Análisis de Carga de Red*
+Esta diapositiva responde a la pregunta más básica de cualquier diseño de
+cableado: cuántos puntos de red existen y cómo están distribuidos.
 
-### Contenido
-Dos tarjetas con diagramas SVG:
+La tabla muestra que los 56 jacks RJ-45 no se colocaron de forma arbitraria.
+Cada zona recibió puntos según su función:
 
-- **EMR (cian):** paquetes pequeños equiespaciados, flujo continuo (50 KB/petición), baja latencia < 5 ms, suficiente con Cat 6
-- **DICOM (ámbar):** rectángulo de ráfaga masiva (50–300 MB), generada tras disparo Rayos X, riesgo de 15–30 s si enlace degrada a 100 Mbps, exige Gigabit / 10G al servidor PACS
+- Las zonas de **atención pública** (recepción, sala de espera, triaje)
+  tienen 11 tomas con cable UTP Cat 6, suficiente para las cargas
+  administrativas de registro de pacientes.
+  
+- Los **consultorios** (C-01 al C-08) tienen 16 tomas: cada consultorio
+  cuenta con 2 jacks, que es el mínimo que exige la norma TIA-568 por
+  puesto de trabajo, uno para la PC clínica y otro de reserva para VoIP
+  o una segunda estación.
 
-### Justificación
-Justifica por qué se usan **dos tipos de cable** en el mismo edificio: la heterogeneidad del tráfico médico lo requiere. El diagrama de ráfaga imita visualizaciones de analizadores de red reales (Wireshark), haciéndolo reconocible.
+- La **zona crítica EMI** (Rayos X y Laboratorio Clínico) tiene solo 6
+  tomas, pero son de F/UTP Cat 6A blindado porque ahí la categoría del
+  cable importa más que la cantidad.
 
-> **Informe:** Sección 2.3 — Dimensionamiento del Ancho de Banda
-
----
-
-## Slide 05 — Decisión 1: Estrella Jerárquica Colapsada
-
-**ID:** `#slide-5` | **Etiqueta:** *Diseño Topológico*
-
-### Contenido
-- **SVG topológico:** MDF Rack 42U central (cian) con uplinks punteados 10G DAC a SW Acceso 01 (Oeste) y SW Acceso 02 (Este). Nodos terminales codificados por color: Recepción/Farmacia/C01-04 (azul), AP1/2 (morado), C05-08/Admin (azul), Lab (ámbar), Rayos X (rojo)
-- **Argumentos de defensa:**
-  1. Aislamiento de fallas por puerto
-  2. Descarte de Bus y Anillo (obsoletos, colapso total ante una rotura)
-  3. Solo 2 capas en lugar de 3 → ahorro $3,500 USD sin beneficio técnico en planta única
-- KPIs: 10 Gbps uplinks SFP+ · 100% switches PoE+ gestionados
-
-### Justificación
-El código de colores de los nodos es consistente con las zonas de la diapo 03 (Lab = ámbar, Rx = rojo → cable blindado). La numeración "Decisión 1" da estructura a la defensa oral.
-
-> **Informe:** Sección 2.1 — Topología de Red
+- La **reserva técnica del 15%** (8 puntos distribuidos) permite conectar
+  en el futuro cámaras IP de seguridad o equipos de telemedicina sin
+  romper paredes ni tirar cable nuevo.
 
 ---
 
-## Slide 06 — Encapsulación: La Capa Física Sostiene la Red
+## Slide 04 — ¿Por Qué No Alcanza con un Solo Tipo de Cable?
 
-**ID:** `#slide-6` | **Etiqueta:** *Modelos de Referencia*
+Esta es la diapositiva que explica el corazón del diseño dual de medios.
+El tráfico de una red hospitalaria no es homogéneo; tiene dos perfiles
+completamente distintos que conviven en el mismo edificio:
 
-### Contenido
-- **Diagrama de capas OSI vertical:** recorrido de 120 MB DICOM desde Rayos X al PACS
-  - Capa 7/6/5 (morado): imagen DICOM 120 MB + metadatos
-  - Capa 4 TCP (cian): MSS=1460 bytes, puerto TCP/104
-  - Capa 3 IP (cian): IPv4 PC Rayos X → PACS
-  - Capa 2 Ethernet 802.3 (verde): MAC + FCS CRC-32
-  - Capa 1 Física 4D-PAM5 (ámbar): voltajes en 4 pares F/UTP Cat 6A
-- **Argumentos:** ruido → fallo CRC-32 → descarte trama → retransmisión TCP → congestión → resultado final: 120 MB en 1.12 s con medio físico inmune
+El **tráfico EMR** (historias clínicas electrónicas) son consultas
+continuas y pequeñas a una base de datos: cada petición pesa del orden
+de los kilobytes y necesita baja latencia para que el sistema no se
+sienta lento. El cable UTP Cat 6 estándar cubre esto con amplísimo margen.
 
-### Justificación
-Vincula la teoría del curso (Modelo OSI, encapsulación) con la decisión de cable blindado. Demuestra que el equipo entiende **por qué** se elige F/UTP, no solo qué es. Es la bisagra entre análisis y selección de materiales.
+El **tráfico DICOM** (imágenes de diagnóstico por imagen) es completamente
+diferente: cuando el técnico dispara el equipo de Rayos X, en ese instante
+se genera un archivo de 50 a 300 MB que debe transferirse inmediatamente
+al servidor PACS para que el médico pueda abrirlo. No es un flujo continuo;
+es una ráfaga masiva y repentina. Si el enlace no puede absorberla en menos
+de dos segundos, el visor del médico se congela mientras espera, lo que
+interrumpe el flujo de trabajo clínico.
 
-> **Informe:** Secciones 2.2 y 2.4 — Encapsulación y Capa Física
-
----
-
-## Slide 07 — Decisión 2: UTP Cat 6 LSZH para el 85% de la Red
-
-**ID:** `#slide-7` | **Etiqueta:** *Medios de Transmisión*
-
-### Contenido
-- **SVG sección transversal del cable UTP Cat 6:** chaqueta LSZH Ø 6.2 mm, cruceta (Spline) central, 4 pares codificados (Azul P1, Naranja P2, Verde P3, Marrón P4)
-- **Argumentos:**
-  1. Spline: mantiene separación física → reduce paradiafonía NEXT drásticamente
-  2. LSZH: no propaga llama ni emite gases halógenos → seguridad hospitalaria (NFPA 70 / IEC 60332-1)
-  3. Descarte FTTD: distancias < 35 m → fibra encarece 250% sin ventaja de velocidad
-- KPIs: 250 MHz · 1000 Mbps garantizados
-
-### Justificación
-El argumento LSZH es de **cumplimiento normativo obligatorio** en entornos hospitalarios, convirtiendo la elección en una decisión de seguridad, no solo técnica. Se anticipa también el descarte de fibra al escritorio.
-
-> **Informe:** Sección 2.5 — Selección de Medios y Categoría de Cable
+Esto explica por qué en la sala de Rayos X no usamos cable ordinario: no
+es un capricho, es que la naturaleza física del tráfico que corre por ese
+punto lo exige.
 
 ---
 
-## Slide 08 — Decisión 3: F/UTP Cat 6A en Rayos X y Lab
+## Slide 05 — Decisión 1: ¿Por Qué Estrella Jerárquica y No Otra Topología?
 
-**ID:** `#slide-8` | **Etiqueta:** *Física de Comunicaciones*
+El diagrama muestra cómo está estructurada físicamente la red. En el
+centro del edificio se ubica el Rack MDF 42U, que actúa como núcleo.
+Desde él salen dos enlaces de 10 Gbps (cables DAC de cobre directos)
+hacia dos switches de acceso: uno cubre el sector Oeste del edificio y
+el otro el sector Este.
 
-### Contenido
-- **Fórmula Shannon-Hartley:** C = B · log₂(1 + S/N) con explicación del impacto del ruido N de descargas 100 kV
-- **SVG de curva C vs. S/N:** "Alto Ruido: C ↓ (100 Mbps)" vs. "Con Blindaje: C ↑ (10 Gbps)"
-- **Argumentos:**
-  1. Pantalla de aluminio = jaula de Faraday continua
-  2. Atenuación EMI ≥ 40 dB → desvía interferencia al hilo de drenaje → tierra TMGB
-  3. Cat 6A (500 MHz) prepara el canal para futura TAC
-- KPIs: ≥ 40 dB aislamiento · 500 MHz ancho de banda
+La justificación de esta topología frente a las alternativas es clara:
 
-### Justificación
-Usar Shannon-Hartley no es decorativo: es el fundamento matemático exacto por el que el blindaje es necesario. El equipo puede demostrar ante el jurado que si N crece, S/N cae y la capacidad C se degrada por debajo del umbral DICOM. Estilo gráfico Manim: minimalista, con solo dos anotaciones clave.
+- **Bus y Anillo** son topologías obsoletas. En un bus compartido, todos
+  los equipos compiten por el mismo medio y las colisiones son inevitables.
+  En un anillo, si se rompe un cable, se cae toda la red. Ninguna de las
+  dos es aceptable en un entorno donde la disponibilidad de la red afecta
+  la atención médica.
 
-> **Informe:** Sección 2.4 — Esquema de Codificación y Capacidad de Canal (Teorema de Shannon)
+- La **estrella jerárquica** aísla las fallas por puerto: si se rompe el
+  cable que va al consultorio 3, solo deja de funcionar ese consultorio;
+  el resto de la red no se entera.
 
----
-
-## Slide 09 — Decisión 4: Bandeja Aérea y Canaleta de Doble Vía
-
-**ID:** `#slide-9` | **Etiqueta:** *Infraestructura Física*
-
-### Contenido
-Dos tarjetas paralelas:
-
-- **Bandeja Malla 200×50 mm (pasillo):** SVG con 14 cables (28% ocupación, norma ≤ 40%), suspensión a +2.75 m falso techo, ventilación natural de malla
-- **Canaleta PVC 40×25 mm (muros):** SVG con tabique central separando DATOS (azul) de ENERGÍA 220V (rojo), radio de curvatura ≥ 4×OD
-
-### Justificación
-La separación física de datos y corriente alterna la exige ANSI/TIA-569-D. El 28% de ocupación inicial deja margen para ampliaciones sin obras civiles adicionales.
-
-> **Informe:** Sección 3.2 — Diseño de Canalizaciones
+- Optamos por **dos capas** (núcleo + acceso) en lugar de tres (núcleo +
+  distribución + acceso) porque el edificio tiene una sola planta. Agregar
+  una capa de distribución habría sumado equipos, cableado y complejidad
+  sin ningún beneficio técnico para esta escala.
 
 ---
 
-## Slide 10 — Decisión 5: Cuarto MDF en el Centro de Gravedad
+## Slide 06 — ¿Cómo Viaja un Archivo DICOM por las Capas de la Red?
 
-**ID:** `#slide-10` | **Etiqueta:** *Topografía y Distancias*
+Esta diapositiva conecta la teoría del modelo OSI con las decisiones
+físicas del proyecto. Seguimos el recorrido de un estudio de 120 MB desde
+la PC de Rayos X hasta el servidor PACS:
 
-### Contenido
-- **SVG planta esquemática 30×15 m:** MDF central (cian), vector Oeste→Recepción (17.7 m, cian), vector Este→Lab Clínico (34.8 m, rojo = enlace máximo)
-- **Argumentos:**
-  1. Límite TIA-568: 90.0 m para enlace permanente
-  2. Enlace más lejano: 34.80 m (Lab Clínico, extremo este)
-  3. Margen de seguridad: +55.20 m (61.3% bajo el límite)
-  4. Ahorro económico: posición central ahorró > 650 m de cable vs. rack en esquina
-- KPIs: 34.8 m toma más lejana · 90.0 m tope TIA
+- En la **Capa de Aplicación** el archivo existe como datos DICOM.
+- La **Capa de Transporte** (TCP) lo fragmenta en segmentos de 1460 bytes
+  (MSS estándar) y los numera para reensamblarlos en destino.
+- La **Capa de Red** (IP) les asigna origen y destino.
+- La **Capa de Enlace** (Ethernet 802.3) los empaqueta en tramas con una
+  cabecera MAC y una cola de verificación CRC-32.
+- La **Capa Física** convierte todo eso en señales eléctricas usando la
+  codificación 4D-PAM5 sobre los 4 pares de cobre del cable.
 
-### Justificación
-La ubicación del MDF no fue arbitraria sino resultado de una **optimización de distancias**. El vector rojo con su etiqueta permite al jurado verificar visualmente que 34.8 m está muy por debajo del límite de 90 m.
+¿Por qué importa esto para la elección del cable? Porque si hay ruido
+electromagnético en el medio físico, los bits llegan alterados a destino.
+La Capa de Enlace detecta el error con el CRC-32 y descarta la trama. La
+Capa de Transporte (TCP) no recibe el acuse de recibo y entra en modo de
+retransmisión, reduciendo su ventana de congestión. El resultado es que un
+enlace físico degradado hace colapsar el rendimiento de toda la pila de
+protocolos, aunque los switches y servidores estén perfectamente
+configurados.
 
-> **Informe:** Sección 4.1 — Plano Arquitectónico y Cálculo de Distancias
-
----
-
-## Slide 11 — Decisión 6: Elevación Modular del Rack 42U
-
-**ID:** `#slide-11` | **Etiqueta:** *Gabinete Central*
-
-### Contenido
-**SVG de elevación frontal del Rack 42U:**
-
-| U | Elemento |
-|---|---|
-| U40–U42 | Extractores Termostatizados |
-| U38–U39 | Patch Panel 01 Cat 6 (24p) + Organizador 1U |
-| U36–U37 | Patch Panel 02 Cat 6 (24p) + Organizador 1U |
-| U34–U35 | Patch Panel 03 Cat 6A Blindado + Organizador 1U |
-| U32–U33 | Switch Acceso 01 (24p PoE+) |
-| U30–U31 | Switch Acceso 02 (24p PoE+) |
-| U28–U29 | Switch Core / Distribución (4 SFP+ 10G) |
-| U24–U27 | Servidor EMR + PACS (4U) |
-| U20 | PDU 8 tomas C13 Termomagnético |
-| U14–U19 | UPS Online Doble Conversión 3000 VA / 2700 W |
-
-**Argumentos:**
-1. Topología sándwich: Patch panels sobre switches → latiguillos de 1 m sin cruzaderas
-2. UPS Online Doble Conversión (3 kVA): onda senoidal pura, 0 ms de transferencia
-3. TMGB (TIA-607): pozo a tierra ≤ 5 Ω
-- KPIs: 42U · 45 min autonomía
-
-### Justificación
-El diagrama de elevación es el documento técnico más auditado en una instalación de cableado estructurado. La distribución sándwich es práctica recomendada por Cisco y BICSI para minimizar latiguillos dentro del rack.
-
-> **Informe:** Sección 3.3 — Diseño del Rack 42U y Elevación Modular
+Esto justifica que el cable en la sala de Rayos X tenga blindaje: no es
+para "ir a lo seguro", es porque sin él la física impide que la
+transferencia funcione correctamente.
 
 ---
 
-## Slide 12 — Decisión 7: Distribución Física de Ambientes
+## Slide 07 — Decisión 2: ¿Por Qué UTP Cat 6 con Chaqueta LSZH?
 
-**ID:** `#slide-12` | **Etiqueta:** *Diseño Civil*
+El SVG muestra la sección transversal del cable. No es solo una imagen
+ilustrativa; cada elemento visible tiene una función técnica:
 
-### Contenido
-Plano arquitectónico civil a escala 1:100 (`images/plano.png`) ocupando toda la pantalla, dentro de marco tipo *blueprint* (fondo azul profundo, borde doble).
+La **cruceta plástica central (Spline)** separa físicamente los cuatro
+pares de conductores. Esto reduce la paradiafonía (NEXT), que es la
+interferencia que se genera entre pares adyacentes dentro del mismo cable.
+Cuanto más separados están los pares, menos se acoplan entre sí.
 
-### Justificación
-Diapositiva intencionalmente **minimal**: solo el plano. Permite al jurado señalar ambientes específicos durante las preguntas («¿dónde queda el MDF?», «¿cómo llega el cable a Rayos X?»). El marco blueprint refuerza el lenguaje de ingeniería de planta.
+La **chaqueta LSZH** (Low Smoke Zero Halogen) es un requisito específico
+del entorno hospitalario: en caso de incendio, este material no propaga la
+llama y no emite gases halógenos. Los gases halógenos son tóxicos y, en un
+edificio con pacientes que no pueden moverse rápidamente, eso se convierte
+en un riesgo vital. Un cable con chaqueta PVC convencional queda fuera de
+consideración por normativa de seguridad hospitalaria (referencia IEC
+60332-1).
 
-> **Informe:** Figura 4.1 — Plano Arquitectónico Civil
-
----
-
-## Slide 13 — Decisión 8: Plano Integral de Red y Canalizaciones
-
-**ID:** `#slide-13` | **Etiqueta:** *Ingeniería de Planta*
-
-### Contenido
-Plano de ingeniería de red (`images/plano_red_preview.png`) con rutas de bandeja aérea, posición de tomas RJ-45 y acometidas al Rack MDF.
-
-### Justificación
-La secuencia 12→13 (plano civil → plano de red) educa al jurado en la diferencia entre arquitectura y diseño de red. El plano de red es el documento que un contratista usaría para ejecutar la obra.
-
-> **Informe:** Figura 4.2 — Plano Integral de Red LAN
-
----
-
-## Slide 14 — Decisión 9: 4 Access Points Wi-Fi 6 (802.11ax)
-
-**ID:** `#slide-14` | **Etiqueta:** *Conectividad Inalámbrica*
-
-### Contenido
-- **SVG de celdas Wi-Fi:** 4 círculos morados con 15% de solapamiento sobre planta esquemática: AP-01 (Sala de Espera), AP-02 (Pasillo O), AP-03 (Pasillo E), AP-04 (Administración)
-- **Argumentos — por qué AP-01 en Sala de Espera:**
-  1. Hasta 35 personas en sala → AP dedicado para no saturar red clínica
-  2. Fast Roaming (802.11r/k/v): médico con tablet sin corte de sesión
-  3. Aislamiento SSIDs: pacientes en VLAN separada, BW limitado a 5 Mbps
-- KPIs: ≥ -65 dBm RSSI en borde de celda · 15% solapamiento
-
-### Justificación
-Justifica específicamente AP-01 en Sala de Espera, decisión discutida durante el diseño. La alta densidad de pacientes obliga a un AP propio para no interferir con la red médica. El aislamiento por VLAN es un requisito de seguridad hospitalaria.
-
-> **Informe:** Sección 4.3 — Diseño de Cobertura Inalámbrica Wi-Fi 6
+En cuanto al descarte de fibra óptica hasta el escritorio (FTTD): la
+distancia máxima desde el MDF hasta cualquier toma de la red es de 34.8 m.
+La fibra multimodo OM3 tiene sentido a partir de distancias en el orden de
+decenas o cientos de metros y en enlaces de backbone de muy alta velocidad.
+Para distancias menores a 40 m, la fibra encarece la instalación en
+aproximadamente 250% sin aportar ninguna ventaja de velocidad sobre Cat 6,
+que a esas distancias entrega Gigabit Ethernet sin problema.
 
 ---
 
-## Slide 15 — Decisión 10: Certificación Metrológica TIA-568-C.2
+## Slide 08 — Decisión 3: ¿Por Qué F/UTP Cat 6A en Rayos X y Laboratorio?
 
-**ID:** `#slide-15` | **Etiqueta:** *Aseguramiento de Calidad*
+Aquí es donde la física fundamenta la decisión de forma matemática.
+El Teorema de Shannon-Hartley establece que la capacidad máxima de un canal
+de comunicación es:
 
-### Contenido
-**Tabla de parámetros de certificación (Fluke DSX-8000, Nivel IIIe):**
+**C = B · log₂(1 + S/N)**
 
-| Parámetro RF | Límite Cat 6 (250 MHz) | Causa Típica de Falla |
-|---|---|---|
-| Wire Map | Continuidad 1:1 directa | Corte de hilo / Error pinout |
-| Longitud (TDR) | ≤ 90.0 m (Medido: 34.8 m) | Tirada excesiva de cable |
-| Atenuación (IL) | ≤ 31.1 dB | Cable CCA o longitud |
-| NEXT (Paradiafonía) | ≥ 35.3 dB | Destrenzado > 13 mm |
-| Return Loss | ≥ 10.0 dB | Radio curvatura < 4×OD |
+donde C es la capacidad en bits por segundo, B es el ancho de banda en Hz,
+S es la potencia de la señal y N es la potencia del ruido.
 
-**Modelo Enlace Permanente vs. Canal Completo:**
-- Enlace Permanente (90 m): solo tendido fijo → prueba de entrega de obra civil
-- Canal Completo (100 m): suma latiguillos → mantenimiento operativo
-- Dictamen: 100% de 56 enlaces certificados, garantía 20 años
-- KPIs: 100% Pass/Fail · Nivel IIIe
+En la sala de Rayos X, el equipo de diagnóstico genera pulsos
+electromagnéticos de alta energía (del orden de 100 kV). Si el cable de
+datos está en ese entorno sin blindaje, esos pulsos elevan el valor de N
+(ruido). Cuando N sube, el cociente S/N cae, y por tanto C cae. La red
+deja de poder entregar el ancho de banda que el sistema DICOM necesita para
+que las imágenes lleguen en tiempo real.
 
-### Justificación
-Los valores numéricos exactos con sus causas de falla demuestran que el equipo conoce los criterios de aceptación. El jurado puede preguntar "¿qué pasaría si el NEXT falla?" → respuesta en diapo 16.
+La solución es un cable **F/UTP Cat 6A**: la "F" indica que tiene una
+pantalla de aluminio que envuelve los cuatro pares, actuando como una jaula
+de Faraday continua. Esa pantalla desvía los campos electromagnéticos
+externos hacia el hilo de drenaje, que está conectado a la barra de tierra
+TMGB del rack. La atenuación que ofrece este blindaje es de al menos 40 dB,
+lo que significa que el ruido que llega a los conductores queda reducido a
+una fracción insignificante.
 
-> **Informe:** Sección 5.1 — Protocolo de Pruebas y Certificación
-
----
-
-## Slide 16 — Decisión 11: Por Qué el Tester de LEDs Engaña
-
-**ID:** `#slide-16` | **Etiqueta:** *Diagnóstico Avanzado*
-
-### Contenido
-**SVG comparativo Split Pair:**
-- **Caso A — Tester LED básico (verde):** 4 líneas rectas (continuidad DC) → "LED 1..8: OK (FALSO)"
-- **Caso B — Certificador RF (rojo):** 2 líneas rectas + 2 líneas cruzadas en parábola → "NEXT < 15 dB (FALLA)"
-
-**Argumentos:**
-1. La trampa DC: mezclar hilos de pares distintos mantiene continuidad metálica → LED verde (falso positivo)
-2. Desastre RF: se pierde cancelación electromagnética por trenzado → NEXT dispara → 80% pérdida de paquetes
-3. Solo certificador RF detecta el Split Pair
-
-KPIs: < 15 dB NEXT catastrófico · ≥ 35.3 dB límite norma Cat 6
-
-### Justificación
-El Split Pair es el error más común en instalaciones no profesionales y el menos intuitivo. Este slide es el más **didáctico** de la presentación: demuestra con vectores la diferencia entre dominio DC y dominio RF, educando al jurado en por qué se necesita un certificador de radiofrecuencia.
-
-> **Informe:** Sección 5.2 — Par Dividido (Split Pair) y Pruebas Avanzadas
+Adicionalmente, Cat 6A soporta hasta 500 MHz y 10 Gbps, lo que deja el
+canal preparado para eventuales equipos de Tomografía Axial Computarizada
+(TAC), que generan archivos aún más grandes que los Rayos X convencionales.
 
 ---
 
-## Slide 17 — Presupuesto Consolidado y Muestra Física UTP
+## Slide 09 — Decisión 4: ¿Cómo Corren los Cables por el Edificio?
 
-**ID:** `#slide-17` | **Etiqueta:** *Cierre de la Propuesta*
+El diseño de canalización tiene dos componentes según la zona:
 
-### Contenido
-**Tabla BOM (Bill of Materials):**
+En el **pasillo principal** se usa una bandeja tipo malla de 200×50 mm
+suspendida del falso techo a 2.75 m de altura. El SVG muestra los cables
+ocupando el 28% del área transversal de la bandeja. La norma ANSI/TIA-569-D
+establece que la ocupación inicial no debe superar el 40%, por dos razones:
+primero, para que haya espacio disponible para ampliaciones futuras sin
+necesidad de instalar una bandeja adicional; segundo, porque los cables en
+una bandeja muy llena no se ventilan bien y el calor generado por los
+cables PoE+ puede acortar su vida útil.
 
-| Partida | USD | PEN | % |
-|---|---|---|---|
-| P1: Cableado Pasivo | $2,208.00 | S/. 8,280.00 | 22.9% |
-| P2: Canalizaciones y Tierra | $1,084.00 | S/. 4,065.00 | 11.3% |
-| P3: Rack 42U y UPS 3 kVA | $2,650.00 | S/. 9,937.50 | 27.5% |
-| P4: Equipos Activos y APs | $3,690.00 | S/. 13,837.50 | 38.3% |
-| **TOTAL DIRECTO** | **$9,632.00** | **S/. 36,120.00** | **100%** |
+En los **muros y tabiques** se usa una canaleta de PVC de 40×25 mm con
+tabique separador central. El SVG lo muestra claramente: un lado conduce
+los cables de datos UTP y el otro conduce el cableado eléctrico de 220V.
+Esta separación física no es opcional; la norma TIA-569-D la exige para
+evitar que los campos electromagnéticos de la corriente alterna de 60 Hz
+acoplen ruido inductivo en los cables de datos.
 
-KPIs: $172 USD por punto completo · 56 puntos certificados
-
-**Muestra Física de Cable UTP (T568B):**
-- Crimpeado T568B: 13–14 mm expuestos, chaqueta 6 mm dentro del conector
-- Destrenzado ≤ 13 mm: cumplimiento NEXT a 250 MHz
-- Cable y tester disponibles para prueba práctica ante el docente
-
-### Justificación
-El presupuesto al final (no al inicio) sigue la lógica de **justificar el costo después de demostrar el valor técnico**. El jurado ya vio 16 diapositivas de ingeniería rigurosa; el precio de $172 por punto resulta razonable en ese contexto. La muestra física es el elemento tangible de la defensa oral.
-
-> **Informe:** Sección 3.4 — Cómputo de Materiales y Presupuesto
-
----
-
-## Mapa de Decisiones Numeradas
-
-| # Decisión | Slide | Título |
-|---|---|---|
-| 1 | 05 | Topología Estrella Jerárquica Colapsada |
-| 2 | 07 | UTP Cat 6 LSZH para el 85% de la red |
-| 3 | 08 | F/UTP Cat 6A en zonas críticas EMI |
-| 4 | 09 | Bandeja malla aérea + canaleta doble vía |
-| 5 | 10 | MDF en el centro de gravedad del edificio |
-| 6 | 11 | Elevación modular del Rack 42U |
-| 7 | 12 | Distribución de ambientes — plano civil |
-| 8 | 13 | Plano integral de red y canalizaciones |
-| 9 | 14 | 4 APs Wi-Fi 6 con Fast Roaming |
-| 10 | 15 | Certificación metrológica TIA-568-C.2 |
-| 11 | 16 | Certificador RF vs. tester básico (Split Pair) |
+Los accesorios de curvatura son moldeados de fábrica para garantizar que
+el radio de curvatura de los cables en cada esquina nunca sea menor a
+cuatro veces el diámetro exterior del cable (4×OD). Si el radio de
+curvatura es menor, los pares internos del cable se deforman y el Return
+Loss (pérdida de retorno) cae por debajo del límite de certificación.
 
 ---
 
-## Guía de Navegación
+## Slide 10 — Decisión 5: ¿Por Qué el Rack MDF Está en el Centro?
 
-| Tecla / Acción | Resultado |
-|---|---|
-| `→` / `Space` / `Enter` / Clic | Avanza slide |
-| `←` / `Backspace` | Retrocede slide |
-| `F` | Pantalla completa |
-| Swipe izquierda/derecha | Navegar en móvil |
+Esta es una decisión de optimización geométrica. La norma ANSI/TIA-568
+establece que un enlace permanente (desde el patch panel hasta el keystone
+de pared) no puede superar los 90 metros.
 
-### Exportar a PDF
-1. Abrir `diapositivas/index.html` en Chrome/Edge
-2. `Ctrl+P` → Guardar como PDF
-3. Orientación: Horizontal · Márgenes: Ninguno · Activar "Gráficos de fondo"
+El edificio del policlínico tiene 30 metros de longitud y 15 metros de
+ancho. Si ubicáramos el rack en una esquina del edificio, el punto más
+alejado estaría a unos 35 metros en línea recta, pero el cable tiene que
+recorrer las paredes y el falso techo siguiendo las canalizaciones, por lo
+que la longitud real del tendido sería considerablemente mayor.
+
+Al ubicar el MDF en el **centro geométrico del edificio**, se maximiza la
+simetría de las distancias. El enlace más largo de toda la instalación es
+el que va hasta el Laboratorio Clínico, en el extremo este: 34.8 metros
+medidos sobre el plano siguiendo la ruta de canalización. Ese valor está
+a 55.2 metros del límite de 90 m, es decir, usamos apenas el 38.7% del
+canal disponible por norma.
+
+Esta posición central también ahorró más de 650 metros acumulados de cable
+frente a la alternativa de colocar el rack en una esquina, lo que se
+traduce directamente en menor costo de materiales.
+
+---
+
+## Slide 11 — Decisión 6: ¿Cómo Está Organizado el Rack por Dentro?
+
+El SVG muestra la elevación frontal del rack de arriba a abajo. El
+criterio de distribución no es estético; responde a principios de gestión
+térmica, accesibilidad y reducción de latiguillos.
+
+En la parte **superior** van los extractores de aire termostatizados. El
+calor sube, de modo que los ventiladores al tope del rack extraen el aire
+caliente generado por todos los equipos activos ubicados debajo.
+
+Justo debajo están los **patch panels** (tres en total: dos Cat 6 y uno
+Cat 6A blindado para las zonas críticas), cada uno seguido de un
+organizador de latiguillos. La regla de diseño aquí se llama "topología
+sándwich": al colocar los patch panels inmediatamente encima de los
+switches de acceso que corresponden, los latiguillos de conexión entre
+ambos tienen solo un metro de largo. Si patch panels y switches estuvieran
+en extremos opuestos del rack, los latiguillos cruzarían todo el interior
+del gabinete, creando un nido de cables imposible de gestionar.
+
+En la parte **inferior** se ubica el UPS Online de Doble Conversión de
+3 kVA. Es un UPS de doble conversión, no de standby: la corriente alterna
+entra, se convierte a continua para cargar las baterías, y luego se
+reconvierte a alterna perfecta antes de alimentar los equipos. Esto
+significa que no hay ningún "tiempo de transferencia" cuando se va la luz;
+los equipos nunca ven una interrupción. La autonomía de las baterías es
+de 45 minutos a carga nominal, tiempo suficiente para un apagado ordenado
+o para que llegue un grupo electrógeno.
+
+---
+
+## Slide 12 — El Plano Arquitectónico Civil
+
+Esta diapositiva muestra el plano del edificio a escala 1:100. No hay
+texto adicional porque el plano habla por sí solo y permite que el jurado
+señale ambientes específicos para hacer preguntas.
+
+Lo que el jurado puede observar aquí: la distribución de los 12 ambientes
+del policlínico, las dimensiones de cada espacio y la ubicación del cuarto
+MDF en el centro del edificio. Cualquier pregunta sobre "¿dónde queda el
+laboratorio?" o "¿qué tan grande es la sala de espera?" se responde con
+este plano.
+
+---
+
+## Slide 13 — El Plano Integral de Red y Canalizaciones
+
+Esta es la capa de ingeniería superpuesta sobre el plano civil. Muestra
+exactamente por dónde corre cada cable, dónde están instalados los 56 jacks
+RJ-45, cuáles son los recorridos de la bandeja de malla por el pasillo y
+dónde se ubican los cuatro access points.
+
+La secuencia de slides 12→13 es intencional: primero mostramos el
+edificio como espacio físico, luego mostramos cómo diseñamos la red dentro
+de ese espacio. El jurado puede verificar visualmente que los cables siguen
+las rutas más eficientes y que todos los ambientes tienen puntos de red.
+
+---
+
+## Slide 14 — Decisión 9: ¿Por Qué Cuatro Access Points y Dónde Están?
+
+El diagrama muestra cuatro celdas de cobertura circulares, cada una con un
+radio de 8 metros en la banda de 5 GHz. Las celdas se superponen en un 15%
+entre sí. Ese solapamiento no es accidental: es el mínimo necesario para
+que los protocolos **802.11r** (Fast BSS Transition), **802.11k** (Radio
+Resource Management) y **802.11v** (BSS Transition Management) puedan
+ejecutar un traspaso de celda sin cortar la sesión activa del dispositivo.
+Un médico que camina por el pasillo con una tablet conectada a una
+videoconferencia de telemedicina no pierde la sesión al pasar de un AP al
+siguiente.
+
+La ubicación del **AP-01 en la Sala de Espera** merece una explicación
+particular, porque la alternativa instintiva hubiera sido ponerlo en el
+pasillo. La sala de espera concentra hasta 35 personas en horario pico,
+todas con teléfonos móviles activos. Si esos 35 dispositivos compiten por
+el mismo canal que el AP del pasillo, saturan el medio inalámbrico y
+degradan la red médica. Al darle a la sala de espera su propio AP, aislamos
+ese tráfico masivo de pacientes.
+
+Además, la red de pacientes está configurada en una VLAN separada con un
+límite de ancho de banda de 5 Mbps por usuario, lo que impide que un
+paciente descargando videos consuma el canal que necesitan los médicos para
+las historias clínicas.
+
+---
+
+## Slide 15 — Decisión 10: ¿Cómo Se Verifica Que la Instalación Funciona?
+
+Aquí explicamos el protocolo de certificación que se aplicaría tras la
+instalación. La tabla muestra los cinco parámetros principales que mide
+un certificador de radiofrecuencia como el Fluke DSX-8000:
+
+- **Wire Map**: verifica que los 8 hilos del cable lleguen al pin correcto
+  en el otro extremo. Un error aquí indica un crimpeado incorrecto o un
+  corte de hilo.
+
+- **Longitud (TDR)**: usa reflectometría en el dominio del tiempo para
+  medir la longitud eléctrica del cable. El límite es 90 metros; en nuestra
+  instalación el valor más alto medido sería 34.8 metros.
+
+- **Atenuación (Insertion Loss)**: mide cuánta señal se pierde entre un
+  extremo y el otro. A mayor longitud y mayor frecuencia, mayor atenuación.
+  El límite de Cat 6 a 250 MHz es ≤ 31.1 dB.
+
+- **NEXT (Paradiafonía)**: mide la interferencia que irradia un par hacia
+  sus pares adyacentes dentro del mismo cable. El límite mínimo para Cat 6
+  es ≥ 35.3 dB. Un destrenzado excesivo (más de 13 mm) en la terminación
+  del keystone es la causa más frecuente de fallar este parámetro.
+
+- **Return Loss**: mide la energía que rebota de vuelta por reflexiones
+  en el cable, causadas típicamente por radios de curvatura incorrectos.
+
+La distinción entre **Enlace Permanente** y **Canal Completo** es
+importante para la entrega de obra: el primero evalúa solo el tendido fijo
+(sin incluir los latiguillos del rack ni del puesto de trabajo) y tiene un
+límite de 90 metros. Es la prueba que se firma al entregar la obra civil.
+
+---
+
+## Slide 16 — Decisión 11: ¿Por Qué No Basta con un Tester de LEDs?
+
+Esta diapositiva expone uno de los errores más comunes y más difíciles de
+detectar en instalaciones de cableado: el **Par Dividido (Split Pair)**.
+
+El SVG lo ilustra con precisión. El tester de LEDs básico inyecta corriente
+continua (DC) en el cable. Si hay continuidad eléctrica en los 8 pines, los
+8 LEDs se encienden en verde. El tester dice "todo bien".
+
+El problema: si durante el crimpeado se mezclaron hilos de pares distintos
+(por ejemplo, el hilo azul del Par 1 y el hilo naranja del Par 2 se
+terminaron juntos en el mismo lado), la continuidad DC sigue existiendo.
+Eléctricamente hay camino de un extremo al otro. El tester no detecta nada
+raro.
+
+Pero cuando Gigabit Ethernet empieza a transmitir a 250 MHz, el sistema
+de cancelación de diafonía que proporciona el **trenzado de los pares**
+deja de funcionar. Ese trenzado es el que genera los campos
+electromagnéticos iguales y opuestos que se cancelan entre sí. Si los
+hilos de dos pares distintos están juntos, los campos ya no son iguales
+ni opuestos, y la interferencia (NEXT) se dispara. La norma Cat 6 exige
+NEXT ≥ 35.3 dB; un Split Pair puede dar valores de menos de 15 dB,
+lo que provoca una pérdida de paquetes de alrededor del 80%.
+
+Solo un certificador de radiofrecuencia, que mide la respuesta del cable
+en frecuencia hasta 250 MHz, puede detectar un Split Pair. Por eso la
+certificación metrológica no es un trámite burocrático: es la única forma
+de garantizar que la instalación funciona correctamente.
+
+---
+
+## Slide 17 — Presupuesto y Muestra Física
+
+La tabla del BOM (Bill of Materials) presenta el desglose económico en
+cuatro partidas. El orden importa: primero cableado pasivo, luego
+canalizaciones y tierra, luego el rack con la energía, y finalmente los
+equipos activos (switches, APs, servidores). Esa es la misma secuencia
+lógica de instalación: primero se tiende el cable, luego se instala el
+rack, y finalmente se encienden los equipos.
+
+El costo total directo de suministros es de **$9,632 USD**, lo que equivale
+a **$172 USD por punto de red certificado**. Ese costo por punto es el
+indicador estándar del sector para comparar proyectos de cableado
+estructurado. Para una instalación Gigabit con certificación formal en un
+entorno hospitalario, ese valor es técnicamente justificado.
+
+La muestra física de cable UTP que se presenta al jurado debe mostrar:
+- El orden de colores T568B correctamente dispuesto en el conector
+- Un destrenzado de no más de 13 mm antes del IDC del conector
+- La chaqueta ingresando 6 mm dentro del cuerpo del conector para que
+  la abrazadera mecánica agarre la chaqueta y no los conductores
+
+Esa muestra física demuestra que el equipo no solo diseñó la red en papel,
+sino que sabe ejecutar el trabajo con sus manos.
+
+---
+
+## Nota Final — Flujo de la Defensa Oral
+
+La presentación está diseñada para que las decisiones de ingeniería fluyan
+en este orden:
+
+1. Mostramos el **problema** (slide 02)
+2. Cuantificamos los **requerimientos** (slides 03 y 04)
+3. Defendemos la **topología** (slide 05)
+4. Vinculamos con la **teoría del curso** (slide 06)
+5. Justificamos cada **decisión de material** con normas y matemáticas
+   (slides 07, 08, 09, 10, 11)
+6. Presentamos los **planos** como evidencia visual (slides 12 y 13)
+7. Defendemos la **red inalámbrica** (slide 14)
+8. Explicamos cómo se **verifica** que todo funciona (slides 15 y 16)
+9. Cerramos con los **costos** y la **muestra física** (slide 17)
+
+Cada decisión tiene un número (Decisión 1 a 11) que aparece en el tag
+de la diapositiva. Si el jurado quiere ir directo a una decisión
+específica, el equipo puede navegar por número sin perder el hilo.
 
 ---
 
