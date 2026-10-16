@@ -32,25 +32,32 @@ El **Policlínico de Especialidades Médicas "Salud & Vida"** ha experimentado u
 * **Dimensiones Totales:** **450 m²** (30 metros de longitud × 15 metros de ancho).
 * **Altura libre:** 3.00 metros de piso a techo, con falso cielo raso suspendido a 2.60 m (espacio técnico de 40 cm para tendido de bandejas portacables tipo malla o escalerilla).
 
-### 2.3. Estructura y Dimensiones Exactas por Ambiente
+### 2.3. Estructura y Dimensiones Exactas por Ambiente (Plano Arquitectónico Oficial)
 
-Para mantener un diseño sencillo de dibujar y calcular, las áreas se han estandarizado de forma **modular**:
+Para asegurar la máxima rigurosidad de ingeniería, cada ambiente ha sido dimensionado a escala métrica real dentro de la planta de **30.00 m × 15.00 m (450.0 m²)**:
 
-| Ambiente | Dimensiones (m) | Área (m²) | Características y Equipamiento de Red |
-|---|:---:|:---:|---|
-| **Recepción / Admisión y Caja** | 6.0 m × 4.0 m | 24 m² | Ingreso principal; 3 puestos de atención, 1 impresora de red y 2 teléfonos IP. |
-| **Sala de Espera General** | 8.0 m × 5.0 m | 40 m² | Espacio abierto frente a recepción con bancas para 35 pacientes; **equipado con 1 toma RJ-45 para Smart TV (sistema de turnos digital) y 1 punto en techo para Access Point (AP PoE Wi-Fi)**. |
-| **Triaje / Tópico de Urgencias** | 4.0 m × 4.0 m | 16 m² | Control previo a consulta; 2 puestos con PC médica y 1 teléfono IP. |
-| **Consultorios Médicos (8 salas)** | 3.5 m × 4.0 m (c/u) | 112 m² *(14 m² c/u)* | **8 consultorios modulares idénticos** alineados en un bloque continuo. Cada uno con 2 tomas dobles de pared (PC médica, teléfono IP / toma libre). |
-| **Rayos X y Ecografía** | 6.0 m × 5.0 m | 30 m² | Sala plomada y aislada; 2 estaciones DICOM de alta resolución, 1 impresora de placas. Cableado blindado F/UTP contra EMI. |
-| **Laboratorio Clínico** | 6.0 m × 5.0 m | 30 m² | Mesa de análisis químico; 2 PCs de analistas y 1 analizador clínico con interfaz de red IP. Cableado blindado F/UTP. |
-| **Farmacia Asistencial** | 5.0 m × 4.0 m | 20 m² | Mostrador hacia pasillo/sala de espera y almacén; 2 terminales de venta y 1 impresora térmica de tickets. |
-| **Administración y Jefatura** | 6.0 m × 4.0 m | 24 m² | Oficina administrativa; 4 puestos de trabajo, 1 impresora multifuncional y 1 teléfono IP. |
-| **Estar Médico / Sala de Reuniones** | 5.0 m × 4.0 m | 20 m² | Sala de descanso médico con mesa de trabajo, 1 PC de consulta y 1 AP PoE Wi-Fi de techo. |
-| **Cuarto de Comunicaciones (MDF)** | 3.0 m × 3.0 m | 9 m² | **Ubicado en el centro del edificio** para equidistancia; aloja el rack cerrado de 42U, switches, patch panels, servidores y UPS. |
-| **Servicios Higiénicos (SS.HH.)** | 5.0 m × 3.0 m | 15 m² | Baños diferenciados para público y personal (sin puntos de red). |
-| **Pasillo Central de Distribución** | 30.0 m × 2.0 m | 60 m² | Corredor central que recorre toda la clínica y alberga la bandeja portacables principal en el cielo raso + 2 APs de techo. |
-| **ÁREA TOTAL CONSTRUIDA** | **30 m × 15 m** | **450 m²** | **100% del área del predio.** |
+| Sector | Ambiente | Dimensiones (m) | Superficie (m²) | Equipamiento y Tomas de Telecomunicaciones |
+|---|---|:---:|:---:|---|
+| **Ala Norte** | **Recepción, Admisión y Caja** | 5.50 m × 5.60 m | 30.8 m² | 3 puestos de atención, 1 impresora de red, 2 teléfonos IP (**6 tomas RJ-45 Cat 6**). |
+| **Ala Norte** | **Farmacia Asistencial** | 4.50 m × 5.60 m | 25.2 m² | 2 terminales de venta/stock, 1 impresora térmica de tickets (**3 tomas RJ-45 Cat 6**). |
+| **Ala Norte** | **Consultorio 1 (Medicina General)** | 4.00 m × 5.60 m | 22.4 m² | 1 PC médica (EMR), 1 teléfono IP (**2 tomas RJ-45 Cat 6**). |
+| **Ala Norte** | **Consultorio 2 (Pediatría)** | 4.00 m × 5.60 m | 22.4 m² | 1 PC médica (EMR), 1 teléfono IP (**2 tomas RJ-45 Cat 6**). |
+| **Ala Norte** | **Consultorio 3 (Ginecología y Obstetricia)** | 4.00 m × 5.60 m | 22.4 m² | 1 PC médica (EMR), 1 teléfono IP (**2 tomas RJ-45 Cat 6**). |
+| **Ala Norte** | **Consultorio 4 (Cardiología)** | 4.00 m × 5.60 m | 22.4 m² | 1 PC médica, 1 electrocardiógrafo digital con puerto IP (**2 tomas RJ-45 Cat 6**). |
+| **Ala Norte** | **Consultorio 5 (Traumatología)** | 4.00 m × 5.60 m | 22.4 m² | 1 PC médica estación de visualización DICOM (**2 tomas RJ-45 Cat 6**). |
+| **Circulación** | **Pasillo Central y Troncal de Cableado** | 30.00 m × 2.40 m | 72.0 m² | Corredor principal; aloja la bandeja portacables tipo malla 200×50 mm + **AP-02 y AP-03 de techo (2 tomas PoE)**. |
+| **Ala Sur** | **Sala de Espera General** | 7.00 m × 7.00 m | 49.0 m² | Área pública para 35 personas; 1 Smart TV (turnero) + **AP-01 de techo (2 tomas PoE/Datos)**. |
+| **Ala Sur** | **SS.HH. Públicos (en Sala de Espera)** | 3.00 m × 2.40 m | 7.2 m² | Batería sanitaria para pacientes y acompañantes (sin tomas de red). |
+| **Ala Sur** | **Triaje y Tópico de Urgencias** | 4.50 m × 7.00 m | 31.5 m² | 2 PCs de enfermería, 1 teléfono IP (**3 tomas RJ-45 Cat 6**). |
+| **Ala Sur** | **Cuarto de Telecomunicaciones (MDF / Rack)** | 3.50 m × 4.20 m | 14.7 m² | **Centro geográfico del edificio**; Rack 42U, Patch Panels, 2 servidores, switches PoE+, UPS 3kVA. |
+| **Ala Sur** | **SS.HH. y Vestidor del Personal** | 3.50 m × 2.80 m | 9.8 m² | Área sanitaria exclusiva de médicos y enfermeras (sin tomas de red). |
+| **Ala Sur** | **Consultorio 6 (Oftalmología)** | 3.50 m × 7.00 m | 24.5 m² | 1 PC médica, 1 teléfono IP (**2 tomas RJ-45 Cat 6**). |
+| **Ala Sur** | **Consultorio 7 (Odontología)** | 3.50 m × 3.50 m | 12.2 m² | 1 PC médica, 1 teléfono IP (**2 tomas RJ-45 Cat 6**). |
+| **Ala Sur** | **Consultorio 8 (Psicología / Nutrición)** | 3.50 m × 3.50 m | 12.2 m² | 1 PC médica, 1 teléfono IP (**2 tomas RJ-45 Cat 6**) • Tabique acústico STC > 45 dB. |
+| **Ala Sur** | **Administración, Jefatura y Contabilidad** | 3.50 m × 7.00 m | 24.5 m² | 4 PCs administrativas, 1 multifuncional, 1 teléfono IP + **AP-04 de techo (7 tomas Cat 6/PoE)**. |
+| **Zona Crítica** | **Laboratorio Clínico (Bioquímica)** | 4.50 m × 3.40 m | 15.3 m² | 2 PCs analistas, 1 analizador químico en red (**3 tomas F/UTP Cat 6A blindadas contra EMI**). |
+| **Zona Crítica** | **Rayos X y Ecografía (Muros Plomados)** | 4.50 m × 3.60 m | 16.2 m² | 2 estaciones DICOM de alta resolución, 1 impresora médica (**3 tomas F/UTP Cat 6A blindadas contra EMI**). |
+| **TOTAL** | **PREDIO INTEGRAL DEL POLICLÍNICO** | **30.00 m × 15.00 m** | **450.0 m²** | **49 Puntos de red activos proyectados** (balanceados en el plano). |
 
 ### 2.4. Esquema Arquitectónico Visual y Distribución Espacial en Planta (Bases de la Sección 12 - Diseño Físico)
 
@@ -73,9 +80,16 @@ A continuación se muestra la captura del plano arquitectónico con las capas de
    * **Distancia máxima real:** **34.8 metros** hacia el punto más distante (Rayos X / Consultorio 5), cumpliendo con un margen de seguridad superior al 60% respecto a los **90 metros máximos** permitidos por **ANSI/TIA-568**.
 4. **Zona Crítica Aislada (Laboratorio y Rayos X):**
    * Ubicada en el extremo Este (fondo), con muros baritados/plomados para contención radiológica y cableado **F/UTP apantallado** para inmunidad contra interferencias electromagnéticas (EMI).
-5. **Visor Interactivo y Exportación:**
-   * La aplicación local permite encender/apagar capas (muros, bandeja portacables, tomas RJ-45, cobertura Wi-Fi y tendidos de cable), hacer zoom/pan e inspeccionar cada sala haciendo clic sobre ella.
-   * Cuenta con un botón para **descargar el plano en formato vectorial SVG** listo para ser insertado en la Memoria Técnica y diapositivas de sustentación.
+5. **Células de Cobertura Inalámbrica Wi-Fi 6 (Radio Efectivo de 8.0 Metros):**
+   * Se distribuyen 4 Puntos de Acceso (APs) de techo PoE:
+     * **AP-01 (Sala de Espera):** Dedicado exclusivamente al tráfico público de pacientes y pantalla de turnos.
+     * **AP-02 (Pasillo Oeste):** Brinda cobertura a Consultorios 1 al 4 y Triaje para tablets médicas.
+     * **AP-03 (Pasillo Este):** Cobertura a Consultorios 5 al 8 y Laboratorio Clínico.
+     * **AP-04 (Administración):** Cobertura a oficinas contables y estar médico.
+   * Cada AP cuenta con una celda efectiva de **8.0 metros de radio (banda 5 GHz)** con solapamiento controlado del 15% para conmutación transparente (*Fast Roaming IEEE 802.11r/k*).
+6. **Visor Interactivo y Exportación en Calidad Nativa:**
+   * La aplicación local (`http://localhost:3456`) permite encender/apagar capas (muros, bandejas portacables, tomas RJ-45, cobertura Wi-Fi y tendidos de cable), hacer zoom/pan e inspeccionar cada sala haciendo clic sobre ella.
+   * Incluye botones para exportar en **PNG Ultra-HD (4K a 3840×2040 px)** o en **SVG Vectorial autónomo** listo para ser insertado en la Memoria Técnica y diapositivas de sustentación.
 
 ### 2.5. Personal y Usuarios Estimados
 * **Personal Médico y Asistencial:** 12 médicos y 6 licenciadas/técnicas en enfermería.

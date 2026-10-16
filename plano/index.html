@@ -718,12 +718,13 @@
             <!-- 8. Sala de Espera General y SS.HH. Públicos (X: 100 a 800, Ancho: 7.00m) -->
             <g class="room-group" onclick="selectRoom('espera')">
               <rect id="room-espera" x="100" y="900" width="700" height="700" fill="rgba(30, 41, 59, 0.55)" stroke="#475569" stroke-width="3" class="room-poly" />
-              <text x="450" y="1180" class="room-title">SALA DE ESPERA GENERAL</text>
-              <text x="450" y="1225" class="room-meta">Área Abierta de Pacientes • 49.0 m²</text>
-              <text x="450" y="1265" class="room-meta" fill="#10b981">1 TV Turnero + 1 AP Wi-Fi PoE</text>
+              <text x="450" y="1170" class="room-title">SALA DE ESPERA GENERAL</text>
+              <text x="450" y="1210" class="room-meta">7.00m × 7.00m • 49.0 m²</text>
+              <text x="450" y="1245" class="room-meta" fill="#10b981">1 TV Turnero + 1 AP Wi-Fi PoE</text>
               <!-- Batería de Baños Públicos dentro del área de espera -->
               <rect x="100" y="1360" width="300" height="240" fill="rgba(15, 23, 42, 0.85)" stroke="#334155" stroke-width="2" />
-              <text x="250" y="1490" fill="#64748b" font-size="18" text-anchor="middle" font-weight="600">SS.HH. PÚBLICOS</text>
+              <text x="250" y="1475" fill="#94a3b8" font-size="17" text-anchor="middle" font-weight="700">SS.HH. PÚBLICOS</text>
+              <text x="250" y="1510" fill="#64748b" font-size="15" text-anchor="middle" font-family="'JetBrains Mono', monospace">3.00m × 2.40m • 7.2 m²</text>
             </g>
 
             <!-- 9. Triaje y Tópico de Urgencias (X: 800 a 1250, Ancho: 4.50m) -->
@@ -752,7 +753,8 @@
               <line x1="1390" y1="900" x2="1390" y2="970" class="door-leaf" stroke="#38bdf8" />
               <!-- SS.HH. y Vestidor del Personal (debajo del MDF) -->
               <rect x="1250" y="1320" width="350" height="280" fill="rgba(15, 23, 42, 0.85)" stroke="#334155" stroke-width="2" />
-              <text x="1425" y="1470" fill="#64748b" font-size="18" text-anchor="middle" font-weight="600">SS.HH. PERSONAL</text>
+              <text x="1425" y="1455" fill="#94a3b8" font-size="17" text-anchor="middle" font-weight="700">SS.HH. PERSONAL</text>
+              <text x="1425" y="1490" fill="#64748b" font-size="15" text-anchor="middle" font-family="'JetBrains Mono', monospace">3.50m × 2.80m • 9.8 m²</text>
             </g>
 
             <!-- 11. Consultorio 6: Oftalmología (X: 1600 a 1950, Ancho: 3.50m) -->
@@ -769,11 +771,20 @@
             <!-- 12. Consultorios 7 y 8 (X: 1950 a 2300, Ancho: 3.50m) -->
             <g class="room-group" onclick="selectRoom('c78')">
               <rect id="room-c78" x="1950" y="900" width="350" height="700" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="3" class="room-poly" />
-              <text x="2125" y="1120" class="room-title">CONSULTORIO 7</text>
-              <text x="2125" y="1155" class="room-meta" fill="#94a3b8">Odontología (2 tomas)</text>
+              <!-- Consultorio 7 -->
+              <text x="2125" y="1050" class="room-title">CONSULTORIO 7</text>
+              <text x="2125" y="1085" class="room-meta" fill="#94a3b8">Odontología</text>
+              <text x="2125" y="1120" class="room-meta">3.50m × 3.50m • 12.2 m²</text>
+              <text x="2125" y="1155" class="room-meta" fill="#38bdf8">2 Puntos RJ-45</text>
+              
               <line x1="1950" y1="1250" x2="2300" y2="1250" stroke="#334155" stroke-width="2" stroke-dasharray="6,4" />
+              
+              <!-- Consultorio 8 -->
               <text x="2125" y="1380" class="room-title">CONSULTORIO 8</text>
-              <text x="2125" y="1415" class="room-meta" fill="#94a3b8">Psicología / Nutrición (2 tomas)</text>
+              <text x="2125" y="1415" class="room-meta" fill="#94a3b8">Psicología / Nutrición</text>
+              <text x="2125" y="1450" class="room-meta">3.50m × 3.50m • 12.2 m²</text>
+              <text x="2125" y="1485" class="room-meta" fill="#38bdf8">2 Puntos RJ-45</text>
+              
               <path d="M 2070 900 L 2070 970 A 70 70 0 0 1 2140 900" class="door-arc" />
               <line x1="2070" y1="900" x2="2070" y2="970" class="door-leaf" />
             </g>
@@ -793,15 +804,17 @@
             <g class="room-group" onclick="selectRoom('diagnostico')">
               <!-- Laboratorio (Arriba) -->
               <rect id="room-lab" x="2650" y="900" width="450" height="340" fill="rgba(245, 158, 11, 0.08)" stroke="#f59e0b" stroke-width="3" class="room-poly" />
-              <text x="2875" y="1030" class="room-title" fill="#f59e0b">LABORATORIO CLÍNICO</text>
-              <text x="2875" y="1070" class="room-meta">Bioquímica y Análisis • 15.3 m²</text>
-              <text x="2875" y="1110" class="room-meta" fill="#f59e0b">3 Puntos F/UTP Blindados</text>
+              <text x="2875" y="1015" class="room-title" fill="#f59e0b">LABORATORIO CLÍNICO</text>
+              <text x="2875" y="1050" class="room-meta">Bioquímica y Análisis</text>
+              <text x="2875" y="1085" class="room-meta">4.50m × 3.40m • 15.3 m²</text>
+              <text x="2875" y="1120" class="room-meta" fill="#f59e0b">3 Puntos F/UTP Blindados</text>
 
               <!-- Rayos X y Ecografía (Abajo, Sala Plomada) -->
               <rect id="room-rayosx" x="2650" y="1240" width="450" height="360" fill="rgba(239, 68, 68, 0.08)" stroke="#ef4444" stroke-width="3" class="room-poly" />
-              <text x="2875" y="1380" class="room-title" fill="#ef4444">RAYOS X Y ECOGRAFÍA</text>
-              <text x="2875" y="1420" class="room-meta">Muros Plomados • 16.2 m²</text>
-              <text x="2875" y="1460" class="room-meta" fill="#ef4444">3 Puntos F/UTP Blindados (EMI)</text>
+              <text x="2875" y="1360" class="room-title" fill="#ef4444">RAYOS X Y ECOGRAFÍA</text>
+              <text x="2875" y="1395" class="room-meta">Muros Plomados / Aislado</text>
+              <text x="2875" y="1430" class="room-meta">4.50m × 3.60m • 16.2 m²</text>
+              <text x="2875" y="1465" class="room-meta" fill="#ef4444">3 Puntos F/UTP Blindados (EMI)</text>
 
               <path d="M 2770 900 L 2770 970 A 70 70 0 0 1 2840 900" class="door-arc" />
               <line x1="2770" y1="900" x2="2770" y2="970" class="door-leaf" />
@@ -864,28 +877,60 @@
           </g>
 
           <!-- ========================================== -->
-          <!-- CAPA DE COBERTURA WI-FI (APS POE)          -->
+          <!-- CAPA DE COBERTURA WI-FI (APS POE - CÍRCULOS DE COBERTURA EFECTIVA) -->
           <!-- ========================================== -->
           <g id="layer-wifi">
-            <!-- AP 1: Sala de Espera (Cobertura 12m) -->
-            <circle cx="450" cy="1150" r="320" fill="rgba(168, 85, 247, 0.12)" stroke="#a855f7" stroke-width="2" stroke-dasharray="8,6" />
-            <circle cx="450" cy="1150" r="16" fill="#a855f7" />
-            <text x="450" y="1120" fill="#a855f7" font-size="18" font-weight="700" text-anchor="middle">AP-01 (Público / Pacientes)</text>
+            <defs>
+              <!-- Recorte al perímetro del inmueble para visualización limpia estilo CAD -->
+              <clipPath id="buildingBoundary">
+                <rect x="100" y="100" width="3000" height="1500" rx="4" />
+              </clipPath>
+            </defs>
 
-            <!-- AP 2: Pasillo Central Oeste (Consultorios 1 a 4) -->
-            <circle cx="1200" cy="780" r="320" fill="rgba(168, 85, 247, 0.12)" stroke="#a855f7" stroke-width="2" stroke-dasharray="8,6" />
-            <circle cx="1200" cy="780" r="16" fill="#a855f7" />
-            <text x="1200" y="750" fill="#a855f7" font-size="18" font-weight="700" text-anchor="middle">AP-02 (Médico - Sector 1)</text>
+            <!-- Círculos de Cobertura Inalámbrica Efectiva (Radio 8.0 metros) recortados al predio -->
+            <g clip-path="url(#buildingBoundary)">
+              <!-- AP-01 (Sala de Espera - R: 8.0m) -->
+              <circle cx="450" cy="1150" r="800" fill="rgba(168, 85, 247, 0.12)" stroke="#a855f7" stroke-width="2.5" stroke-dasharray="10,5" opacity="0.85" />
+              <!-- AP-02 (Pasillo Oeste - R: 8.0m) -->
+              <circle cx="1200" cy="780" r="800" fill="rgba(168, 85, 247, 0.12)" stroke="#a855f7" stroke-width="2.5" stroke-dasharray="10,5" opacity="0.85" />
+              <!-- AP-03 (Pasillo Este - R: 8.0m) -->
+              <circle cx="2300" cy="780" r="800" fill="rgba(168, 85, 247, 0.12)" stroke="#a855f7" stroke-width="2.5" stroke-dasharray="10,5" opacity="0.85" />
+              <!-- AP-04 (Administración - R: 8.0m) -->
+              <circle cx="2800" cy="1150" r="800" fill="rgba(168, 85, 247, 0.12)" stroke="#a855f7" stroke-width="2.5" stroke-dasharray="10,5" opacity="0.85" />
+            </g>
 
-            <!-- AP 3: Pasillo Central Este (Consultorios 5 a 8 + Lab) -->
-            <circle cx="2300" cy="780" r="320" fill="rgba(168, 85, 247, 0.12)" stroke="#a855f7" stroke-width="2" stroke-dasharray="8,6" />
-            <circle cx="2300" cy="780" r="16" fill="#a855f7" />
-            <text x="2300" y="750" fill="#a855f7" font-size="18" font-weight="700" text-anchor="middle">AP-03 (Médico - Sector 2)</text>
+            <!-- Nodos Físicos de APs (Hardware en Techo con Etiquetas) -->
+            <!-- AP-01 -->
+            <g class="ap-hardware">
+              <circle cx="450" cy="1150" r="22" fill="#121826" stroke="#a855f7" stroke-width="4" />
+              <circle cx="450" cy="1150" r="9" fill="#a855f7" />
+              <rect x="300" y="1080" width="300" height="34" rx="6" fill="rgba(18, 24, 38, 0.88)" stroke="#a855f7" stroke-width="1.5" />
+              <text x="450" y="1103" fill="#a855f7" font-size="16" font-weight="700" text-anchor="middle">AP-01 (Público / Espera)</text>
+            </g>
 
-            <!-- AP 4: Administración y Estar Médico -->
-            <circle cx="2800" cy="1150" r="280" fill="rgba(168, 85, 247, 0.12)" stroke="#a855f7" stroke-width="2" stroke-dasharray="8,6" />
-            <circle cx="2800" cy="1150" r="16" fill="#a855f7" />
-            <text x="2800" y="1120" fill="#a855f7" font-size="18" font-weight="700" text-anchor="middle">AP-04 (Administrativo)</text>
+            <!-- AP-02 -->
+            <g class="ap-hardware">
+              <circle cx="1200" cy="780" r="22" fill="#121826" stroke="#a855f7" stroke-width="4" />
+              <circle cx="1200" cy="780" r="9" fill="#a855f7" />
+              <rect x="1050" y="710" width="300" height="34" rx="6" fill="rgba(18, 24, 38, 0.88)" stroke="#a855f7" stroke-width="1.5" />
+              <text x="1200" y="733" fill="#a855f7" font-size="16" font-weight="700" text-anchor="middle">AP-02 (Médico - Sector 1)</text>
+            </g>
+
+            <!-- AP-03 -->
+            <g class="ap-hardware">
+              <circle cx="2300" cy="780" r="22" fill="#121826" stroke="#a855f7" stroke-width="4" />
+              <circle cx="2300" cy="780" r="9" fill="#a855f7" />
+              <rect x="2150" y="710" width="300" height="34" rx="6" fill="rgba(18, 24, 38, 0.88)" stroke="#a855f7" stroke-width="1.5" />
+              <text x="2300" y="733" fill="#a855f7" font-size="16" font-weight="700" text-anchor="middle">AP-03 (Médico - Sector 2)</text>
+            </g>
+
+            <!-- AP-04 -->
+            <g class="ap-hardware">
+              <circle cx="2800" cy="1150" r="22" fill="#121826" stroke="#a855f7" stroke-width="4" />
+              <circle cx="2800" cy="1150" r="9" fill="#a855f7" />
+              <rect x="2650" y="1080" width="300" height="34" rx="6" fill="rgba(18, 24, 38, 0.88)" stroke="#a855f7" stroke-width="1.5" />
+              <text x="2800" y="1103" fill="#a855f7" font-size="16" font-weight="700" text-anchor="middle">AP-04 (Administración)</text>
+            </g>
           </g>
 
           <!-- ========================================== -->

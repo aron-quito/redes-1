@@ -14,7 +14,7 @@ La infraestructura proyectada para el Policlínico "Salud & Vida" se clasifica c
 * **Cobertura espacial:** Confinada estrictamente dentro del predio del policlínico, con dimensiones de 30 metros de largo por 15 metros de ancho (**450 m²** en una sola planta).
 * **Propiedad y administración:** Es una red privada, de administración interna exclusiva de la institución de salud.
 * **Tasa de transferencia proyectada:** Conectividad de acceso a **1 Gbps (1000BASE-T)** en puestos de trabajo y hasta **10 Gbps (10GBASE-T)** en enlaces hacia servidores locales y switches de núcleo/distribución.
-* **Componente WLAN (IEEE 802.11ax - Wi-Fi 6):** Cuatro Puntos de Acceso (APs) PoE gestionados para dar cobertura inalámbrica a pacientes en sala de espera y al personal asistencial que utiliza tablets médicas durante las rondas de triaje y enfermería.
+* **Componente WLAN (IEEE 802.11ax - Wi-Fi 6):** Cuatro Puntos de Acceso (APs) PoE gestionados con **células de cobertura de 8.0 metros de radio efectivo (5 GHz)** con solapamiento controlado del 15% para dar cobertura de alta velocidad médica a tablets y de acceso público en la sala de espera sin cortes (*Fast Roaming*).
 
 ### 1.2. Topología Física: Estrella Jerárquica / Estrella Extendida
 Se ha seleccionado e implementado una **Topología Física en Estrella Jerárquica** con un único nodo central de consolidación en el **Cuarto de Telecomunicaciones (MDF - Main Distribution Frame)**:
@@ -25,20 +25,26 @@ graph TD
     
     subgraph Ala_Norte["Ala Norte (Consultorios 1 al 5 + Recepción + Farmacia)"]
         REC[Recepción y Caja - 6 tomas]
-        FAR[Farmacia - 3 tomas]
-        C1[Consultorio 1 - 2 tomas]
-        C2[Consultorio 2 - 2 tomas]
-        C3[Consultorio 3 - 2 tomas]
-        C4[Consultorio 4 - 2 tomas]
-        C5[Consultorio 5 - 2 tomas]
+        FAR[Farmacia Asistencial - 3 tomas]
+        C1[Consultorio 1 Medicina General - 2 tomas]
+        C2[Consultorio 2 Pediatría - 2 tomas]
+        C3[Consultorio 3 Ginecología - 2 tomas]
+        C4[Consultorio 4 Cardiología - 2 tomas]
+        C5[Consultorio 5 Traumatología - 2 tomas]
     end
 
-    subgraph Ala_Sur["Ala Sur (Espera + Triaje + Consultorios 6-8 + Admin)"]
+    subgraph Ala_Sur["Ala Sur (Espera + Triaje + Consultorios 6-8 + Administración)"]
         ESP[Sala de Espera - 1 TV + AP-01]
-        TRI[Triaje - 3 tomas]
-        C6[Consultorio 6 - 2 tomas]
-        C78[Consultorios 7 y 8 - 4 tomas]
-        ADM[Administración - 6 tomas]
+        TRI[Triaje y Tópico - 3 tomas]
+        C6[Consultorio 6 Oftalmología - 2 tomas]
+        C7[Consultorio 7 Odontología - 2 tomas]
+        C8[Consultorio 8 Psicología/Nutrición - 2 tomas]
+        ADM[Administración y Jefatura - 6 tomas + AP-04]
+    end
+
+    subgraph Troncal_Pasillo["Troncal en Pasillo Central"]
+        AP2[AP-02 Pasillo Oeste - Wi-Fi 6]
+        AP3[AP-03 Pasillo Este - Wi-Fi 6]
     end
 
     subgraph Zona_Critica["Zona Crítica de Diagnóstico (Blindaje EMI)"]
@@ -48,6 +54,7 @@ graph TD
 
     MDF --> Ala_Norte
     MDF --> Ala_Sur
+    MDF --> Troncal_Pasillo
     MDF --> Zona_Critica
 ```
 
