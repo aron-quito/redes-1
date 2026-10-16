@@ -1,0 +1,393 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{geometry}
+\geometry{top=2.0cm, bottom=2.0cm, left=2.2cm, right=2.2cm}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{hyperref}
+
+% Definición de colores corporativos de ingeniería
+\definecolor{primaryblue}{RGB}{16, 44, 87}
+\definecolor{accentblue}{RGB}{53, 162, 159}
+\definecolor{darkgray}{RGB}{45, 52, 54}
+\definecolor{lightgray}{RGB}{245, 246, 250}
+\definecolor{highlightgreen}{RGB}{39, 174, 96}
+
+% Configuración de hipervínculos
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primaryblue,
+    urlcolor=accentblue
+}
+
+% Formato de títulos
+\titleformat{\section}{\color{primaryblue}\Large\bfseries}{\thesection.}{1em}{}[\titlerule]
+\titleformat{\subsection}{\color{accentblue}\large\bfseries}{\thesubsection.}{1em}{}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    {\scshape\LARGE Universidad Nacional Jorge Basadre Grohmann \par}
+    \vspace{0.3cm}
+    {\scshape\Large Escuela Profesional de Ingeniería en Informática y Sistemas \par}
+    \vspace{1.5cm}
+    {\color{primaryblue}\Huge\bfseries ETAPA 7: MODELO DE DIAPOSITIVAS Y GUION COMPLETO DE DEFENSA ORAL\par}
+    \vspace{0.8cm}
+    {\Large\itshape "Diseño de la Infraestructura Física y Cableado Estructurado de una Red LAN para el Policlínico de Especialidades Médicas Salud \& Vida S.A.C."\par}
+    \vspace{1.5cm}
+    
+    \begin{tcolorbox}[colback=lightgray,colframe=primaryblue,title=\textbf{Ficha Técnica de la Presentación Oral},arc=2mm]
+        \begin{itemize}[leftmargin=*,itemsep=2pt]
+            \item \textbf{Asignatura:} Redes de Computadoras I (Unidad I - Evaluación Sumativa)
+            \item \textbf{Tiempo Total de Exposición:} 20 minutos de defensa + 5 minutos de ronda de preguntas
+            \item \textbf{Número Total de Diapositivas:} 12 Diapositivas (Límite estricto de la rúbrica: 10 a 12 slides)
+            \item \textbf{Ritmo Promedio de Exposición:} 1 minuto y 40 segundos por diapositiva
+            \item \textbf{Equipo Evaluado:} 5 Integrantes (Participación y defensa individual obligatoria)
+            \item \textbf{Enfoque Estratégico:} Defensa y justificación de decisiones de ingeniería (cero lectura enciclopédica)
+        \end{itemize}
+    \end{tcolorbox}
+    
+    \vfill
+    {\large \textbf{Fecha de Evaluación:} Octubre 2026 \par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Estructura Estratégica y Reparto de Responsabilidades (5 Integrantes)}
+
+Para asegurar el cumplimiento de la rúbrica (\textbf{Criterio 8: Exposición y Dominio Individual - 3 Puntos}) y garantizar que los 5 miembros del equipo intervengan de forma equilibrada en los \textbf{20 minutos cronometrados}, la defensa se distribuye de acuerdo con los roles funcionales definidos desde la Etapa 1:
+
+\begin{table}[h!]
+\centering
+\small
+\begin{tabular}{c p{3.8cm} p{4.2cm} c c}
+\toprule
+\textbf{Integrante} & \textbf{Rol Asignado} & \textbf{Diapositivas a Cargo} & \textbf{Tiempo Est.} & \textbf{Minutero} \\
+\midrule
+\textbf{Integrante 1} & Levantamiento, Problemática y Requerimientos & Slide 01 (Portada) + Slide 02 (Problema) + Slide 03 (Requerimientos) & 4.0 min & 00:00 -- 04:00 \\
+\textbf{Integrante 2} & Topología y Modelos de Referencia (OSI/TCP-IP) & Slide 04 (Topología) + Slide 05 (Encapsulación DICOM) & 4.0 min & 04:00 -- 08:00 \\
+\textbf{Integrante 3} & Capa Física, Magnitudes y Selección de Medios & Slide 06 (Atenuación/EMI) + Slide 07 (Selección Cat 6 / 6A) & 4.0 min & 08:00 -- 12:00 \\
+\textbf{Integrante 4} & Cableado Estructurado, T568B y Cuarto MDF & Slide 08 (Normas/T568B) + Slide 09 (Elevación Rack 42U) & 4.0 min & 12:00 -- 16:00 \\
+\textbf{Integrante 5} & Planos, BOM, Pruebas y Sustentación UTP & Slide 10 (Planimetría) + Slide 11 (Pruebas) + Slide 12 (BOM/Cierre) & 4.0 min & 16:00 -- 20:00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{tcolorbox}[colback=lightgray,colframe=accentblue,title=\textbf{Directiva Crítica del Jurado (Rúbrica de Evaluación)}]
+El docente no busca que los alumnos lean conceptos teóricos genéricos como qué es una red o qué significa OSI. El objetivo supremo es \textbf{defender por qué tomaron cada decisión de diseño}: ¿Por qué un piso? ¿Por qué MDF central? ¿Por qué Cat 6A solo en Rayos X? ¿Por qué T568B? ¿Cómo demuestran que el cable funciona?
+\end{tcolorbox}
+
+\newpage
+
+\section{Guion Completo y Especificaciones por Diapositiva}
+
+% =========================================================================================
+% SLIDE 01
+% =========================================================================================
+\subsection{Diapositiva 01: Portada Institucional y Presentación de la Consultora}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Responsable:} Integrante 1 (Líder / Diagnóstico)
+    \item \textbf{Tiempo Asignado:} 1 minuto (Minuto 00:00 al 01:00)
+    \item \textbf{Elementos Visuales a Incluir:}
+    \begin{itemize}
+        \item Logotipo oficial de la Universidad y de la Escuela de Informática y Sistemas.
+        \item Título formal del proyecto: \textit{"Propuesta Técnica de Ingeniería de Cableado Estructurado para el Policlínico Salud \& Vida S.A.C."}.
+        \item Fotografía o render 3D minimalista de un rack de telecomunicaciones hospitalario.
+        \item Nombres completos de los 5 integrantes con sus roles técnicos de ingeniería.
+    \end{itemize}
+\end{itemize}
+
+\begin{tcolorbox}[colback=white,colframe=primaryblue,title=\textbf{Speech Verbal del Integrante 1 (Guion Palabra por Palabra)}]
+\textit{"Buenos días, Ingeniero y miembros del jurado evaluador. Nuestro equipo de trabajo asume hoy el rol de consultora senior de telecomunicaciones para presentar y defender la propuesta técnica integral titulada: \textbf{Diseño de la infraestructura física y cableado estructurado para el Policlínico de Especialidades Médicas Salud \& Vida}.}\par\vspace{2mm}
+\textit{En el sector salud, la red física no es un simple cableado; es la columna vertebral de la que dependen la disponibilidad inmediata de historias clínicas electrónicas, la descarga de radiografías digitales y la atención continua de pacientes. Nuestro proyecto ha sido concebido bajo estándares internacionales ANSI/TIA, priorizando inmunidad ante interferencias electromagnéticas, escalabilidad y estricta relación costo-beneficio. A continuación, iniciaremos exponiendo la realidad operativa del cliente y los requerimientos relevados."}
+\end{tcolorbox}
+
+\vspace{0.5cm}
+
+% =========================================================================================
+% SLIDE 02
+% =========================================================================================
+\subsection{Diapositiva 02: Diagnóstico de la Problemática Actual y Objetivos}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Responsable:} Integrante 1 (Diagnóstico)
+    \item \textbf{Tiempo Asignado:} 1 minuto y 30 segundos (Minuto 01:00 al 02:30)
+    \item \textbf{Elementos Visuales a Incluir:}
+    \begin{itemize}
+        \item Fotografía comparativa o infografía: \textit{"Caos Actual"} (cables colgados, mini-switches, routers domésticos) vs. \textit{"Solución de Ingeniería Proyectada"}.
+        \item Diagrama de las 4 fallas operativas identificadas: 1) Ruido EMI en Rayos X, 2) Caída de enlaces por cableado precario Cat 5e, 3) Cuellos de botella en historias clínicas, 4) Cobertura Wi-Fi nula.
+        \item Cuadro de Objetivo General con métricas cuantificables (450 m², 1 planta, certificación TIA-568).
+    \end{itemize}
+\end{itemize}
+
+\begin{tcolorbox}[colback=white,colframe=primaryblue,title=\textbf{Speech Verbal del Integrante 1 (Guion Palabra por Palabra)}]
+\textit{"El Policlínico 'Salud \& Vida' es una institución ambulatoria con 450 m² construidos en una sola planta. Tras el levantamiento técnico inicial, diagnosticamos una infraestructura existente colapsada y vulnerable. Encontramos cables de red Cat 5e tendidos por el suelo y grapados sin canalización, expuestos al tránsito de camillas y personal.}\par\vspace{2mm}
+\textit{Lo más crítico se detectó en las salas de Rayos X y Laboratorio, donde los cables de datos corrían en paralelo a líneas de fuerza eléctrica y equipos electromédicos de alta inducción, provocando una severa degradación de paquetes que hacía demorar la apertura de una radiografía digital hasta 4 minutos en consulta médica.}\par\vspace{2mm}
+\textit{Frente a esta problemática, formulamos nuestro \textbf{Objetivo General}: Diseñar la infraestructura física de cableado estructurado bajo normativas ANSI/TIA-568 y TIA-569, garantizando enlaces conmutados a 1 Gbps hacia puestos de trabajo, inmunidad contra ruido en salas críticas y centralización total de la gestión en un cuarto de comunicaciones formal."}
+\end{tcolorbox}
+
+\newpage
+
+% =========================================================================================
+% SLIDE 03
+% =========================================================================================
+\subsection{Diapositiva 03: Matriz de Requerimientos y Perfil de Tráfico de Red}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Responsable:} Integrante 1 (Diagnóstico y Requerimientos)
+    \item \textbf{Tiempo Asignado:} 1 minuto y 30 segundos (Minuto 02:30 al 04:00)
+    \item \textbf{Elementos Visuales a Incluir:}
+    \begin{itemize}
+        \item Tabla resumen de dispositivos por ambiente: Recepción (6 tomas), Consultorios (16 tomas), Rayos X (3 tomas F/UTP), Laboratorio (3 tomas F/UTP), Administración (6 tomas), Espera (2 tomas), APs (4 tomas), Servidores (3 tomas).
+        \item Gráfico de barras o pie con la consolidación: \textbf{48 Puntos Activos + 8 Puntos de Reserva Técnica = 56 Puertos de Parcheo Totales}.
+        \item Iconografía de los 3 perfiles de tráfico: Administrativo/EMR, Imágenes DICOM masivas y Telefonía VoIP sensible a retardo.
+    \end{itemize}
+\end{itemize}
+
+\begin{tcolorbox}[colback=white,colframe=primaryblue,title=\textbf{Speech Verbal del Integrante 1 (Guion Palabra por Palabra)}]
+\textit{"Para evitar el sobredimensionamiento o el déficit de tomas, realizamos un censo exhaustivo puesto por puesto. Cuantificamos exactamente \textbf{48 dispositivos finales e intermedios} que requieren conexión por cable: estaciones de trabajo médicas, teléfonos VoIP, analizadores clínicos, estaciones de adquisición de imágenes radiológicas y puntos de acceso inalámbricos.}\par\vspace{2mm}
+\textit{Cumpliendo con la norma ANSI/TIA-568, que exige prever crecimiento modular, agregamos un 16.6\% de reserva técnica, es decir, \textbf{8 tomas adicionales distribuidas estratégicamente}. Esto nos da un universo definitivo de \textbf{56 tomas proyectadas}, el cual encaja a la perfección dentro del rango de 30 a 60 dispositivos exigido en la rúbrica.}\par\vspace{2mm}
+\textit{Asimismo, caracterizamos el tráfico institucional en tres clases: tráfico transaccional ligero de texto para el sistema de historias clínicas, tráfico volumétrico pesado para estudios de Rayos X de hasta 300 megabytes por paciente, y tráfico multimedia prioritario para voz sobre IP. A continuación, mi compañero expondrá cómo la topología seleccionada da soporte a estos requerimientos."}
+\end{tcolorbox}
+
+\vspace{0.5cm}
+
+% =========================================================================================
+% SLIDE 04
+% =========================================================================================
+\subsection{Diapositiva 04: Topología Física en Estrella Jerárquica y Topología Lógica}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Responsable:} Integrante 2 (Fundamentos y Modelos de Referencia)
+    \item \textbf{Tiempo Asignado:} 2 minutos (Minuto 04:00 al 06:00)
+    \item \textbf{Elementos Visuales a Incluir:}
+    \begin{itemize}
+        \item Diagrama de bloques de la Topología en Estrella Jerárquica: Rack Central MDF $\rightarrow$ Ramales Ala Norte, Ala Sur y Zona Crítica.
+        \item Esquema comparativo de topología física (estrella) vs. topología lógica (punto a punto conmutado Full-Duplex IEEE 802.3ab).
+        \item Cuadro de 3 justificaciones técnicas clave: Aislamiento total de fallas, mantenimiento centralizado y cero colisiones.
+    \end{itemize}
+\end{itemize}
+
+\begin{tcolorbox}[colback=white,colframe=primaryblue,title=\textbf{Speech Verbal del Integrante 2 (Guion Palabra por Palabra)}]
+\textit{"Buenos días con todos. Desde el punto de vista arquitectónico, la red ha sido diseñada bajo una \textbf{Topología Física en Estrella Jerárquica}, convergiendo todos y cada uno de los cables en un nodo único: el Gabinete Rack de 42U ubicado en el Cuarto de Telecomunicaciones o MDF central.}\par\vspace{2mm}
+\textit{¿Por qué una estrella física? Primero, por \textbf{aislamiento de fallas}: si el cable del consultorio 4 sufre una rotura por tracción o daño mecánico, el problema queda confinado al puerto individual del usuario; el resto de la clínica sigue operando al 100\%. Segundo, por \textbf{centralización de mantenimiento}: todos los paneles de parcheo, switches y la unidad de respaldo ininterrumpido (UPS) residen en un solo ambiente seguro.}\par\vspace{2mm}
+\textit{En el plano lógico, la red opera como una \textbf{topología punto a punto en conmutación Ethernet Full-Duplex (IEEE 802.3ab)}. A diferencia de las topologías de bus compartido del pasado, cada usuario cuenta con una autopista bidireccional dedicada de 1000 Mbps hacia el switch, eliminando por completo las colisiones de tramas y la contienda por el medio físico."}
+\end{tcolorbox}
+
+\newpage
+
+% =========================================================================================
+% SLIDE 05
+% =========================================================================================
+\subsection{Diapositiva 05: Correspondencia con Modelos OSI y TCP/IP: Flujo de Encapsulación}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Responsable:} Integrante 2 (Modelos de Referencia)
+    \item \textbf{Tiempo Asignado:} 2 minutos (Minuto 06:00 al 08:00)
+    \item \textbf{Elementos Visuales a Incluir:}
+    \begin{itemize}
+        \item Diagrama de secuencia del flujo de datos: Caso real de adquisición de radiografía de tórax (50 MB) desde la PC de Rayos X hacia el Servidor PACS.
+        \item Tabla de correspondencia Capa OSI vs. Dispositivo real del proyecto: Capa 7 (Software DICOM), Capa 4 (Segmento TCP puerto 104), Capa 3 (Paquete IP), Capa 2 (Trama Ethernet con dirección MAC y cola CRC-32), Capa 1 (Niveles de tensión 4D-PAM5 en cable F/UTP).
+    \end{itemize}
+\end{itemize}
+
+\begin{tcolorbox}[colback=white,colframe=primaryblue,title=\textbf{Speech Verbal del Integrante 2 (Guion Palabra por Palabra)}]
+\textit{"Para dar estricto cumplimiento a la rúbrica en la aplicación de los modelos OSI y TCP/IP, no nos limitamos a recitar capas teóricas, sino que modelamos el flujo exacto de encapsulación de un estudio médico real: una radiografía de tórax de 50 Megabytes generada en Rayos X y enviada al Servidor PACS del rack central.}\par\vspace{2mm}
+\textit{En la \textbf{Capa de Aplicación y Presentación}, el visor médico formatea los datos clínicos bajo el estándar DICOM. Al descender a la \textbf{Capa de Transporte}, el protocolo TCP segmenta el archivo en bloques acordes al MSS de 1460 bytes y adjunta la cabecera con el puerto estándar 104 de almacenamiento médico, garantizando que ni un solo byte de la imagen se pierda.}\par\vspace{2mm}
+\textit{En la \textbf{Capa de Red}, se agrega la dirección lógica de origen y destino. En la \textbf{Capa de Enlace}, la tarjeta de red ensambla la trama Ethernet con las direcciones MAC y la secuencia de chequeo de trama CRC-32. Finalmente, en la \textbf{Capa Física} —corazón de nuestro proyecto—, estos bits se convierten en pulsos discretos de voltaje modulados en 4D-PAM5 a través de los cuatro pares trenzados del cable apantallado F/UTP. Cedo la palabra a mi compañero para sustentar la física del medio."}
+\end{tcolorbox}
+
+\vspace{0.5cm}
+
+% =========================================================================================
+% SLIDE 06
+% =========================================================================================
+\subsection{Diapositiva 06: Fundamentos Físicos de Transmisión: Atenuación, NEXT y Ruido EMI}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Responsable:} Integrante 3 (Capa Física y Transmisión)
+    \item \textbf{Tiempo Asignado:} 2 minutos (Minuto 08:00 al 10:00)
+    \item \textbf{Elementos Visuales a Incluir:}
+    \begin{itemize}
+        \item Gráfica de atenuación ($\alpha$ en dB) vs. Frecuencia para Cat 6 (límite normativo de 31.1 dB vs. valor real del proyecto: 11.14 dB con margen de +20 dB).
+        \item Ilustración didáctica de los fenómenos físicos: Pérdida de inserción en el conductor, diafonía (NEXT) entre pares por inducción y ruido EMI radiado por el tubo de Rayos X.
+        \item Fórmula matemática de la atenuación calculada para el enlace más distante (34.80 m).
+    \end{itemize}
+\end{itemize}
+
+\begin{tcolorbox}[colback=white,colframe=primaryblue,title=\textbf{Speech Verbal del Integrante 3 (Guion Palabra por Palabra)}]
+\textit{"Buenos días, jurado calificador. En redes de alta velocidad, los cables no son simples conductores eléctricos; operan como verdaderas líneas de transmisión de radiofrecuencia de hasta 250 y 500 MHz, sujetas a degradación electromagnética.}\par\vspace{2mm}
+\textit{El primer fenómeno evaluado fue la \textbf{Atenuación o Pérdida de Inserción}. A 250 MHz, la norma ANSI/TIA fija un tope máximo de 31.1 dB de atenuación para un enlace permanente de 90 metros. En nuestro diseño, al haber ubicado el MDF en el centro geográfico del inmueble, el trayecto más distante mide apenas \textbf{34.80 metros reales}. Aplicando los modelos matemáticos de atenuación óhmica, calculamos que nuestra atenuación máxima será de tan solo \textbf{11.14 dB}, lo que nos brinda un impresionante margen de seguridad o headroom de casi 20 dB.}\par\vspace{2mm}
+\textit{Asimismo, controlamos la \textbf{Diafonía o NEXT} exigiendo cables Cat 6 con cruceta plástica separadora que mantiene aislados los pares. Y para neutralizar el \textbf{Ruido EMI} severo de los tubos radiológicos de 100 kilovoltios en Rayos X, prescribimos blindaje metálico continuo conectado a tierra."}
+\end{tcolorbox}
+
+\newpage
+
+% =========================================================================================
+% SLIDE 07
+% =========================================================================================
+\subsection{Diapositiva 07: Selección y Justificación Técnica de Medios de Transmisión}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Responsable:} Integrante 3 (Selección de Medios)
+    \item \textbf{Tiempo Asignado:} 2 minutos (Minuto 10:00 al 12:00)
+    \item \textbf{Elementos Visuales a Incluir:}
+    \begin{itemize}
+        \item Matriz comparativa técnico-económica de medios: UTP Cat 6 vs. F/UTP Cat 6A vs. Cable Coaxial vs. Fibra Óptica (OM3/OS2).
+        \item Gráfico de distribución de medios en la clínica: \textbf{85\% UTP Cat 6 LSZH} (Zonas estándar) y \textbf{15\% F/UTP Cat 6A apantallado} (Rayos X y Laboratorio).
+        \item Cuadro con las 3 razones de descarte: Por qué NO coaxial (obsoleto, bus), por qué NO fibra hasta el escritorio (costo excesivo de tarjetas ópticas innecesario en 30 m) y por qué SÍ forro LSZH (cero gases tóxicos en incendios hospitalarios).
+    \end{itemize}
+\end{itemize}
+
+\begin{tcolorbox}[colback=white,colframe=primaryblue,title=\textbf{Speech Verbal del Integrante 3 (Guion Palabra por Palabra)}]
+\textit{"Para respaldar nuestras decisiones ante la rúbrica, elaboramos una matriz comparativa de medios. Seleccionamos una solución híbrida de cobre altamente eficiente:}\par\vspace{2mm}
+\textit{Para el \textbf{85\% de las tomas} (consultorios, recepción y oficinas), adoptamos \textbf{Cable UTP Categoría 6 con forro LSZH}. Soporta holgadamente 1 Gbps a 250 MHz, cubriendo con creces la demanda médica. La especificación LSZH —baja emisión de humos sin halógenos— es mandatoria en hospitales: ante un incendio, no propaga la llama ni emite ácido clorhídrico tóxico, protegiendo a los pacientes que no pueden evacuar rápidamente.}\par\vspace{2mm}
+\textit{Para el \textbf{15\% restante} (las 6 tomas de Rayos X y Laboratorio), prescribimos \textbf{Cable F/UTP Categoría 6A Blindado a 500 MHz}. Su pantalla perimetral de aluminio anula las interferencias de los equipos electromédicos y su ancho de banda permite transferir tomografías a 10 Gbps en menos de dos segundos.}\par\vspace{2mm}
+\textit{Descartamos el cable coaxial por ser una tecnología obsoleta incompatible con conmutación moderna, y descartamos fibra óptica al escritorio porque encarecería el proyecto en más de 400\% sin aportar beneficios reales en distancias menores a 35 metros. Doy pase a mi compañero para explicar la ingeniería de cableado estructurado."}
+\end{tcolorbox}
+
+\vspace{0.5cm}
+
+% =========================================================================================
+% SLIDE 08
+% =========================================================================================
+\subsection{Diapositiva 08: Normativa ANSI/TIA y Código de Terminación T568B vs. T568A}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Responsable:} Integrante 4 (Ingeniería de Cableado Estructurado)
+    \item \textbf{Tiempo Asignado:} 2 minutos (Minuto 12:00 al 14:00)
+    \item \textbf{Elementos Visuales a Incluir:}
+    \begin{itemize}
+        \item Diagrama de pinout comparativo T568A vs. T568B destacando el intercambio de pines entre el Par 2 (Naranja) y el Par 3 (Verde).
+        \item Cuadro de las 4 normas rectoras aplicadas: TIA-568.0-D (enlace permanente $\le 90$ m), TIA-569-D (canalizaciones), TIA-606-B (etiquetado alfanumérico) y TIA-607-C (aterrizaje equipotencial de blindajes).
+        \item Esquema de los 8 conductores bajo T568B: 1-Blanco/Naranja, 2-Naranja, 3-Blanco/Verde, 4-Azul, 5-Blanco/Azul, 6-Verde, 7-Blanco/Marrón, 8-Marrón.
+    \end{itemize}
+\end{itemize}
+
+\begin{tcolorbox}[colback=white,colframe=primaryblue,title=\textbf{Speech Verbal del Integrante 4 (Guion Palabra por Palabra)}]
+\textit{"Buenos días. La ingeniería de cableado estructurado del policlínico está gobernada por cuatro estándares internacionales: ANSI/TIA-568 para el rendimiento de componentes, TIA-569 para las rutas físicas, TIA-606 para el etiquetado alfanumérico unívoco de tomas, y TIA-607 para el sistema de puesta a tierra del chasis del rack y el blindaje del cable F/UTP.}\par\vspace{2mm}
+\textit{Un punto central de la evaluación es el estándar de terminación. Entre T568A y T568B existe una diferencia puramente física en la asignación de pines: se intercambian el Par 2 de color naranja con el Par 3 de color verde. Los pares azul y marrón permanecen idénticos.}\par\vspace{2mm}
+\textit{En nuestro proyecto adoptamos justificadamente el estándar \textbf{T568B en el 100\% de los enlaces y latiguillos}, conformando un cableado directo homogéneo. ¿Por qué T568B? Porque constituye el estándar industrial predominante en el Perú y en el mercado latinoamericano, garantizando compatibilidad absoluta con patch cords comerciales precintados y facilitando el mantenimiento a futuro sin riesgo de confusión para el personal de soporte técnico."}
+\end{tcolorbox}
+
+\newpage
+
+% =========================================================================================
+% SLIDE 09
+% =========================================================================================
+\subsection{Diapositiva 09: Diseño del Cuarto MDF y Elevación Frontal del Rack 42U}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Responsable:} Integrante 4 (Infraestructura de Rack y MDF)
+    \item \textbf{Tiempo Asignado:} 2 minutos (Minuto 14:00 al 16:00)
+    \item \textbf{Elementos Visuales a Incluir:}
+    \begin{itemize}
+        \item Diagrama de elevación frontal a escala del Rack 42U con distribución unidad por unidad (U1 a U42).
+        \item Resaltado de componentes: Ventiladores de techo (U41-U42), Patch Panel 1 y 2 Cat 6 (U39 y U35), Patch Panel 3 Blindado Cat 6A (U31), Switches PoE+ (U37 y U33), Switch Core 10G (U29), Servidores EMR/PACS/NAS (U21-U27), PDU (U09-U10) y UPS Online 3kVA con banco de baterías externo (U01-U08).
+        \item Tabla del mapa de parcheo sintético: 48 puertos UTP + 6 puertos F/UTP apantallados.
+    \end{itemize}
+\end{itemize}
+
+\begin{tcolorbox}[colback=white,colframe=primaryblue,title=\textbf{Speech Verbal del Integrante 4 (Guion Palabra por Palabra)}]
+\textit{"El Cuarto de Comunicaciones (MDF) cuenta con 14.7 m² y aloja un \textbf{Gabinete Rack cerrado de 42 Unidades de Rack (42U) de 19 pulgadas y 800 mm de profundidad}, con estructura de acero SPCC con capacidad de carga de 800 kg.}\par\vspace{2mm}
+\textit{El diseño vertical del rack sigue una estricta ergonomía térmica y de cableado:}\par
+\textit{1. En la parte superior (\textbf{U31 a U39}), instalamos los tres Patch Panels de 24 puertos alternados con organizadores horizontales de 1U justo sobre los switches de acceso, permitiendo utilizar latiguillos cortos de 1 metro y evitando marañas de cables.}\par
+\textit{2. En la zona intermedia (\textbf{U21 a U27}), ubicamos los servidores de Historias Clínicas, el servidor de imágenes PACS y el sistema de almacenamiento de respaldo NAS.}\par
+\textit{3. En la base del rack (\textbf{U01 a U08}), por razones de gravedad y disipación térmica, se ubica el \textbf{UPS Online Doble Conversión de 3000 VA / 2700 W} con su banco de baterías extendido, garantizando 45 minutos de autonomía con 0 milisegundos de tiempo de transferencia ante un corte eléctrico. Ahora mi compañero presentará los planos y el plan de pruebas."}
+\end{tcolorbox}
+
+\vspace{0.5cm}
+
+% =========================================================================================
+% SLIDE 10
+% =========================================================================================
+\subsection{Diapositiva 10: Planimetría, Canalizaciones Físicas y Cobertura WLAN Wi-Fi 6}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Responsable:} Integrante 5 (Planos y Pruebas)
+    \item \textbf{Tiempo Asignado:} 1 minuto y 30 segundos (Minuto 16:00 al 17:30)
+    \item \textbf{Elementos Visuales a Incluir:}
+    \begin{itemize}
+        \item Captura en alta resolución del plano arquitectónico vectorial 1:100 del proyecto (generado en el visor SVG interactivo local).
+        \item Trazado de la bandeja portacables tipo malla (200×50 mm) suspendida a 2.75 m en el pasillo central de 30 m, con gráfico del porcentaje de ocupación transversal (15.8\% real vs. 40\% límite TIA-569).
+        \item Mapa de calor / círculos de cobertura de los 4 Puntos de Acceso Wi-Fi 6 (radio de 8.0 metros con solapamiento del 15\% para roaming continuo).
+    \end{itemize}
+\end{itemize}
+
+\begin{tcolorbox}[colback=white,colframe=primaryblue,title=\textbf{Speech Verbal del Integrante 5 (Guion Palabra por Palabra)}]
+\textit{"Buenos días, señores del jurado. En pantalla apreciamos el plano físico a escala exacta 1:100 del policlínico, correspondiente a la Sección 12 de la memoria técnica y modelado en nuestro visor digital de ingeniería.}\par\vspace{2mm}
+\textit{Para las canalizaciones, implementamos una solución troncal mediante una \textbf{bandeja portacables tipo malla electrosoldada de 200 mm de ancho por 50 mm de peralte}, suspendida a lo largo de los 30 metros del pasillo central en el falso techo. Nuestro cálculo de ocupación transversal arrojó que los 56 cables del mazo principal ocupan únicamente el \textbf{15.8\% de la sección útil}, cumpliendo con amplio margen el límite del 40\% fijado por la norma TIA-569-D. Desde la bandeja derivamos canaletas perimetrales de PVC de dos vías con tabique interno separador para aislar datos de la corriente de 220 voltios.}\par\vspace{2mm}
+\textit{Asimismo, aseguramos la conectividad inalámbrica con \textbf{cuatro Access Points Wi-Fi 6 PoE+}: uno en sala de espera, dos en el pasillo central y uno en administración. Con células de radio de 8 metros y solapamiento del 15\%, garantizamos que una enfermera o médico con tablet se desplace por toda la clínica sin que la llamada o la sesión clínica se desconecte."}
+\end{tcolorbox}
+
+\newpage
+
+% =========================================================================================
+% SLIDE 11
+% =========================================================================================
+\subsection{Diapositiva 11: Plan de Pruebas de Certificación y Muestra Física del Cable UTP}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Responsable:} Integrante 5 (Pruebas y Demostración)
+    \item \textbf{Tiempo Asignado:} 1 minuto y 30 segundos (Minuto 17:30 al 19:00)
+    \item \textbf{Elementos Visuales a Incluir:}
+    \begin{itemize}
+        \item Tabla resumen de parámetros TIA-568-C.2: Wiremap, Longitud ($\le 90$ m), Atenuación ($\le 31.1$ dB), NEXT ($\ge 35.3$ dB) y Pérdida de Retorno ($\ge 10$ dB).
+        \item Fotografía del cable UTP fabricado por el equipo junto al tester de red mostrando la secuencia de LEDs verdes del 1 al 8.
+        \item Esquema de advertencia técnica sobre la falla de \textit{"Split Pair"} (par dividido): por qué un tester de continuidad básico no la detecta y por qué se requiere certificador RF de campo.
+    \end{itemize}
+\end{itemize}
+
+\begin{tcolorbox}[colback=white,colframe=primaryblue,title=\textbf{Speech Verbal del Integrante 5 (Guion Palabra por Palabra)}]
+\textit{"Llegando al control de calidad, formulamos el Plan de Pruebas bajo el protocolo de \textbf{Enlace Permanente de la norma ANSI/TIA-568-C.2}. Cada punto debe superar seis pruebas críticas con instrumental de alta frecuencia: Wiremap continuo 1:1, longitud real, pérdida de inserción, paradiafonía NEXT, pérdidas por retorno y retardo de propagación.}\par\vspace{2mm}
+\textit{Para la evaluación práctica exigida por el curso, aquí tenemos físicamente la muestra de cable UTP Categoría 6 con terminación T568B construida íntegramente por nosotros. Al armarlo, respetamos las tolerancias críticas de ingeniería: un destrenzado de pares inferior a 13 milímetros para no degradar el NEXT, corte perfecto a 90 grados y una penetración de la chaqueta de 8 milímetros dentro del conector RJ-45 asegurada por la cuña mecánica.}\par\vspace{2mm}
+\textit{Sometido al tester de continuidad, demostramos el encendido sincrónico secuencial de los 8 canales. Además, el equipo está plenamente capacitado para responder sobre fallas complejas como el 'split pair' o par dividido, el cual falsea la continuidad en testers simples pero es detectado por certificadores Fluke al destruir la relación señal/ruido."}
+\end{tcolorbox}
+
+\vspace{0.5cm}
+
+% =========================================================================================
+% SLIDE 12
+% =========================================================================================
+\subsection{Diapositiva 12: Presupuesto BOM Valorizado y Conclusiones de Ingeniería}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Responsable:} Integrante 5 (Cierre y Conclusiones del Equipo)
+    \item \textbf{Tiempo Asignado:} 1 minuto (Minuto 19:00 al 20:00)
+    \item \textbf{Elementos Visuales a Incluir:}
+    \begin{itemize}
+        \item Gráfico circular de distribución del presupuesto: Partida 01 Cableado Pasivo (22.9\%), Partida 02 Canalizaciones (11.3\%), Partida 03 Gabinete y UPS (27.5\%) y Partida 04 Equipos Activos y APs (38.3\%).
+        \item Cuadro de Costo Total Directo del BOM: \textbf{\$ 9,632.00 USD (S/. 36,120.00 PEN)}.
+        \item Lista de 3 Conclusiones de Ingeniería: 1) Solución técnica viable y normalizada, 2) Inmunidad total contra EMI en áreas críticas, 3) Retorno de inversión garantizado a 20 años de vida útil.
+    \end{itemize}
+\end{itemize}
+
+\begin{tcolorbox}[colback=white,colframe=primaryblue,title=\textbf{Speech Verbal del Integrante 5 (Guion Palabra por Palabra)}]
+\textit{"Para finalizar la propuesta, consolidamos el Cuadro de Materiales y Presupuesto Referencial (BOM). El cómputo métrico riguroso determinó la necesidad exacta de \textbf{4 bobinas de cable UTP Cat 6 (1,220 metros)} y \textbf{1 bobina de cable apantallado Cat 6A}, totalizando una inversión directa en suministros de \textbf{\$ 9,632.00 Dólares Americanos}, equivalente a aproximadamente \textbf{S/. 36,120.00 Soles}, con una incidencia equilibrada donde los equipos activos y de respaldo representan el 65\% del valor total.}\par\vspace{2mm}
+\textit{Concluimos demostrando que el Policlínico 'Salud \& Vida' obtiene una red físicamente inmune a ruidos electromagnéticos, escalable, con topología centralizada y certificable al 100\% bajo estándares internacionales, garantizando 20 años de vida útil operativa sin obsolescencia temprana.}\par\vspace{2mm}
+\textit{Con esto cerramos nuestra exposición en exactamente 20 minutos, y quedamos a total disposición del señor docente para la ronda de preguntas y la evaluación individual. Muchas gracias."}
+\end{tcolorbox}
+
+\newpage
+
+\section{Guía de Contingencia para la Ronda de Preguntas Individuales (5 Minutos)}
+
+El documento base del curso estipula que el docente formulará \textbf{preguntas individuales aleatorias a cualquiera de los 5 integrantes} sobre cualquier tema de la memoria. A continuación se resume la matriz de defensa rápida con las 5 preguntas trampa más comunes:
+
+\begin{tcolorbox}[colback=lightgray,colframe=primaryblue,title=\textbf{Pregunta 1: ¿Por qué en este proyecto no configuraron subredes ni direcciones IP?}]
+\textbf{Respuesta Modelo:} \textit{"Porque el alcance pedagógico y técnico de la Unidad I de Redes de Computadoras está delimitado estricta y deliberadamente a la \textbf{Capa Física y Capa de Enlace de Datos} (dimensionamiento, medios, atenuación, cableado estructurado y canalizaciones). La configuración lógica de direccionamiento IPv4/IPv6, subnetting VLSM y protocolos de enrutamiento corresponde formalmente al proyecto sumativo de la Unidad II."}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=lightgray,colframe=primaryblue,title=\textbf{Pregunta 2: ¿Por qué no instalaron fibra óptica horizontal si es inmune al ruido de Rayos X?}]
+\textbf{Respuesta Modelo:} \textit{"Por estricto criterio de costo-beneficio de ingeniería. La fibra óptica horizontal hacia el escritorio (FTTD) exigiría tarjetas de red ópticas y transceptores para cada computadora, multiplicando el costo por cinco. El cable de cobre apantallado \textbf{F/UTP Categoría 6A} con lámina perimetral de aluminio e hilo de drenaje aterrizado bajo TIA-607-C ofrece una atenuación de ruido superior a 40 dB, logrando 10 Gbps con cero errores de transmisión a una fracción del costo."}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=lightgray,colframe=primaryblue,title=\textbf{Pregunta 3: ¿Qué ocurre si un técnico conecta un extremo en T568A y el otro en T568B?}]
+\textbf{Respuesta Modelo:} \textit{"Se construye un \textbf{cable cruzado (crossover)}. Aunque en el pasado se usaba para conectar switches entre sí, en una infraestructura estructurada fija moderna representa una anomalía de instalación que incumple la norma TIA-568. Además, los dispositivos modernos con Auto-MDIX (IEEE 802.3ab) podrían corregirlo lógicamente, pero la trazabilidad documental y la certificación del enlace permanente darían una no conformidad en el informe de auditoría."}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=lightgray,colframe=primaryblue,title=\textbf{Pregunta 4: ¿Cómo dimensionaron el UPS de 3 kVA del rack?}]
+\textbf{Respuesta Modelo:} \textit{"Realizamos la sumatoria del consumo en vatios de los equipos activos: 2 switches PoE+ de 370W ($740\text{ W}$), 1 switch core ($60\text{ W}$), 2 servidores EMR/PACS ($500\text{ W}$), 1 NAS ($100\text{ W}$) y extractores ($50\text{ W}$), totalizando aproximadamente $1,450\text{ Watts}$. Con un factor de seguridad del 40\% y considerando el factor de potencia (0.9), se determinó que un UPS Online de $3000\text{ VA} / 2700\text{ W}$ opera al 55\% de su capacidad nominal en su punto óptimo de eficiencia, otorgando 45 minutos de autonomía con el banco extendido."}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=lightgray,colframe=primaryblue,title=\textbf{Pregunta 5: ¿Por qué la bandeja tipo malla se llenó solo al 15.8\% si la norma permite 40\%?}]
+\textbf{Respuesta Modelo:} \textit{"Porque la norma ANSI/TIA-569-D fija el \textbf{40\% como el límite máximo admisible en el día de la instalación inicial}, dejando el 60\% restante para permitir la disipación térmica de cables con PoE y futuras ampliaciones. Al tener un 15.8\% de ocupación real con 56 cables, nuestro diseño no solo cumple la norma, sino que garantiza que la clínica pueda duplicar la cantidad de cámaras IP o puntos de datos sin tener que cambiar de bandeja portacables."}
+\end{tcolorbox}
+
+\end{document}
