@@ -459,7 +459,8 @@
     </div>
     <div style="display: flex; gap: 10px;">
       <button class="ctrl-btn" style="width: auto; padding: 0 14px; font-size: 0.8rem; font-weight: 600;" onclick="resetView()">Centrar Vista</button>
-      <button class="ctrl-btn" style="width: auto; padding: 0 14px; font-size: 0.8rem; font-weight: 600; background: var(--accent-cyan); color: #0a0e17;" onclick="exportSVG()">Descargar SVG</button>
+      <button class="ctrl-btn" style="width: auto; padding: 0 14px; font-size: 0.8rem; font-weight: 600; background: #10b981; color: #0a0e17; border-color: #10b981;" onclick="exportNativeDiagram('png')" title="Exportar diagrama puro en resolución 4K nativa (sin capturas de pantalla)">Descargar PNG Ultra-HD (4K)</button>
+      <button class="ctrl-btn" style="width: auto; padding: 0 14px; font-size: 0.8rem; font-weight: 600; background: var(--accent-cyan); color: #0a0e17;" onclick="exportNativeDiagram('svg')" title="Exportar archivo SVG con estilos y fuentes incrustadas">Descargar SVG Vectorial</button>
     </div>
   </header>
 
@@ -1198,18 +1199,119 @@
       tooltip.style.display = 'none';
     }
 
-    // SVG Export Function
-    function exportSVG() {
+    // Construcción de SVG autónomo con estilos, fuentes y fondos incrustados
+    function getStandaloneSVGString() {
+      const clonedSvg = svg.cloneNode(true);
+      clonedSvg.setAttribute("width", "3200");
+      clonedSvg.setAttribute("height", "1700");
+      clonedSvg.setAttribute("viewBox", "0 0 3200 1700");
+
+      // Resetear la transformación de zoom/paneo a la posición neutral de fábrica
+      const clonedScene = clonedSvg.querySelector("#sceneTransform");
+      if (clonedScene) {
+        clonedScene.setAttribute("transform", "translate(0, 0) scale(1)");
+      }
+
+      // Asegurar que las capas activas en el UI se reflejen
+      ["layer-arch", "layer-corridor", "layer-trays", "layer-jacks", "layer-wifi", "layer-cables"].forEach(layerId => {
+        const originalLayer = document.getElementById(layerId);
+        const targetLayer = clonedSvg.querySelector("#" + layerId);
+        if (originalLayer && targetLayer) {
+          targetLayer.style.display = originalLayer.style.display;
+        }
+      });
+
+      // Crear bloque de estilos embebidos con fuentes y variables resueltas
+      const styleElement = document.createElementNS("http://www.w3.org/2000/svg", "style");
+      styleElement.textContent = `
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap');
+        text { font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        .grid-line { stroke: rgba(255, 255, 255, 0.05); stroke-width: 1; }
+        .dimension-line { stroke: #64748b; stroke-width: 1.5; }
+        .dimension-text { fill: #94a3b8; font-size: 24px; font-family: 'JetBrains Mono', monospace; text-anchor: middle; font-weight: 600; }
+        .wall-outer { stroke: #64748b; stroke-width: 6; stroke-linejoin: round; fill: rgba(15, 23, 42, 0.85); }
+        .wall-inner { stroke: #475569; stroke-width: 3.5; stroke-linecap: round; }
+        .door-arc { stroke: #94a3b8; stroke-width: 1.5; stroke-dasharray: 4, 3; fill: none; }
+        .door-leaf { stroke: #cbd5e1; stroke-width: 2.5; }
+        .room-poly { stroke: #475569; stroke-width: 3; }
+        .room-title { font-weight: 700; font-size: 26px; fill: #f8fafc; text-anchor: middle; }
+        .room-meta { font-size: 19px; fill: #94a3b8; text-anchor: middle; font-family: 'JetBrains Mono', monospace; }
+        .cable-tray { stroke: #f59e0b; stroke-width: 14; stroke-dasharray: 10, 6; stroke-linecap: butt; fill: none; opacity: 0.88; }
+        .cable-run { stroke-width: 2.5; fill: none; opacity: 0.75; }
+      `;
+
+      // Inyectar defs y estilo
+      let defs = clonedSvg.querySelector("defs");
+      if (!defs) {
+        defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+        clonedSvg.insertBefore(defs, clonedSvg.firstChild);
+      }
+      defs.appendChild(styleElement);
+
+      // Inyectar fondo sólido oscuro de alta fidelidad para visualizadores externos
+      const bgRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      bgRect.setAttribute("width", "3200");
+      bgRect.setAttribute("height", "1700");
+      bgRect.setAttribute("fill", "#0a0e17");
+      clonedSvg.insertBefore(bgRect, clonedSvg.firstChild);
+
       const serializer = new XMLSerializer();
-      const source = serializer.serializeToString(svg);
-      const blob = new Blob([source], { type: 'image/svg+xml;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'plano_red_policlinico_salud_vida.svg';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      return serializer.serializeToString(clonedSvg);
+    }
+
+    // Función de exportación nativa de alta fidelidad (PNG 4K o SVG Vectorial)
+    function exportNativeDiagram(format) {
+      const svgString = getStandaloneSVGString();
+
+      if (format === 'svg') {
+        const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'plano_red_policlinico_salud_vida_vectorial.svg';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        return;
+      }
+
+      if (format === 'png') {
+        // Renderizado nativo por Canvas en Ultra-HD (4K: 3840 x 2040)
+        const targetWidth = 3840;
+        const targetHeight = 2040;
+        const canvas = document.createElement('canvas');
+        canvas.width = targetWidth;
+        canvas.height = targetHeight;
+        const ctx = canvas.getContext('2d');
+
+        const img = new Image();
+        const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+        const blobUrl = URL.createObjectURL(svgBlob);
+
+        img.onload = function () {
+          // Fondo base
+          ctx.fillStyle = '#0a0e17';
+          ctx.fillRect(0, 0, targetWidth, targetHeight);
+          // Dibujo vectorial a máxima resolución
+          ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+          URL.revokeObjectURL(blobUrl);
+
+          canvas.toBlob((blob) => {
+            if (!blob) return;
+            const pngUrl = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = pngUrl;
+            a.download = 'plano_red_policlinico_salud_vida_4K.png';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(pngUrl);
+          }, 'image/png');
+        };
+
+        img.src = blobUrl;
+      }
     }
 
     // Auto-select MDF on startup
